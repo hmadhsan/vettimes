@@ -1,0 +1,15 @@
+@import "../../style/options";
+
+#info {
+  font-family: $ffTipperary;
+  font-size: 15px;
+  line-height: 1.4;
+  h1.title {
+    font-family: $ffStagSans;
+    font-size: 1.7em;
+    margin: 0.8em 0;
+  }
+  p { margin: 0.8em 0 }
+  a { color: $cBlue }
+  ul, ol { list-style-position: inside }
+}

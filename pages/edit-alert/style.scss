@@ -1,0 +1,62 @@
+@import "../../style/options";
+
+#edit-alert {
+  font-family: $ffTipperary;
+
+  .site-title-wrapper {
+    margin-bottom: 20px;
+    padding: 40px 0 0;
+    text-align: left;
+  }
+
+  p {
+    line-height: 1.4;
+
+    a {
+      color: $cBlue;
+      transition: .12s all linear;
+      white-space: nowrap;
+
+      &:hover {
+        color: $cBlueHover;
+      }
+    }
+  }
+
+  .el-form {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: $cHighLight;
+
+    > .el-form-item {
+      margin-bottom: 20px;
+    }
+  }
+
+  .el-select-top {
+    margin-bottom: 20px;
+  }
+
+  .el-form-item {
+
+    &__label {
+      width: 100%;
+      display: block;
+      text-align: left;
+      line-height: 1.5;
+    }
+
+    .el-select {
+      width: 100%;
+    }
+  }
+
+  .button {
+    display: table;
+    font-size: 15px;
+    width: 100%;
+    max-width: 245px;
+    margin-top: 10px;
+  }
+}
+

@@ -1,0 +1,20 @@
+@import "../../style/options";
+
+#redirecting {
+  .row {
+    > div {
+      font-family: $ffTipperary;
+      max-width: 92%;
+      margin: 23px auto 80px;
+      .site-title {
+        margin-bottom: 20.672px;
+      }
+
+      .info-page__content {
+        h2 {
+          color: $cText;
+        }
+      }
+    }
+  }
+}

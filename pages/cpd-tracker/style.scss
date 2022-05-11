@@ -1,0 +1,109 @@
+@import "../../style/options";
+
+#cpd-tracker {
+  font-family: $ffTipperary;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 40px 0;
+  .h1 {
+    color: $cBlueLight;
+    font-family: $ffStagSans;
+    font-size: 2.5em;
+  }
+  .no-auth {
+    background-color: #fcf8e3;
+    border: 1px solid #faebcc;
+    border-radius: 3px;
+    color: #8a6d3b;
+    padding: 15px;
+    margin: 20px 0;
+  }
+  .tracked {
+    background-color: #804A5F;
+    color: $cWhite;
+    margin: 20px 0;
+    padding: 8px 16px;
+    img {
+      margin-right: 10px;
+      width: 30px;
+    }
+    > span {
+      font-family: $ffStag;
+      font-size: 2em;
+      font-weight: 300;
+      vertical-align: middle;
+      span { font-family: $ffStagSans }
+    }
+  }
+  .button.reset:not(:hover) {background: #804A5F }
+  .remove + .button,
+  button + button { margin-left: 10px }
+  table {
+    background: #d4edfc;
+    border: 1px solid rgba(#000,.1);
+    border-spacing: 0;
+    width: 100%;
+    a:not(.button) { color: $cBlueLight }
+    img { width: 14px }
+    td, th { padding: 10px }
+    th { background: #a1daf8 }
+    td:nth-child(3) {
+      text-align: right;
+      width: 90px;
+    }
+    tr:nth-of-type(even) { background: #eaf6fe }
+    .remove {
+      color: $cBlueLight;
+      cursor: pointer;
+    }
+    .setting {
+      cursor: pointer;
+    }
+    small {
+      display: block;
+      font-size: 12px;
+      line-height: 1.1;
+    }
+  }
+  table.book {
+    td { background: #fefeee !important }
+    td:nth-child(3) {
+      text-align: right;
+      width: 180px;
+    }
+  }
+  table.cert {
+    td:nth-child(3) {
+      width: 220px;
+    }
+  }
+  .cpd-form {
+    .el-col { margin-top: 20px }
+    .el-input-number { width: 100% }
+    textarea { padding: 7px 15px }
+  }
+}
+
+.pp-tracker {
+  padding: 10px !important;
+  .upd-time {
+    font-size: 12px;
+    margin-top: 5px;
+    padding: 2px 10px;
+  }
+}
+
+
+@media (max-width: 767px) {
+  #cpd-tracker {
+    table td:nth-child(2) { width: 70px }
+    table td:nth-child(3) { width: 90px }
+    table.cert td:nth-child(3) { width: 150px }
+  }
+}
+
+@media (min-width: 768px) {
+  #cpd-tracker {
+    table td:nth-child(2) { width: 110px }
+  }
+}

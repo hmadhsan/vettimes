@@ -1,0 +1,43 @@
+@import "../../style/options";
+
+#footer-social {
+  padding-right: 83px;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  @media only screen and (max-width: 750px) {
+    left: 0;
+    padding-top: 7px;
+    padding-right: 0;
+    right: auto;
+    width: 100%;
+  }
+
+
+  .social-buttons {
+    @media only screen and (max-width: 750px) {
+      padding: 0;
+      text-align: center;
+    }
+
+    &__name {
+      display: none;
+    }
+
+    &__item {
+      border: none;
+
+      @media only screen and (max-width: 750px) {
+        display: inline-block;
+        float: none;
+        width: auto;
+      }
+
+      [data-icon]:before {
+        font-size: 1.2em;
+        padding: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import "../../style/options";
+
+#providers {
+  font-family: $ffTipperary;
+  margin-top: 23px;
+  margin-bottom: 20px;
+  .inner {
+    margin: 19px 0 0;
+  }
+
+  .providers__item-container {
+    margin-bottom: 17px;
+  }
+
+  .search {
+    .el-select {
+      width: 100%;
+    }
+  }
+
+  .paginator {
+    border-radius: 4px;
+    background-color: $cHighLight;
+    padding: 5px !important;
+    margin-top: 40px;
+
+    &__items {
+      list-style: none;
+      float: right;
+      margin: 0;
+      text-align: right;
+
+      li {
+        display: inline-block;
+        margin-left: 3px;
+        transition: .12s all ease-in;
+
+        &.active,
+        &.disabled {
+          background: $cWhite;
+        }
+
+        &:hover {
+          background: $cWhite;
+        }
+
+        a {
+          min-width: 30px;
+          padding: 4px 8px;
+          border-radius: 3px;
+          text-align: center;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,238 @@
+@import "../../style/options";
+
+.course-item {
+  font-family: $ffTipperary;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: block;
+  padding: 10px 10px 7px;
+  color: #565656;
+  position: relative;
+  margin: 0 0 20px;
+  transition: 0.3s background-color, 0.3s border-color;
+
+  .new-course {
+    position: relative;
+    top: -2px;
+    padding: 3px 6px;
+    color: $cWhite;
+    background-color: #6cbc7d;
+    font-size: 12px;
+    display: inline-block;
+    border-radius: 2px;
+    line-height: 1.25;
+  }
+
+  /* &_premium {
+    border-color: $borderPremium;
+    padding-top: 30px;
+    border-radius: 0;
+
+    &:before {
+      // content: 'Premium Course';
+      content: 'Silver';
+      background: $borderPremium;
+      color: $cWhite;
+      font-size: .8em;
+      position: absolute;
+      padding: 2px 10px;
+      top: 0px;
+      left: 0px;
+      margin: 0;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    .title {
+      background: $cPink !important;
+      border-radius: 0 !important;
+    }
+  } */
+
+  &_bronze {
+    border-color: $borderPremium;
+    padding-top: 30px;
+    border-radius: 0;
+    &:before {
+      // content: 'Top Course';
+      content: 'Bronze';
+      background: $borderPremium;
+      color: $cWhite;
+      font-size: .8em;
+      position: absolute;
+      padding: 2px 10px;
+      top: 0;
+      left: 0;
+      margin: 0;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    .title {
+      background: $cPink !important;
+      border-radius: 0 !important;
+    }
+  }
+
+  &_silver {
+    border-color: $borderPremium;
+    padding-top: 30px;
+    border-radius: 0;
+
+    &:before {
+      // content: 'Premium Course';
+      content: 'Silver';
+      background: $borderPremium;
+      color: $cWhite;
+      font-size: .8em;
+      position: absolute;
+      padding: 2px 10px;
+      top: 0px;
+      left: 0px;
+      margin: 0;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    .title {
+      background: $cPink !important;
+      border-radius: 0 !important;
+    }
+  }
+
+  /* &_top_crs {
+    background: rgba($bPremiumCourse, .1);
+    border-color: $borderPremium;
+    padding-top: 30px;
+    border-radius: 0;
+    &:before {
+      // content: 'Top Course';
+      content: 'Platinum';
+      background: $borderPremium;
+      color: $cWhite;
+      font-size: .8em;
+      position: absolute;
+      padding: 2px 10px;
+      top: 0;
+      left: 0;
+      margin: 0;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    .title {
+      background: $cPink !important;
+      border-radius: 0 !important;
+    }
+  } */
+
+  &_gold {
+    background: rgba($bPremiumCourse, .1);
+    border-color: $borderPremium;
+    padding-top: 30px;
+    border-radius: 0;
+
+    &:before {
+      // content: 'Premium Course';
+      content: 'Gold';
+      background: $borderPremium;
+      color: $cWhite;
+      font-size: .8em;
+      position: absolute;
+      padding: 2px 10px;
+      top: 0px;
+      left: 0px;
+      margin: 0;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    .title {
+      background: $cPink !important;
+      border-radius: 0 !important;
+    }
+  }
+
+  &_sponsorship {
+    background: $bSponsorCourse;
+    border-color: $borderSponsor;
+    padding-top: 30px;
+    border-radius: 0;
+
+    &:before {
+      content: 'Sponsored Course';
+      background: $borderSponsor;
+      color: $cWhite;
+      font-size: .8em;
+      position: absolute;
+      padding: 2px 10px;
+      top: 0px;
+      left: 0px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+  }
+
+  .title {
+    font-size: 18.24px;
+    line-height: 25px;
+    //color: $cBlue;
+    color: $cWhite;
+    background: $cBlue;
+    //margin: 0 0 10px;
+    margin: -11px -11px 10px;
+    //padding-right: 30px;
+    padding: 11px 40px 11px 10px;
+    border-radius: 4px 4px 0 0;
+  }
+  .information {
+    margin: 0 0 0;
+    float: left;
+    width: 70%;
+    min-height: 93px;
+    p {
+      font-size: 15.2px;
+      color: $cText;
+      margin: 0 0 12px;
+      line-height: 21px;
+    }
+  }
+  .image {
+    float: right;
+    width: 30%;
+    max-width: 150px;
+    border: 1px solid #eee;
+    padding-top: 15%;
+    max-height: 150px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 12px;
+  }
+}
+
+.course-item:hover {
+  border: 1px solid #b2b2b2;
+  background-color: #fbfbfb;
+}
+
+.course-item-container {
+  position: relative;
+
+  .save-course {
+    position: absolute;
+    top: 5px;
+    right: 9px;
+    //color: $cPink;
+    color: $cWhite;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+.popover-content {
+  p a {
+    color: $cBlue;
+
+    &:hover {
+      color: $cBlueHover;
+    }
+  }
+}
+
+

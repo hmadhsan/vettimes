@@ -1,0 +1,56 @@
+@import "../../style/options";
+
+#privacy-dashboard {
+  font-family: $ffTipperary;
+
+  .site-title-wrapper {
+    margin-bottom: 20px;
+    padding: 40px 0 0;
+    text-align: left;
+  }
+
+  p {
+    line-height: 1.4;
+
+    a {
+      color: $cBlue;
+      transition: .12s all linear;
+      white-space: nowrap;
+
+      &:hover {
+        color: $cBlueHover;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .d-block {
+    margin-left: 0;
+    padding: 20px;
+    border: 1px solid $cHighLight;
+    background: $cHighLight;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 770px;
+
+    p {
+      font-size: 15px;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+  }
+
+  .button {
+    display: table;
+    font-size: 15px;
+
+    @media screen and (max-width: 767px) {
+      margin-top: 10px;
+    }
+  }
+}
+

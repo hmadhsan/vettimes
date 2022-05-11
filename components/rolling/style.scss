@@ -1,0 +1,58 @@
+@import "../../style/options";
+
+#content-rolling {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+
+  .lds-rolling {
+    position: relative;
+    width: 20px !important;
+    height: 20px !important;
+    -webkit-transform: translate(-10.5px, -10.5px) scale(0.105) translate(10.5px, 10.5px);
+    transform: translate(-10.5px, -10.5px) scale(0.105) translate(10.5px, 10.5px);
+
+    div,
+    div:after {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border: 19px solid $cText;
+      border-top-color: transparent;
+      border-radius: 50%;
+    }
+
+    div {
+      -webkit-animation: lds-rolling 1s linear infinite;
+      animation: lds-rolling 1s linear infinite;
+      top: 100px;
+      left: 100px;
+    }
+
+    div:after {
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+  }
+}
+
+@keyframes lds-rolling {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@-webkit-keyframes lds-rolling {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

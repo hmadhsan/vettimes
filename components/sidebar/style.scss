@@ -1,0 +1,85 @@
+@import "../../style/options";
+
+#sidebar {
+  float: left;
+  padding-right: 10px;
+  width: 200px;
+
+  @media screen and (max-width: 992px) {
+    float: none;
+    width: 100%;
+  }
+
+  .el-button {
+    margin: 0 0 10px;
+    text-align: left;
+    width: 100%;
+  }
+
+  ~.with-sb {
+    border-left: 1px solid $iBorder;
+    float: left;
+    width: calc(100% - 200px);
+
+    @media screen and (max-width: 992px) {
+      float: none;
+      width: 100%;
+    }
+  }
+
+  .list-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .disabled {
+      cursor: no-drop;
+      a {
+        background: transparent !important;        
+        pointer-events: none;
+        opacity: 0.7;
+      }
+    }    
+
+    &__item {
+      margin: 0 0 10px;
+      display: block;
+      position: relative;
+
+      &_tick {
+        &:before {
+          content: "\2714";
+          color: #15507f;
+          border-color: #15507f;
+          display: block;
+          font-family: 'mdgx-icons';
+          font-style: normal;
+          font-variant: normal;
+          font-weight: normal;
+          padding-top: 6px;
+          position: absolute;
+          z-index: 99;
+          right: 10px;
+        }
+      }
+
+      &_active {
+        .list-nav__link {
+          background: $cHighLight;
+        }
+      }
+    }
+
+    &__link {
+      padding: 5px;
+      display: block;
+      color: $cBlue;
+      transition: .12s background ease-in;
+
+      &:hover {
+        color: $cBlueHover;
+        background: $cHighLight;
+      }
+    }
+  }
+}

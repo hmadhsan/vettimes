@@ -1,0 +1,780 @@
+@import "../../style/options";
+$mainColor: #804a5f;
+
+#home-provider {
+
+  .content {
+    .banner {
+      padding: 100px 0 120px 0;
+      background-color: #D0D2DE;
+      background: url(/img/CPD-Seeker-hero.002bdfc8.png) 50% 50% no-repeat;
+      margin-bottom: 0;
+      border: 0;
+      background-size: cover;
+      border-bottom-width: 6px !important;
+      border-bottom-style: solid !important;
+      border-image: linear-gradient(to right, #bb1f61, #d2232a) 1 !important;
+
+      .title {
+        color: $cWhite;
+        font-size: 52px;
+        font-weight: $fwBold;
+        line-height: 62px;
+        font-family: $ffStagSans;
+        margin-bottom: 25px;
+        text-shadow: 0 2px 6px #333;
+      }
+
+      h2 {
+        font-family: $ffTipperary;
+        color: #ffffff;
+        font-size: 34px;
+        font-weight: 500;
+        line-height: 44px;
+        margin-bottom: 60px;
+        text-shadow: 0 2px 6px #333;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      .banner-btn {
+        font-size: 18px;
+        font-family: "Tipperary", Georgia, "Times New Roman", Times, serif;
+        background: #a70050;
+        border: 1.5px solid #a70050;
+        border-radius: 50px;
+        color: #ffffff;
+        -ms-flex-item-align: end;
+        padding: 10px 40px;
+        -webkit-transition: 0.3s background-color;
+        transition: 0.3s background-color;
+        cursor: pointer;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+
+        &:hover {
+          background: #fff;
+          color: #a70050;
+        }
+      }
+
+      .banner-btn:first-child {
+        margin-right: 15px;
+      }
+    }
+    .el-carousel__item p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      line-height: 16px;
+      max-height: 112px;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+
+    .CPD-clients {
+      margin: 50px 0;
+
+      h1 {
+        text-align: center;
+        font-family: "Stag Sans", Georgia, "Times New Roman", Times, serif;
+      }
+
+      .provider-logo {
+        border: 1.5px solid #e2e2e2;
+        margin-bottom: 5px;
+        // display: inline-flex;
+        position: relative;
+        float: left;
+        width: calc(14% - 0px);
+        margin-top: 40px;
+        border-radius: 7px;
+        margin: 40px 15px 0 15px;
+        height: 110px;
+      }
+
+
+    }
+
+    .CPD-testimonial {
+      padding: 30px 0 20px 0;
+      background: -webkit-gradient(linear, left bottom, left top, from(#bb1f61), to(#d2232a));
+      background: linear-gradient(0deg, #bb1f61 0%, #d2232a 100%);
+
+      h1 {
+        text-align: center;
+        font-family: "Stag Sans", Georgia, "Times New Roman", Times, serif;
+        color: #fff;
+      }
+
+      blockquote {
+        width: 50%;
+        text-align: center;
+        margin: 40px auto;
+        color: #fff;
+        font-family: $ffTipperary;
+
+        p {
+
+          font-size: 20px;
+          line-height: 1.4em;
+          margin-bottom: 30px;
+        }
+
+        span {
+          font-weight: 700;
+        }
+      }
+
+    }
+
+    .CPD-packages {
+      background: #ECF1F5;
+      padding: 30px 0 20px 0;
+
+      h1 {
+        text-align: center;
+        font-family: "Stag Sans", Georgia, "Times New Roman", Times, serif;
+      }
+
+      .package-wrapper {
+        font-family: $ffTipperary;
+        text-align: center;
+        margin-top: 100px;
+        display: flex;
+
+        .most-popular-package {
+          box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.36);
+          border-width: 4px !important;
+          border-style: solid !important;
+          border-image: linear-gradient(to bottom, #bb1f61, rgba(210, 35, 42, 1))1 !important;
+
+        }
+
+        .package {
+          display: inline-block;
+          border: 1px solid #C8C8C8;
+          width: calc(93%/4);
+          background: #fff;
+          // display: grid;
+          display: inline-table;
+          margin: 20px 10px;
+          position: relative;
+          -webkit-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+
+          b {
+              font-size: 14px;
+            }
+
+          .package__list p {
+            font-size: 15px;
+            color: #565656;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin-bottom: 30px;
+          }
+
+          .package__list .included{
+            font-weight: 600;
+            margin-bottom: 20px !important;
+            color: #15507f;
+          }
+
+          ul {
+            list-style: none;
+            margin-bottom: 30px;
+          }
+
+          &__header {
+            padding: 20px;
+            height: 65px;
+            font-size: 20px;
+            color: #565656;
+            text-transform: uppercase;
+            font-family: "Stag Sans", Georgia, "Times New Roman", Times, serif;
+          }
+
+          &__price {
+            color: #565656;
+            padding: 0 20px 20px 20px;
+            margin: auto auto 0 auto;
+            font-size: 40px;
+            font-weight: 500;
+            font-family: "Stag Sans", Georgia, "Times New Roman", Times, serif;
+          }
+          
+          .free {
+            background: #15507f !important;
+            color: #fff !important;
+          }
+
+          .silver {
+            background: #c6c8ca !important;
+          }
+
+          .bronze {
+            background: #be9369 !important;
+          }
+
+          .gold {
+            background: #ac9668 !important;
+          }
+
+          .platinum {
+            background: #e7e8e8 !important;
+          }
+
+          .most-popular {
+            padding: 20px;
+            font-size: 20px;
+            top: -65px;
+            left: 0;
+            width: 100%;
+            transform: scale(1.03);
+            color: #fff;
+            position: absolute;
+            text-transform: uppercase;
+            background: #15507f;
+            font-family: "Stag Sans", Georgia, "Times New Roman", Times, serif;
+            background: linear-gradient(0deg, #bb1f61 0%, #d2232a 100%);
+          }
+
+          .buy-btn {
+            font-size: 20px;
+            margin: auto;
+            display: inline-block;
+            line-height: 2.4em;
+            font-family: "Tipperary", Georgia, "Times New Roman", Times, serif;
+            background: transparent;
+            border: 1.5px solid #A70050;
+            height: 50px;
+            border-radius: 7px;
+            color: #A70050;
+            ;
+            align-self: flex-end;
+            margin-top: 20px;
+            -webkit-transition: 0.3s background-color;
+            transition: 0.3s background-color;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 30px;
+            width: 85%;
+
+            &:hover {
+              background: #A70050;
+              color: #fff;
+            }
+          }
+
+          &__list {
+            padding: 20px;
+            color: #A0A0A0;
+            // min-height: 392px;
+            list-style: none;
+
+            li {
+              padding: 10px 15px;
+              border-bottom: 1px solid #e4e4e4;
+              font-size: 14px;
+              color: #565656;
+              font-weight: 600;
+              letter-spacing: 0.3px;
+
+              &:last-child {
+                border: none;
+              }
+            }
+          }
+
+          &:hover {
+            box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.36);
+          }
+        }
+      }
+
+
+    }
+
+
+    .read-more-state {
+      display: none;
+      transition: 1s all;
+    }
+
+    .read-more-target {
+      opacity: 0;
+      display: none;
+      max-height: 0;
+      font-size: 0;
+      transition: 1s all;
+    }
+
+    .read-more-state:checked~.read-more-wrap .read-more-target {
+      opacity: 1;
+      display: inherit;
+      transition: 1s all;
+      max-height: 999em;
+    }
+
+    .read-more-state~.read-more-trigger:before {
+      content: 'View Details';
+    }
+
+    .read-more-state:checked~.read-more-trigger:before {
+      content: 'Hide Details';
+    }
+
+    .read-more-trigger {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 1.25em;
+      color: #15507f;
+      font-size: .9em;
+      transition: 0.3s all;
+      font-weight: 600;
+      line-height: 2.25;
+      border: 1.5px solid #15507f;
+      border-radius: .25em;
+    }
+
+    .read-more-trigger:hover{
+      transition: 0.3s all;
+      color: #fff;
+      background: #15507f;
+      border: 1.5px solid #15507f;
+    }
+
+    .CPD-why-choose-us {
+      padding: 30px 0 20px 0;
+      background: #ECF1F5;
+
+      p {
+        font-size: 16px;
+        margin: 0;
+        text-align: center;
+        font-weight: 600;
+        line-height: 22px;
+        font-family: $ffTipperary;
+      }
+
+      .days {
+        font-size: 16px;
+        margin: 0;
+        text-align: right;
+        font-weight: 600;
+        line-height: 22px;
+        font-family: $ffTipperary;
+      }
+
+      h1 {
+        text-align: center;
+        font-family: "Stag Sans", Georgia, "Times New Roman", Times, serif;
+      }
+
+      .home-blocks {
+        padding-bottom: 20px;
+        margin-top: 35px;
+
+        .why-choose-us {
+          float: left;
+          text-align: center;
+          width: calc(33.3333% - 20px);
+          padding: 25px 35px;
+          min-height: 170px;
+
+
+        }
+
+        .why-choose-us:nth-child(2) {
+          margin-left: 30px;
+          margin-right: 30px;
+        }
+
+        h3 {
+          position: relative;
+          padding-top: 10px;
+          margin-bottom: 5px;
+          font-size: 42px;
+          font-weight: bold;
+          color: #15507f;
+          font-family: $ffStagSans;
+        }
+
+        p {
+          font-size: 18px;
+          margin: 0;
+          font-weight: 600;
+          line-height: 22px;
+          font-family: $ffTipperary;
+        }
+      }
+    }
+
+    .CPD-benefits {
+      padding: 30px 0 50px 0;
+
+      p {
+        font-size: 16px;
+        margin: 0;
+        text-align: center;
+        font-weight: 600;
+        line-height: 22px;
+        font-family: $ffTipperary;
+      }
+
+      h1 {
+        text-align: center;
+        font-family: "Stag Sans", Georgia, "Times New Roman", Times, serif;
+      }
+
+      .home-blocks {
+        padding-bottom: 20px;
+
+        .CPD-benefit {
+          float: left;
+          display: flex;
+          width: 50%;
+          padding: 25px 35px;
+
+          .CPD-benefit-icon {
+            height: 110px;
+            width: 280px;
+            min-width: 77px;
+            margin: 0 40px 0 40px;
+          }
+        }
+
+        h4 {
+          position: relative;
+          margin-bottom: 5px;
+          font-size: 29px;
+          margin-top: -5px;
+          text-align: left;
+          font-weight: bold;
+          color: #15507f;
+          font-family: $ffStagSans;
+        }
+
+        p {
+          font-size: 16px;
+          margin: 0;
+          text-align: left;
+          font-weight: 500;
+          line-height: 22px;
+          font-family: $ffTipperary;
+        }
+      }
+    }
+
+
+  }
+
+  .el-dialog {
+    max-width: 650px;
+
+    .el-button {
+      font-family: $ffTipperary;
+      font-size: 15px;
+    }
+
+    &__body {
+      padding: 20px;
+    }
+
+    p {
+      font-family: $ffTipperary;
+      font-size: 15px;
+      color: $cText;
+      margin-bottom: 13px;
+    }
+
+    .el-form {
+      background-color: $cHighLight;
+      padding: 20px;
+
+      .el-input {
+
+        &__inner {
+          height: 33px;
+          font-family: $ffTipperary;
+        }
+      }
+
+      .el-form-item {
+        margin-bottom: 15px;
+
+        &__error {
+          font-family: $ffTipperary;
+          font-weight: normal;
+        }
+
+        &__label {
+          font-size: 15px;
+          font-family: $ffTipperary;
+          font-weight: 400;
+        }
+      }
+
+      .el-textarea__inner {
+        height: 150px !important;
+      }
+    }
+  }
+
+  .regist {
+    background: #fff;
+    border-radius: 20px;
+    color: $mainColor;
+    display: inline-block;
+    padding: 6px 20px;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 551px) {
+
+  #home-provider .content .CPD-packages .package-wrapper {
+    display: inline-block;
+
+    .package {
+      width: calc(49% - 15px);
+      display: inline-block !important;
+
+      .most-popular {
+        transform: scale(1.019);
+        right: 0;
+      }
+
+      .buy-btn {
+        display: block;
+      }
+    }
+  }
+
+  #home-provider .content .CPD-clients .provider-logo {
+    width: calc(33.3333% - 30px);
+  }
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  #home-provider {
+    .content {
+      .banner {
+        background-position: 40% center;
+
+        .title {
+          font-size: 42.56px;
+          font-weight: 700;
+          padding-top: 71px;
+          line-height: 46px;
+        }
+      }
+    }
+  }
+
+  #home-provider .content .CPD-benefits .home-blocks .CPD-benefit {
+    width: 100%;
+    padding: 10px 10px;
+    display: block;
+
+    .CPD-benefit-icon {
+      margin: 20px 0 0 0;
+      text-align: center;
+      position: relative;
+      display: inline-flex;
+      width: 100%;
+
+      img {
+        width: 80px;
+      }
+    }
+  }
+
+  #home-provider .content .CPD-benefits .home-blocks h4 {
+    text-align: center !important;
+    margin-bottom: 15px;
+  }
+
+  #home-provider .content .banner {
+    padding: 40px 0 120px 0;
+  }
+
+  #home-provider .content .CPD-why-choose-us .home-blocks .why-choose-us {
+    width: 100%;
+    min-height: 130px;
+  }
+
+  #home-provider .content .CPD-why-choose-us .home-blocks .why-choose-us:nth-child(2) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  #home-provider {
+    .content {
+      .banner {
+        background-position: center center;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #home .content .tabs {
+    .titles a {
+      width: 48%;
+      margin-bottom: 5px;
+    }
+
+    .inner {
+      background-color: transparent;
+      min-height: 0;
+
+      ul {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #home-provider .content .CPD-packages .package-wrapper {
+    display: inline-block;
+    margin-top: 30px;
+
+    .package {
+      width: calc(100% - 20px);
+      display: inline-block !important;
+
+      .most-popular {
+        transform: scale(1.019);
+        right: 0;
+      }
+
+      .buy-btn {
+        display: block;
+      }
+    }
+
+    .package:first-child {
+      margin-bottom: 80px;
+    }
+  }
+
+  #home-provider .content .CPD-testimonial blockquote p {
+    font-size: 18px;
+  }
+
+  #home-provider .content .CPD-testimonial blockquote {
+    width: 90%;
+  }
+
+  #home-provider .content .CPD-clients .provider-logo {
+    width: calc(50% - 30px);
+  }
+
+  #home-provider .content .CPD-benefits .home-blocks .CPD-benefit {
+    width: 100%;
+    padding: 10px 10px;
+    display: block;
+
+    .CPD-benefit-icon {
+      margin: 20px 0 0 0;
+      text-align: center;
+      position: relative;
+      display: inline-flex;
+      width: 100%;
+
+      img {
+        width: 80px;
+      }
+    }
+  }
+
+  #home-provider .content .CPD-benefits .home-blocks h4 {
+    text-align: center !important;
+    margin-bottom: 15px;
+  }
+
+  #home-provider .content .CPD-benefits .home-blocks p {
+    text-align: center !important;
+  }
+
+  #home-provider .content .banner {
+    padding: 0px 0 90px 0;
+    text-align: center;
+
+    h2 {
+
+      font-size: 26px;
+      line-height: 34px;
+
+    }
+  }
+}
+
+h3 {
+  letter-spacing: 0.2px;
+  text-align: center;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.phone-number {
+  margin: 20px 0px 20px 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: relative;
+  p {
+    font-size: 14px;
+    font-family: Tipperary,Georgia,Times New Roman,Times,serif;
+    margin-top: 0 !important;
+    position: absolute;
+    right: 0;
+  }
+}
+.phone-number a {
+  font-size: 18px;
+  font-family: "Tipperary", Georgia, "Times New Roman", Times, serif;
+  background: #a70050;
+  border: 1.5px solid #a70050;
+  border-radius: 8px;
+  color: #ffffff;
+  -ms-flex-item-align: end;
+  padding: 10px 20px;
+  -webkit-transition: 0.3s background-color;
+  transition: 0.3s background-color;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+@media only screen and (max-width: 390px) {
+  .most-popular {
+    transform: scale(1.03) !important;
+  }
+
+  #home-provider .content h1 {
+    font-size: 1.6em;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .phone-number {
+    display: block;
+    text-align: center;
+    p {
+      position: relative;
+      right: 0;
+      margin-top: 25px !important;
+    }
+  }
+}

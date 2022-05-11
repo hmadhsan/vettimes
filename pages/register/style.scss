@@ -1,0 +1,48 @@
+@import "../../style/options";
+
+#register-provider {
+  font-family: $ffTipperary;
+
+  .site-title-wrapper {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 20px 0 20px;
+    background-color: $cLightYellow;
+
+    .site-title {
+      font-size: 30px;
+    }
+  }
+
+  p {
+    line-height: 1.4;
+
+    a {
+      color: $cBlue;
+      transition: .12s all linear;
+      white-space: nowrap;
+
+      &:hover {
+        color: $cBlueHover;
+      }
+    }
+  }
+
+  .el-form {
+    background: $cHighLight;
+    border-radius: 4px;
+    border: 1px solid $cHighLight;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .el-form-item {
+    &__label {
+      line-height: 1.2;
+      margin-bottom: 5px;
+    }
+  }
+}

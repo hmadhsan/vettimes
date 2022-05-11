@@ -1,0 +1,87 @@
+@import "../../style/options";
+
+#home,
+#home-provider {
+  .search-block {
+    button {
+      border: 1px solid $cWhite;
+    }
+
+  }
+}
+
+#search-block {
+  margin: 40px 0 43px;
+
+  .el-select {
+    float: left;
+    width: calc(100% - 198px);
+    padding: 5px 21px;
+    min-height: 51px;
+    border-radius: 50px;
+    font-size: 15.2px;
+    font-family: $ffTipperary;
+    border: 1px solid #aaaaaa;
+    background: $cWhite;
+    color: #222222;
+
+    @media (max-width: 750px) {
+      width: 78%;
+    }
+
+    &__input {
+      margin-left: 10px;
+    }
+
+    .el-input__inner {
+      border: none;
+      padding-left: 10px;
+    }
+
+    .el-tag {
+      font-size: 15px;
+      background-color: #F7F7F7;
+      border: 1px solid #d3d3d3;
+      color: #555555;
+      height: 28px;
+      padding: 2px 8px;
+
+      .el-icon-close {
+        background-color: #555;
+        right: -7px;
+        top: 0;
+        color: #FFF;
+      }
+    }
+  }
+
+  button {
+    min-height: 51px;
+    border-radius: 10px;
+    background: $cPink;
+    border: 1px solid $cPink;
+    color: $cWhite;
+    padding: 5px 10px 6px;
+    font-size: 18px;
+    width: 192px;
+    text-align: center;
+    float: right;
+    cursor: pointer;
+    font-family: $ffTipperary;
+    -webkit-transition: 0.3s background-color;
+    transition: 0.3s background-color;
+
+    @media (max-width: 750px) {
+      width: 20%;
+    }
+
+  }
+
+  button:hover {
+    background-color: $cPinkHover;
+  }
+}
+
+.el-select-dropdown__list {
+  font-family: $ffTipperary;
+}

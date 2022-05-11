@@ -1,0 +1,57 @@
+@import "../../style/options";
+
+#courses-list {
+  .courses-list__head {
+
+
+    p {
+      padding: 0 8px 8px;
+    }
+  }
+
+  .pagination {
+    text-align: center;
+
+    &__items {
+      float: none;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      height: 41px;
+
+      button {
+        height: auto;
+        min-width: 30px;
+      }
+    }
+    .el-pager {
+
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+
+      .number {
+        flex-grow: 1;
+        height: auto;
+        line-height: 1;
+
+        &:hover {
+          color: $cBlueHover;
+          background: none;
+
+        }
+
+        &.active {
+          color: $cWhite;
+          background: #bbb;
+          border-radius: 0;
+        }
+      }
+
+      li.btn-quickprev {
+        display: none!important;
+      }
+    }
+  }
+}

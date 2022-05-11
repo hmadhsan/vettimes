@@ -1,0 +1,15 @@
+@import "../../style/options";
+
+#articles.single {
+  h1 {
+    color: $cBlue;
+    font-family: $ffStag;
+    + img { margin-bottom: 1em }
+  }
+  .margin > * {
+    line-height: 1.4;
+    margin: 0.8em 0;
+  }
+  ul { list-style-position: inside }
+  a { color: $cBlue }
+}

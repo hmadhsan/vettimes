@@ -1,0 +1,194 @@
+@import "../../style/options";
+
+#user-courses {
+  font-family: $ffTipperary;
+
+  .site-title-wrapper {
+    margin-bottom: 20px;
+    padding: 20px 10px 23px;
+    text-align: left;
+  }
+
+  p {
+    line-height: 1.4;
+  }
+
+  .courses-list {
+
+    &__item {
+      padding: 8px 20px;
+      border-top: 1px solid $cHighLight;
+
+      &:nth-child(odd) {
+        background: #fafafa;
+      }
+
+      &:first-child {
+        border-top: none;
+      }
+
+    }
+    .d-table {
+      width: 100%;
+
+      .d-table-cell:first-child {
+        width: calc(100% - 130px);
+      }
+
+      .d-table-cell:last-child {
+        text-align: right;
+        width: 130px;
+      }
+    }
+
+    &_alert {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      li {
+        list-style: none;
+      }
+
+      .button-wrapper {
+        padding-left: 10px;
+        padding-right: 10px;
+
+        &:last-child {
+          padding-right: 0;
+          border-left: 1px solid #ccc;
+        }
+
+        &:first-child {
+          padding-left: 0;
+          border-right: 1px solid #ccc;
+        }
+      }
+
+      .d-table {
+        width: 100%;
+        @media screen and (max-width: 767px) {
+          display: block;
+        }
+
+        .d-table-cell:first-child {
+          width: 50%;
+        }
+
+        .d-table-cell:last-child {
+          width: 50%;
+        }
+
+        @media screen and (max-width: 767px) {
+          .d-table-cell:first-child {
+            display: block;
+            width: 100%;
+          }
+          .d-table-cell:last-child {
+            display: block;
+            text-align: center;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    &__link,
+    &__btn {
+      font-family: $ffTipperary;
+      font-size: 15px;
+      color: $cBlue;
+      border: none;
+      background: none;
+
+      &:hover {
+        color: $cBlueHover;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .el-collapse {
+    border: none;
+
+
+    .stars-number {
+      margin-right: 10px;
+    }
+
+    .el-collapse-item {
+      margin-bottom: 20px;
+
+      &__wrap {
+        border: none;
+      }
+
+      &__header {
+        background: $cHighLight;
+        padding: 10px 10px 10px 35px;
+        position: relative;
+        color: $cText;
+        font-family: $ffTipperary;
+        font-size: 18px;
+
+        h3 {
+          width: 100%;
+        }
+      }
+
+      &__arrow {
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+      }
+
+      &__content {
+        margin: 0;
+        padding: 10px 0;
+
+        p {
+          color: $cText;
+          font-size: 15px;
+          font-family: $ffTipperary;
+          margin-bottom: 12px;
+        }
+      }
+    }
+
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: .12s all ease-in;
+  }
+  .fade-enter {
+    opacity: 0;
+  }
+}
+
+#add-alert {
+  font-family: $ffTipperary;
+
+  .content-alert {
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .el-form-item {
+    margin-bottom: 15px;
+
+    &__label {
+      width: 100%;
+      display: block;
+      text-align: left;
+    }
+
+    .el-select {
+      width: 100%;
+    }
+
+    .button {
+      display: table;
+      margin-left: auto;
+      margin-top: 10px;
+    }
+  }
+}

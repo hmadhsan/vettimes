@@ -1,0 +1,95 @@
+@import "../../style/options";
+
+.el-popover.email-content {
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  word-break: break-word;
+  width: 100% !important;
+  max-width: 550px!important;
+}
+
+#email-courses {
+  font-family: $ffTipperary;
+
+  .popover-form {
+    background-color: $cWhite;
+    margin-bottom: 20px;
+    padding: 10px;
+
+    &__title {
+      font-size: 22px;
+      margin-bottom: .8em;
+    }
+
+    &__fieldset {
+      margin-bottom: 20px;
+    }
+
+    &__field {
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    &__legend {
+      display: block;
+      text-align: left;
+      font-size: 18px;
+      margin-bottom: 0.8em;
+      width: 100%;
+    }
+
+    &__label {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 15px;
+    }
+
+    input {
+      background: $cWhite;
+      border-radius: 3px;
+      border: 1px solid $iBorder;
+      color: $iColor;
+      font: inherit;
+      margin: 0;
+      padding: 5px;
+      width: 100%;
+    }
+
+    input[type="checkbox"] {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 1px solid;
+      float: left;
+      position: absolute;
+      top: 3px;
+      width: auto;
+    }
+
+    p {
+      font-size: 15px;
+      margin: 0 0 0.8em 0;
+      font-weight: 400;
+    }
+
+    .checkbox {
+      .popover-form__label {
+        cursor: pointer;
+        margin-left: 20px;
+      }
+    }
+
+    .button {
+      float: right;
+      width: 40%;
+    }
+
+    &-hr {
+      margin: 20px 0;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #fafafa;
+      border-left: 1px solid transparent;
+    }
+  }
+}

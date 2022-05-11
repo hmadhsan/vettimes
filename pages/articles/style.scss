@@ -1,0 +1,99 @@
+@import "../../style/options";
+
+#articles {
+  font-family: $ffTipperary;
+  font-size: 15.2px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  max-width: $width;
+  h1 {
+    color: $cText;
+    font-family: $ffStagSans;
+    font-size: 1.7em;
+    margin-bottom: 0.8em;
+  }
+  h3 {
+    color: $cText;
+    margin: 7px 0 14px;
+  }
+  input[type="text"] {
+    background: $cWhite;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: $iColor;
+    margin: 0;
+    padding: 6px 5px 7px;
+    width: 100%;
+  }
+  input[type="submit"] {
+    background: #A70050;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    margin: 11px 0 0;
+    padding: 7px 0 8px;
+    text-align: center;
+    transition: 0.3s background;
+    width: 100%;
+    &:hover { background: $cPinkHover }
+  }
+  .item {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    .img {
+      background: center no-repeat;
+      background-size: cover;
+      border: 1px solid #eee;
+      float: left;
+      height: 120px;
+      width: 30%;
+
+      @media (max-width: 767px) {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+    .data {
+      line-height: 1.4;
+      margin-left: 33%;
+
+      @media (max-width: 767px) {
+        margin-left: 0;
+      }
+    }
+    a {
+      color: $cBlue;
+      display: block;
+      font-size: 1.2em;
+      margin-bottom: 0.4em;
+      &:hover { color: $cBlueHover }
+    }
+  }
+  .search-article {
+    margin-bottom: 20px;
+  }
+  .el-select {
+    width: 100%;
+  }
+  .rss {
+    background: #eee;
+    border-radius: 4px;
+    padding: 5px;
+    a {
+      border-radius: 3px;
+      display: inline-block;
+      padding: 4px 8px;
+      transition: .2s;
+      &:hover {
+        background: #fff;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

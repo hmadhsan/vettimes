@@ -1,0 +1,21 @@
+@import "../../style/options";
+
+#warning-block {
+  font-family: $ffTipperary;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  .warning-text {
+    color: $cAttention;
+    font-size: 17px;
+  }
+
+  p {
+    font-size: 15px;
+    color: $cText;
+
+    a {
+      color: $cBlue;
+    }
+  }
+}

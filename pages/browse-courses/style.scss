@@ -1,0 +1,100 @@
+@import "../../style/options";
+
+#browse-courses {
+  font-family: $ffTipperary;
+  margin-top: 23px;
+  margin-bottom: 20px;
+  .inner {
+    margin: 24px 0 0;
+    .block {
+      h3 {
+        font-size: 22.04px;
+        line-height: 30px;
+        margin: 0 0 17px;
+
+        @media screen and (max-width: 1020px) {
+          font-size: 15px;
+          font-weight: bold;
+        }
+
+        @media screen and (max-width: 550px) {
+          margin-bottom: 5px;
+        }
+      }
+      ul {
+        -webkit-column-count: 3;
+        column-count: 3;
+        -webkit-column-gap: 20px;
+        column-gap: 20px;
+        list-style-type: none;
+        margin: 15px 0;
+        padding-bottom: 29px;
+        border-bottom: 1px solid #777;
+
+        @media screen and (max-width: 1020px) {
+          -webkit-column-count: 2;
+          column-count: 2;
+        }
+
+        @media screen and (max-width: 550px) {
+          display: none;
+        }
+
+        li {
+          font-size: 15.2px;
+          margin-bottom: 2px;
+
+          a {
+            display: inline-block;
+            width: 100%;
+            color: $cBlue;
+            border-radius: 4px;
+            padding: 6px 25px 5px 10px;
+            transition: 0.3s background-color;
+
+            span {
+              font-size: 12.92px;
+              color: $cText;
+              margin: 0 0 0 9px;
+            }
+          }
+
+          a:hover {
+            background-color: #eeeeee;
+          }
+        }
+      }
+
+      @media screen and (max-width: 550px) {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #777;
+      }
+    }
+    .block:last-of-type ul {
+      border: none;
+    }
+  }
+
+  .select-cat {
+    margin-bottom: 20px;
+
+    .el-select {
+      width: 100%;
+    }
+
+    .el-input {
+      border-radius: 3px;
+      border: 1px solid #ddd;
+      font: inherit;
+      color: #686868;
+
+      &__inner {
+        border: none;
+        height: 43px;
+      }
+    }
+    @media screen and (min-width: 550px) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+@import "../../style/options";
+
+#user-management {
+  font-family: $ffTipperary;
+
+  .site-title-wrapper {
+    margin-bottom: 20px;
+    padding: 25px 10px 33px;
+    background: $cHighLight;
+  }
+
+  .site-title {
+    text-align: center;
+  }
+
+  .button-wrapper {
+    margin-bottom: 20px;
+  }
+
+  p {
+    line-height: 1.4;
+
+    a {
+      color: $cBlue;
+      transition: .12s all linear;
+      white-space: nowrap;
+
+      &:hover {
+        color: $cBlueHover;
+      }
+    }
+  }
+
+  .el-table {
+    font-family: $ffTipperary;
+    font-size: 13px;
+    font-weight: 400;
+
+    .el-button--text {
+      color: $cBlueHover;
+      cursor: pointer;
+    }
+
+    th {
+      background: $tableBgr;
+      border-bottom: 1px solid $iBorder;
+      border-top: 1px solid $iBorder;
+      color: $cText;
+      padding: 10px 0 10px 10px;
+      text-align: left;
+
+      .cell {
+        padding-left: 0;
+        padding-right: 0;
+        line-height: 1.4;
+      }
+    }
+
+    td {
+      padding: 10px 0 10px 10px;
+      vertical-align: top;
+      line-height: 1.4;
+
+      .cell {
+        padding: 0;
+
+        a {
+          font-size: 11px;
+        }
+      }
+
+      .el-button {
+        padding: 0;
+        span {
+          color: $cBlue;
+        }
+      }
+    }
+  }
+}

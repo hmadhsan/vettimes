@@ -1,0 +1,135 @@
+@import "../../style/options";
+@import "../../style/general";
+@import "../../style/keyframes";
+
+/**
+ * Footer
+ */
+
+.footer {
+  background: #F0F0F0;
+  padding-top: 20px;
+  margin-top: 50px;
+  font-family: $ffTipperary;
+  .row {
+    position: relative;
+  }
+
+  .footer-menu {
+    padding-right: 220px;
+  }
+
+  .menu {
+    background: $cBlue;
+    ul {
+      li {
+        list-style-type: none;
+        float: left;
+        margin: 12px 12px 14px 0;
+        padding-right: 12px;
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        a {
+          font-size: 15.2px;
+          color: $cWhite;
+          transition: 0.3s opacity;
+        }
+        a:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+    ul:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+
+  .back-to-top {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: -19px;
+    z-index: 1;
+
+    .block-level {
+      appearance: none;
+      background: #A70050 url(../../img/arrow.svg) no-repeat center center;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      display: block;
+      height: 63px;
+      width: 63px;
+      cursor: pointer;
+    }
+  }
+
+  .hidden {
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    clip: rect(0 0 0 0);
+  }
+
+  .bottom {
+    text-align: center;
+    .image {
+      margin: 30px 0 36px;
+    }
+    ul {
+      li {
+        list-style-type: none;
+        display: inline-block;
+        margin-right: 12px;
+        padding-right: 12px;
+        border-right: 1px solid #666;
+        font-size: 13px;
+        a {
+          color: #666;
+          transition: 0.3s color;
+        }
+        a:hover {
+          color: $cPink;
+        }
+      }
+      li:last-of-type {
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .copyright {
+      font-size: 13.68px;
+      padding: 21px 0 30px;
+    }
+  }
+}
+
+/**
+ * Media queries
+ */
+
+@media only screen and (max-width: 750px) {
+  .footer {
+    .menu ul {
+      padding: 50px 0 30px;
+      li {
+        float: none;
+        width: 100%;
+        text-align: center;
+        border-right: none;
+      }
+    }
+    .bottom ul li {
+      float: none;
+      width: 100%;
+      text-align: center;
+      border-right: none;
+      margin: 6px 0;
+    }
+  }
+}

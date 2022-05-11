@@ -1,0 +1,347 @@
+@import "../../style/options";
+
+#course {
+  font-family: $ffTipperary;
+  margin-top: 23px;
+  margin-bottom: 20px;
+  .inner {
+    margin: 24px 0 0;
+    .inner__sidebar {
+      border-radius: 4px;
+      background-color: #eee;
+      padding: 2px;
+      h3 {
+        color: $cBlue;
+        font-size: 18.24px;
+        padding: 0 0 0 8px;
+      }
+      ol {
+        list-style-type: none;
+        li {
+          a {
+            background-color: $cWhite;
+            display: inline-block;
+            width: 100%;
+            color: $cBlue;
+            font-size: 14px;
+            padding: 9px 10px 8px 14px;
+            line-height: 18px;
+            margin: 0 0 1px;
+            min-height: 73px;
+            position: relative;
+          }
+          a.current {
+            color: #aaa;
+          }
+          a:hover:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background-color: rgb(89,89,89);
+          }
+        }
+      }
+      .sidebar__pagination {
+        ul {
+          padding: 10px 0;
+          li {
+            float: left;
+            list-style-type: none;
+            width: 14.2%;
+            text-align: center;
+            font-size: 15.2px;
+            a {
+              display: inline-block;
+              width: 100%;
+              color: $cBlue;
+              padding: 1px 0;
+            }
+            a.current {
+              background: #bbb;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+    .inner__content {
+      padding-right: 7px;
+      .info {
+        float: left;
+        width: 66.6666%;
+        .site-title {
+          line-height: 36px;
+        }
+        p {
+          font-size: 15.2px;
+          color: $cText;
+          a {
+            color: $cBlue;
+          }
+        }
+      }
+      .logo {
+        float: right;
+        width: 33.3333%;
+        max-width: 152px;
+        img {
+          border: 1px solid #eee;
+        }
+      }
+      .metainfo {
+        margin: 21px 0 0;
+
+        a {
+          color: $cBlue;
+          transition: 0.12s all ease-in;
+
+          &:hover {
+            color: $cBlueHover;
+          }
+        }
+      }
+      .enquire {
+        margin: 17px 0 17px;
+        a {
+          background: $cPink;
+          display: inline-block;
+          color: $cWhite;
+          border-radius: 4px;
+          width: 100%;
+          text-align: center;
+          padding: 6px 10px;
+          font-size: 15.2px;
+          transition: 0.3s background-color;
+        }
+        a:hover {
+          background: $cPinkHover;
+        }
+      }
+      .additional-info {
+          &__list {
+            margin-bottom: 12px;
+
+            &-key {
+              margin-bottom: 3px;
+              font-weight: bold;
+            }
+
+            &-value {
+              margin-bottom: 10px;
+            }
+          }
+      }
+      .description {
+        margin: 23px 0 0;
+        color: $cText;
+        font-size: 15.2px;
+        h2 {
+          font-size: 22.04px;
+          margin: 0 0 20px;
+        }
+        &__image,
+        &__video {
+          margin-bottom: 20px;
+        }
+        p {
+          line-height: 21px;
+          margin: 0 0 12px;
+        }
+        ul {
+          padding: 10px 0 0 32px;
+          margin: 0 0 23px;
+          li {
+            margin-bottom: 3px;
+          }
+        }
+      }
+      .book-now {
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 32px 0 50px;
+        h2 {
+          font-size: 22.04px;
+          font-weight: 600;
+          line-height: 30px;
+        }
+        table {
+          width: 100%;
+          margin: 24px 0 0;
+          padding: 0;
+          border-collapse: collapse;
+          border-spacing: 0;
+          text-align: left;
+          thead {
+            padding: 0 5px;
+            th {
+              font-size: 12px;
+              color: #aaa;
+              border-bottom: 1px solid #eee;
+              padding: 0 16px 6px 5px;
+            }
+            border-bottom: 1px solid #aaa;
+          }
+          tbody {
+            td {
+              font-size: 15.2px;
+              padding: 12px 4px;;
+            }
+            .td-booking {
+              padding: 0 7px 0 0;
+              min-width: 125px;
+              a {
+                background-color: $cPink;
+                color: $cWhite;
+                padding: 7px 11px;
+                border-radius: 4px;
+                transition: 0.3s background-color;
+              }
+            }
+          }
+        }
+        .details {
+          background-color: #eee;
+          border-radius: 4px;
+          text-align: center;
+          margin: 21px 0 0;
+          padding: 11px 0;
+          display: flex;
+          width: 100%;
+
+          .phone-wrapper {
+            display: inline-block;
+            width: 100%;
+
+            a {
+              position: relative;
+            }
+          }
+          > a {
+            display: inline-block;
+            width: 100%;
+            color: $cBlue;
+            font-size: 15.2px;
+
+          }
+        }
+      }
+      .related-article {
+        border-top: 1px solid #eee;
+        padding: 12px 0 0;
+        h2 {
+          font-size: 22.04px;
+          margin: 0 0 0;
+        }
+        .item {
+          border-bottom: 1px solid #eee;
+          margin-bottom: 22px;
+          padding-bottom: 22px;
+          .image {
+            float: left;
+            width: 213px;
+          }
+          .content {
+            float: right;
+            width: calc(100% - 232px);
+            h4 {
+              font-size: 18.24px;
+              line-height: 24px;
+              margin: 0;
+            }
+            p {
+              color: $cText;
+              font-size: 15.2px;
+              max-width: 98%;
+              line-height: 21px;
+              margin: 7px 0 0;
+            }
+          }
+        }
+      }
+    }
+    .phone {
+      margin: 0 0 0 4px;
+
+      .icon-before:before {
+        z-index: 1;
+        position: relative;
+      }
+
+      .overlay {
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        text-align: center;
+        display: inline-block;
+        line-height: 1;
+        background-image: linear-gradient(270deg, rgba(238, 238, 238, 0.5), #eeeeee 25%, #eeeeee 35%, #eeeeee 65%, #eeeeee 75%, rgba(238, 238, 238, 0.5) 100%);
+        background-repeat: no-repeat;
+        background-position: center;
+        padding-top: 2px;
+      }
+    }
+  }
+  .course-downloads {
+
+    &__title {
+      margin-bottom: 18px;
+    }
+
+    ul {
+      margin-bottom: 12px;
+      list-style: none;
+      margin-left: 0;
+
+      li {
+        margin-bottom: 3px;
+
+        a {
+          color: $cBlue;
+          transition: .12s all ease-in;
+
+          &:hover {
+            color: $cBlueHover
+          }
+        }
+      }
+    }
+
+  }
+}
+
+#course .inner .inner__content .related-article .author {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+#course .inner .inner__content .related-article .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+#course .inner .inner__content .related-article .header .header_image {
+  width: 200px;
+  margin: 0;
+}
+
+@media only screen and (max-width: 640px) {
+  #course .inner .inner__content .related-article .item {
+    .image {
+      float: none;
+      width: 100%;
+    }
+    .content {
+      width: 100%;
+      float: none;
+      margin: 10px 0 0;
+    }
+  }
+}
