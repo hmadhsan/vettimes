@@ -1,21 +1,20 @@
 import store from "../../config/store"
-
 export default {
   store,
   data() {
-    return {
+    return {   
       loginTo: 'https://my.vettimes.co.uk/login',
       registerTo: 'https://my.vettimes.co.uk/register',
      // redirectTo: window.location.href,
       registerHere:
-        ( this.$auth() ) 
+        ( store.auth ) 
         ? '/courseproviders/company-management'
-        : 'https://my.vettimes.co.uk/register?redirectTo=' + window.location.href + '&fromCPD=true',
+        : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       buyTo: 
-        ( this.$auth() && this.$auth().role === 2 )
+        (store.auth && store.auth === 2 )
         ? '/courseproviders/courses/new'
-        : ( this.$auth() ) ? '/courseproviders/company-management' 
-        : 'https://my.vettimes.co.uk/register?redirectTo=' + window.location.href + '&fromCPD=true',
+        : ( store.auth ) ? '/courseproviders/company-management' 
+        : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       dialogFormVisible: false,
       page: [],
       ruleForm: {
@@ -76,3 +75,4 @@ export default {
     }
   }
 }
+

@@ -5,7 +5,7 @@ import mixins from "../../config/mixins";
 import ProvidersOnly from "../../components/providers-only"
 import UserManagement from "../user-management"
 import Media from "../../components/company-management-popup";
-import { VueEditor } from "vue2-editor";
+//import { VueEditor } from "vue2-editor";
 
 export default {
   store,
@@ -13,7 +13,7 @@ export default {
   name: 'appEditor',
   components: {
     // ckeditor: CKEditor.component,
-    VueEditor,
+  //  VueEditor,
     ProvidersOnly,
     UserManagement,
     Media

@@ -1,7 +1,6 @@
 <template>
 
   <div id="home-provider">
-
     <div class="content">
       <div class="banner">
         <div class="row">
@@ -10,9 +9,9 @@
           <!--<p><button class="button button_larger button_callback" @click="dialogFormVisible = true">Request a callback</button></p>-->
 
           <router-link to="/courseproviders/courses/new" class="button button_larger button_callback"
-            v-if="[2,3].indexOf($store.state.auth.role) > -1">Upload a Course Now</router-link>
+          >Upload a Course Now</router-link>
 
-          <div class="btn-group" v-if="!([2,3].indexOf($auth().role) > -1)">
+          <div class="btn-group" >
             <!-- <a :href="loginTo+`?redirectTo=`+redirectTo" class="banner-btn">Sign in</a>
             <a :href="registerTo+`?redirectTo=${redirectTo}`" class="banner-btn">Register</a> -->
             <a href="javascript:void(0);" @click="$scrollToElement('why-choose-us')" class="banner-btn">Find out

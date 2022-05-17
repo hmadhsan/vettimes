@@ -13,7 +13,7 @@
             <transition name="fade" mode="out-in">
               <RemoteSearch 
                 v-if="listLoad" 
-                :keywords="keywords" 
+                :keywords="keywords"
                 :catList="$store.state.searchList"
                 :categoriesObj="$store.state.categories" 
                 :catsSlugsName="$store.state.categoriesSlugsName"

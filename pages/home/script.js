@@ -7,6 +7,7 @@ import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
 
 export default {
+
   store,
   mixins: [ mixins.helpers ],
   components: {
@@ -17,7 +18,8 @@ export default {
     FbAd
   },
   data() {
-    return {
+console.log('first')
+      return {
       listLoad: false,
       keywords: [],
       categoriesNumbers: [], // numbers of categories in database
@@ -30,18 +32,23 @@ export default {
       coursesTotal: 0,
       articles: [],
       uploadCourseUrl: 
-        ( this.$auth() && this.$auth().role === 2 )
+    
+       
+        ( store.auth  ) 
         ? '/courseproviders/courses/new'
-        : ( this.$auth() ) ? '/courseproviders/company-management' 
-        : 'https://my.vettimes.co.uk/register?redirectTo=' + window.location.href + '&fromCPD=true',
+        : ( store.auth ) ? '/courseproviders/company-management' 
+        : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       registerHere:
-        'https://my.vettimes.co.uk/register?redirectTo=' + window.location.href,
-      location: window.location.href,
+        'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST,
+      location: process.env.LOCAL_HOST,
       cpdPlusUrl: 'https://cpd.vettimes.co.uk/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch'
     }
   },
-  mounted: function () {
+
+  mounted  : function () {
+    debugger
     this.$nextTick(function () {
+      console.log('mounted')
       if(this.isEmptyObj(store.state.searchList) || this.isEmptyObj(store.state.categories) || this.isEmptyObj(store.state.categoriesSlugsName)) {
         this.get();
       } else {
@@ -54,7 +61,7 @@ export default {
       this.getArticles();
       this.getCpdHubs();
     })
-  },
+  }, 
   computed: {
     goToLink: function() {
       if(this.category) this.$router.push(this.category)
@@ -81,8 +88,10 @@ export default {
         // console.log(r.data);
       });
     },
-    get: function() {
-      this.http.get(`course/categories?count=true&list=true&courses=count&_path=${this.$route.path}`).then( r => {
+    get: async function() {
+      console.log('mounted')
+     await this.$http.$get(`course/categories?count=true&list=true&courses=count&_path=${this.$route.path}`).then( r => {
+       console.log(r.data);
         let arr = [];
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
@@ -112,6 +121,7 @@ export default {
       });
     },
     getArticles: function() {
+      console.log('mounted')
       this.http.get("articles?homePage=true&_path=articles").then( r => {
         if(this.$error(r.data)) {
           this.articles = r.data.data.array;          
@@ -140,7 +150,7 @@ export default {
         }
       });
     },
-    getRss: function() {
+    getRss: function() { debugger
       this.http.get(`pages/rss`).then( r => {
         if(r.data.status) {
           this.rssLinks = r.data.links.item.slice(0, 6);

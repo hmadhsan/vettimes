@@ -3,13 +3,13 @@ import mixins from "../../../config/mixins";
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import MessageInfo from "../../../components/message-info";
 import Payment from "./payment"
-import { VueEditor } from "vue2-editor";
+//import { VueEditor } from "vue2-editor";
 
 export default {
   mixins: [ mixins.helpers ],
   components: {
     // ckeditor: CKEditor.component,
-    VueEditor,
+    //VueEditor,
     MessageInfo,
     Payment
   },

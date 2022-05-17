@@ -15,7 +15,7 @@ let app = {
   css: undefined,
   configureWebpack: {
     devServer: {
-      proxy: "http://cpd-dev.vettimes.co.uk",
+      proxy: "https://cpd.vettimes.co.uk",
       public: "http://cpd-dev.vettimes.co.uk:8080",
       contentBase: `${__dirname}/src`,
       overlay: { warnings: true, errors: true },
@@ -28,8 +28,19 @@ let app = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    'vue2-editor/nuxt'
+    'vue2-editor/nuxt',
+    '@nuxtjs/proxy'
+    
   ],
+  axios: {
+    // WARNING: proxy doesn't work with nuxt generate,
+    // have to use a prefix and set an API_URL
+    proxy: true,
+  
+  },
+  proxy: [
+    ['/rest', { target: 'https://cpd.vettimes.co.uk' }]
+],
   auth:{
     
   },
@@ -39,6 +50,7 @@ let app = {
     { src: '~/plugins/vue2-editor.js', mode: 'client' }
   ]
 };
+
 
 if (process.env.NODE_ENV === "production") {
   app.configureWebpack = {
@@ -61,5 +73,14 @@ if (process.env.NODE_ENV === "production") {
   };
   app.indexPath = path.resolve(__dirname, "../resources/views/app.blade.php");
 }
+export default {
+  localRuntimeConfig: {
+    myLocalHost: process.env.LOCAL_HOST,
+  },
+  serverRuntimeConfig: {
+    serverRuntimeConfig: process.env.BASE_URL
+  }
+}
+
 
 module.exports = app;
