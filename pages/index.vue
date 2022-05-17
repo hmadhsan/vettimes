@@ -31,40 +31,40 @@
         <div class="row d-flex">
           <div class="home-blocks CPD-courses cf">
             <div class="CPD-browse-course">
-              <router-link :to="`/courses/veterinary-surgeon`">
+              <nuxt-link :to="`/courses/veterinary-surgeon`">
                 <div class="CPD-browse-course-img"> <img src="../img/Veterinary-Surgeons.jpg"></div>
                 <h3>Veterinary Surgeons</h3>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="CPD-browse-course">
-              <router-link :to="`/courses/veterinary-nurse`">
+              <nuxt-link :to="`/courses/veterinary-nurse`">
                 <div class="CPD-browse-course-img"> <img src="../img/veterinary-nurses.jpg"></div>
                 <h3>Veterinary Nurses</h3>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="CPD-browse-course">
-              <router-link :to="`/courses/equine-vet`">
+              <nuxt-link :to="`/courses/equine-vet`">
                 <div class="CPD-browse-course-img"> <img src="../img/Equine-vets.jpg"></div>
                 <h3>Equine vets</h3>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="CPD-browse-course">
-              <router-link :to="`/courses/receptionist`">
+              <nuxt-link :to="`/courses/receptionist`">
                 <div class="CPD-browse-course-img"> <img src="../img/Receptionist.jpg"></div>
                 <h3>Receptionist</h3>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="CPD-browse-course">
-              <router-link :to="`/courses/manager`">
+              <nuxt-link :to="`/courses/manager`">
                 <div class="CPD-browse-course-img"> <img src="../img/manager.jpg"></div>
                 <h3>Manager</h3>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="CPD-browse-course">
-              <router-link :to="`/courses/student`">
+              <nuxt-link :to="`/courses/student`">
                 <div class="CPD-browse-course-img"> <img src="../img/student.jpg"></div>
                 <h3>Student</h3>
-              </router-link>
+              </nuxt-link>
             </div>
 
           </div>
@@ -83,9 +83,8 @@
 
               <div class="CPD-featured-course" v-for="item in page['featured-course'].slice(0, 4)" :key="item.id" v-if="item.course">
                 
-                <router-link
-                    :to="`/course-details/${item.course}/${item.course_data.slug}/`"
-                >
+                <nuxt-link
+                    :to="`/course-details/${item.course}/${item.course_data.slug}/`">
 
                   <div class="CPD-featured-course-title">
                     <h4 v-if="item.heading">{{ item.heading }} </h4>
@@ -103,7 +102,7 @@
                     <img v-else src="../img/missing.png">
                   </div>
 
-                </router-link>
+                </nuxt-link>
                 
                 <el-popover v-if="checkAuth()"
                             placement="top"
@@ -136,28 +135,28 @@
           <h1>Looking for inspiration?</h1>
           <div class="home-blocks cf">
             <div class="CPD-inspiration">
-              <router-link :to="`/courses/online`">
+              <nuxt-link :to="`/courses/online`">
                 <div class="CPD-inspiration-img"> <img src="../img/online-course.jpg"></div>
                 <h3>Online course</h3>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="CPD-inspiration">
-              <router-link :to="`/courses/free`">
+              <nuxt-link :to="`/courses/free`">
                 <div class="CPD-inspiration-img"><img src="../img/free-course.jpg"></div>
                 <h3>Free courses</h3>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="CPD-inspiration">
-              <router-link :to="`/courses/webinar`">
+              <nuxt-link :to="`/courses/webinar`">
                 <div class="CPD-inspiration-img"><img src="../img/webinar.jpg"></div>
                 <h3>Webinars</h3>
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="CPD-inspiration">
-              <router-link :to="`/courses/attended`">
+              <nuxt-link :to="`/courses/attended`">
                 <div class="CPD-inspiration-img"><img src="../img/attended.jpg"></div>
                 <h3>Attended</h3>
-              </router-link>
+              </nuxt-link>
             </div>
           </div>
         </div>
@@ -167,17 +166,18 @@
         <div class="row">
 
           <el-tabs type="card" class="tabs">
+            
             <el-tab-pane v-for="(cats, key) in filteredCategories" :key="cats.id" :label="key" lazy>
               <ul class="cf click-cat">
                 <li v-for="(cat, index) in filterEmptyCats(cats, key).slice(0, 16)" :key="cat.id">
-                  <router-link :key="`${cat.slug}-link-${index}`" :to="`/courses/${cat.slug}/`" :data-cat="cat.name"
+                  <nuxt-link :key="`${cat.slug}-link-${index}`" :to="`/courses/${cat.slug}/`" :data-cat="cat.name"
                     :data-key="key">
                     {{cat.name}}<span> {{ categoriesNumbers[cat.name] }}</span>
-                  </router-link>
+                  </nuxt-link>
                 </li>
               </ul>
               <div class="select-cat">
-                <el-select v-model="category" :placeholder="`select ${key}`" :change="goToLink">
+                <el-select v-model="category" :placeholder="`select ${key}`" :change="goToLink" >
                   <el-option v-for="(cat, index) in filterEmptyCats(cats, key)" :key="cat.id"
                     :label="`${cat.name} ${categoriesNumbers[cat.name]}`" :data-cat="cat.name" :data-key="key"
                     :value="`/courses/${cat.slug}/`">
@@ -185,7 +185,7 @@
                 </el-select>
               </div>
               <p class="more">
-                <router-link to="/browse-courses" data-icon="▶" class="icon-after">View all</router-link>
+                <nuxt-link to="/browse-courses" data-icon="▶" class="icon-after">View all</nuxt-link>
               </p>
             </el-tab-pane>
           </el-tabs>
@@ -197,36 +197,36 @@
         </div>
       </section>
 
-      <!--<section class="CPD-articles">
+      <section class="CPD-articles">
         <div class="row">
           <h1>CPD articles</h1>
 
           <div class="home-blocks cf" v-if="page['article']">
             <div class="CPD-article" v-for="item in page['article']" :key="item.article" v-if="item.article" >
-              <router-link :to="`/article-details/${item.article}/${item.heading}`" >
+              <nuxt-link :to="`/article-details/${item.article}/${item.heading}`" >
                 <div class="CPD-article-img">
                   <img v-if="item.image_data" :src="item.image_data.url">
                   <img v-else src="../img/missing.png">
                 </div>
                 <h3>{{ item.heading }}</h3>
-              </router-link>
+              </nuxt-link>
             </div>
           </div>
 
-          <!-- <div class="home-blocks cf" v-if="articles.length > 0">
+         <div class="home-blocks cf" v-if="articles.length > 0">
             <div class="CPD-article" v-for="item in articles.slice(0, 3)" :key="item.id">
-              <router-link :to="`/article-details/${item.id}/${item.slug}`">
+              <nuxt-link :to="`/article-details/${item.id}/${item.slug}`">
                 <div class="CPD-article-img">
                   <img v-if="item.image_data" :src="item.image_data.url">
                   <img v-else src="../img/missing.png">
                 </div>
                 <h3>{{ item.title }}</h3>
-              </router-link>
+              </nuxt-link>
             </div>
-          </div> -->
-
-        <!--</div>
-      </section>-->
+          </div> 
+ 
+     </div>
+      </section>
 
     <section class="CPD-hubs">
 
@@ -239,10 +239,12 @@
                 </div>
                     <div class="home-blocks cf">
                           <div v-for="hub in cpdPlusHubs" class="CPD-hub" :key="hub.menu_id">
+                    
                               <div class="card maroon-card">
                                   <a :href="`/cpd-plus/${hub.menu_category}/`">
-                                      <img class="card-img-top" :src="`../media/${hub.menu_image}`" >
-                                      <div class="card-body">
+                                      <img class="card-img-top" :src="`https://cpd.vettimes.co.uk/media/${hub.menu_image}`">
+                                   
+                                        <div class="card-body">
                                           <h3 class="card-title">{{ hub.menu_name }}:</h3>
                                           <p class="card-text" v-html="hub.menu_desc"></p>
                                       </div>

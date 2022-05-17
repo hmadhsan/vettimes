@@ -5,7 +5,7 @@ import store from "../config/store"
 import TopHeading from "./top-heading"
 import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
-import axios from 'axios';
+
 export default {
   store,
   mixins: [mixins.helpers],
@@ -45,15 +45,20 @@ export default {
       } else {
         this.getCategoriesNumber();
         this.listLoad = true;
+     
       }
-
+      this.getCoursesHomeContent();
+      this.getRss();
+      this.getCpdHubs();
+      this.getArticles();
     })
   },
   computed: {
-    goToLink: function () {
-      if (this.category) this.$router.push(this.category)
+    goToLink: async function () {
+      if (this.category) await this.$router.push(this.category)
     },
-    filteredCategories: function () {
+    filteredCategories:  function () {
+  
       let result = {};
       const keys = {
         'speciality': 'speciality',
@@ -61,17 +66,20 @@ export default {
         'price': 'price',
         'location': 'location'
       };
+   
       for (let key in store.state.categories) {
         if (key !== 'audience' && key !== 'skill_level') {
           result[keys[key]] = store.state.categories[key];
         }
       }
       return result;
+
     }
   },
+
   methods: {
-    getContentPosition: function () {
-      this.http.get(`pages/block?slug=courses`).then(r => {
+    getContentPosition: async function () {
+    await this.$axios.$get(`/rest/pages/block?slug=courses`).then(r => {
         // console.log(r);
       });
     },
@@ -114,15 +122,15 @@ export default {
 
     },
     getArticles: async function () {
-      await axios.get("articles?homePage=true&_path=articles").then(r => {
+      await this.$axios.$get("/rest/articles?homePage=true&_path=articles").then(r => {
         console.log(r.data)
         if (this.$error(r)) {
           this.articles = r.array;
         }
       });
     },
-    getCategoriesNumber: function () {
-      this.http.get(`course/categories?count=true&list=false&courses=count&_path=${this.$route.path}`).then(r => {
+    getCategoriesNumber: async function () {
+    await  this.$axios.$get(`/rest/course/categories?count=true&list=false&courses=count&_path=${this.$route.path}`).then(r => {
         if (r.status) {
           this.categoriesNumbers = r.count;
           this.coursesTotal = r['courses_total'];
@@ -136,15 +144,15 @@ export default {
         }
       })
     },
-    getCoursesHomeContent: function () {
-      this.http.get(`pages?slug=courses`).then(r => {
+    getCoursesHomeContent: async function () {
+    await this.$axios.$get(`/rest/pages?slug=courses`).then(r => {
         if (r.status) {
           this.page = r.block || [];
         }
       });
     },
-    getRss: function () {
-      this.http.get(`pages/rss`).then(r => {
+    getRss: async function () {
+     await this.$axios.$get(`/rest/pages/rss`).then(r => {
         if (r.status) {
           this.rssLinks = r.links.item.slice(0, 6);
         }
@@ -152,22 +160,23 @@ export default {
         console.log(e);
       });
     },
-    getCpdHubs: function () {
-      this.http.get(`cpd/hubs`).then(r => {
+    getCpdHubs: async function () {
+    await this.$axios.$get(`/rest/cpd/hubs`).then(r => {
+      console.log("line 161",r.hubs);
         this.cpdPlusHubs = r.hubs;
-        //console.log(this.cpdPlusHubs);
+    
       }).catch(e => {
         console.log(e);
       });
     },
-    courseProcess: function (course_id, type) {
+    courseProcess:  function (course_id, type) {
       if (store.state.auth && [1, 4].indexOf(store.state.auth.role) >= 0) {
         let action = 'addCourse';
         if (!type) {
           action = 'deleteCourse';
         }
 
-        this.http.post(`usercourses?_path=${this.$route.path}`, {
+        this.$axios.$post(`/rest/usercourses?_path=${this.$route.path}`, {
           action: action,
           course_id: course_id
         }).then(r => {

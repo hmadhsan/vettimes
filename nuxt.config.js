@@ -47,7 +47,8 @@ let app = {
  
   plugins: [
     { src: '~/plugins/myplugin.js', mode: 'client' },
-    { src: '~/plugins/vue2-editor.js', mode: 'client' }
+    { src: '~/plugins/vue2-editor.js', mode: 'client' },
+    { src:'~/plugins/element-ui.js', mode:'client'},
   ]
 };
 

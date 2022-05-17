@@ -12,7 +12,6 @@
         data-hide-cover="false"
         data-show-facepile="true"
       >
-
         <blockquote
         cite="https://www.facebook.com/vettimescpd/"
         class="fb-xfbml-parse-ignore"
