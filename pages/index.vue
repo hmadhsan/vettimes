@@ -114,7 +114,7 @@
                   </div>
                   
                   <span aria-describedby="el-popover-1051" tabindex="0" slot="reference" class="star-icon">
-                    <i data-icon="☆" title="Save course" class="icon-after"></i> 
+                    <i data-icon="☆" title="Save course" class="icon-after">☆</i> 
                   </span>
                   
                 </el-popover>
@@ -185,7 +185,7 @@
                 </el-select>
               </div>
               <p class="more">
-                <nuxt-link to="/browse-courses" data-icon="▶" class="icon-after">View all</nuxt-link>
+                <nuxt-link to="/browse-courses" data-icon="▶" class="icon-after">View all  ▶</nuxt-link>
               </p>
             </el-tab-pane>
           </el-tabs>
@@ -197,9 +197,9 @@
         </div>
       </section>
 
-      <section class="CPD-articles">
+    <!-- <section class="CPD-articles">
         <div class="row">
-          <h1>CPD articles</h1>
+      
 
           <div class="home-blocks cf" v-if="page['article']">
             <div class="CPD-article" v-for="item in page['article']" :key="item.article" v-if="item.article" >
@@ -226,7 +226,7 @@
           </div> 
  
      </div>
-      </section>
+      </section> -->
 
     <section class="CPD-hubs">
 
