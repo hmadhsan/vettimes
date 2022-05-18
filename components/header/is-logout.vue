@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-      <img class="mini-logo guest mobile-hide" src="">
+      <img class="mini-logo guest mobile-hide" src="../../img/vet-times-cpd_logo.svg">
     <a :href="loginTo+`?redirectTo=`+redirectTo" class="sign-in top__item">Sign in</a>
     <a :href="registerTo+`?redirectTo=${redirectTo}`" class="create-acc top__item">Create account</a>
     <nuxt-link v-if="$route.path.indexOf('courseproviders') === -1" to="/courseproviders" class="course icon-after icon-white" data-icon="▶">Are you a CPD provider?</nuxt-link>

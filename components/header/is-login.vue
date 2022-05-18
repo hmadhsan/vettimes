@@ -1,9 +1,9 @@
 <template>
   <div class="row">
     <div class="desktop-hide">
-      <router-link to="/your-courses/" class="sign-in top__item">Your courses</router-link>
+      <nuxt-link to="/your-courses/" class="sign-in top__item">Your courses</nuxt-link>
       <!--<a class="top__item" href="/cpd-plus/user/subscriptions">Your subscriptions</a>-->
-      <router-link to="/your-account/" class="sign-in top__item">Your account</router-link>
+      <nuxt-link to="/your-account/" class="sign-in top__item">Your account</nuxt-link>
       <a href="#" class="sign-in top__item" @click.stop.prevent="$parent.logOut">Sign out</a>
     </div>
 
@@ -16,38 +16,38 @@
           <a href="#" title="User Menu" data-icon="☺" class="icon-before el-dropdown-link">{{ truncate($store.state.auth.email, 19) }} <i class="el-icon-arrow-down el-icon--right"></i></a>
           <el-dropdown-menu slot="dropdown" class="user-dropdown">
             <el-dropdown-item>
-              <router-link
+              <nuxt-link
                   to="/your-courses/"
               >
                 Your courses
-              </router-link>
+              </nuxt-link>
             </el-dropdown-item>
             <!--<el-dropdown-item>
               <a class="top__item" href="/cpd-plus/user/subscriptions">Your subscriptions</a>
             </el-dropdown-item>-->
             <el-dropdown-item>
-              <router-link
+              <nuxt-link
                   to="/your-account/"
               >
                 Your account
-              </router-link>
+              </nuxt-link>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
 
       <div class="create-acc top__item  mobile-hide">
-        <router-link to="/your-courses">
+        <nuxt-link to="/your-courses">
           <span aria-hidden="true" class="icon-after" data-icon="★" title="Your shortlist">{{ $store.state.stars.length }}</span>
           <span class="hidden">Your shortlist (<span>{{ $store.state.stars.length }}</span>)</span>
-        </router-link>
+        </nuxt-link>
 
       </div>
 
       <div class="course">
         <button class="sign-out" @click="$parent.logOut">Sign out</button>
-        <router-link v-if="$route.path.indexOf('courseproviders') === -1" to="/courseproviders" class="course button button_brand icon-after icon-white" data-icon="▶">Are you a CPD provider?</router-link>
-        <router-link v-else to="/" class="course button button_brand">Course Seekers</router-link>
+        <nuxt-link v-if="$route.path.indexOf('courseproviders') === -1" to="/courseproviders" class="course button button_brand icon-after icon-white" data-icon="▶">Are you a CPD provider?</nuxt-link>
+        <nuxt-link v-else to="/" class="course button button_brand">Course Seekers</nuxt-link>
       </div>
     </div>
   </div>

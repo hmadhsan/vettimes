@@ -3,7 +3,6 @@
         class="header"
         id="header"
     >
-
         <div class="mobile-top">
             <a
                 href="#primary-nav"
@@ -47,12 +46,12 @@
 
         <!-- <div class="logo" :class="{ 'logo_courseproviders': $route.path.indexOf('courseproviders') >= 0 }">
             <div class="row cf">
-                <router-link v-if="$route.path.indexOf('courseproviders') >= 0" :to="`/courseproviders`">
+                <nuxt-link v-if="$route.path.indexOf('courseproviders') >= 0" :to="`/courseproviders`">
                   <img src="../../img/logo-providers.png">
-                </router-link>
-                <router-link v-else :to="`/`">
+                </nuxt-link>
+                <nuxt-link v-else :to="`/`">
                   <img  src="../../img/header-logo.png">
-                </router-link>
+                </nuxt-link>
 
             </div>
         </div> -->
@@ -67,9 +66,9 @@
                     
                     <a v-if="(item.title === 'Why choose us?' || item.title === 'Packages') && $route.path.indexOf('courseproviders') >= 0" @click="scrollToElement(item.scrollTo)">{{item.title}}</a>
                     
-                    <router-link v-else-if="item.url.indexOf('http') !== 0" :to="item.url" :exact="item.exact">
+                    <nuxt-link v-else-if="item.url.indexOf('http') !== 0" :to="item.url" :exact="item.exact">
                       <span>{{ item.title }}</span>
-                    </router-link>
+                    </nuxt-link>
                     
                     <a v-else :href="item.url">{{item.title}}</a>
 
@@ -80,8 +79,8 @@
                       <a :href="item.url"><span>{{ item.title }}</span></a>
                     </li>
                     <div class="desktop-hide header-menu__item">
-                        <router-link v-if="$route.path.indexOf('courseproviders') === -1" to="/courseproviders" class="course">Are you a CPD provider?</router-link>
-                        <router-link v-else to="/" class="course">Course Seekers</router-link>
+                        <nuxt-link v-if="$route.path.indexOf('courseproviders') === -1" to="/courseproviders" class="course">Are you a CPD provider?</nuxt-link>
+                        <nuxt-link v-else to="/" class="course">Course Seekers</nuxt-link>
                     </div>
                 </ul>
                 <ul id="header-second-menu" v-if="this.$route.path.indexOf('courseproviders') >= 0 ">
@@ -89,8 +88,8 @@
                       <a class="upload-course-btn" :href="item.url"><span>{{ item.title }}</span></a>
                     </li>
                     <div class="desktop-hide header-menu__item">
-                        <router-link v-if="$route.path.indexOf('courseproviders') === -1" to="/courseproviders" class="course">Are you a CPD provider?</router-link>
-                        <router-link v-else to="/" class="course">Course Seekers</router-link>
+                        <nuxt-link v-if="$route.path.indexOf('courseproviders') === -1" to="/courseproviders" class="course">Are you a CPD provider?</nuxt-link>
+                        <nuxt-link v-else to="/" class="course">Course Seekers</nuxt-link>
                     </div>
                 </ul>
 
