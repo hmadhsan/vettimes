@@ -115,13 +115,13 @@
                   </div>
                   
                   <span aria-describedby="el-popover-1051" tabindex="0" slot="reference" class="star-icon">
-                    <i data-icon="☆" title="Save course" class="icon-after"></i> 
+                    <i data-icon="☆" title="Save course" class="icon-after">☆</i> 
                   </span>
                   
                 </el-popover>
                   
                 <span v-else class="star-icon" aria-describedby="el-popover-1051" tabindex="0" @click="courseProcess(item.course_data.id, !isStar(item.course_data.id))">
-                  <i v-if="!isStar(item.course_data.id)" data-icon="☆" class="icon-after" title="Save course"></i>
+                  <i v-if="!isStar(item.course_data.id)" data-icon="☆" class="icon-after" title="Save course">☆</i>
                   <i v-else data-icon="★" class="icon-after" title="Remove saved course"></i>
                 </span>
 

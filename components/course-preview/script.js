@@ -32,7 +32,7 @@ export default {
     generateQuery: function() {
       if(this.$props.type && this.$props.type === 'provider') {
         return `?porder=Provider: ${this.$props.course.provider.name}&so=Date&pid=${this.$props.course.provider.id}`
-      } else if(this.$props.porder && !this.isEmptyObj(this.$props.porder)) {
+      } else if(this.$props.porder && !this.$props.porder) {
         return '?porder=' + this.$props.porder.join('|')
       } else {
         return '';

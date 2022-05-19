@@ -7,7 +7,6 @@ import Provider from "../../components/provider-preview";
 import store from "../../config/store";
 import EmailMeCourses from "../../components/email-me-courses";
 
-
 export default {
   store,
   mixins: [ mixins.helpers ],
@@ -78,20 +77,22 @@ export default {
     }
   },
   watch: {
+    
     'keywords': 'searchCourses'
   },
-  mounted: function () {
+  created() {
     this.$nextTick(function () {
-      if(this.isEmptyObj(store.state.searchList) || this.isEmptyObj(store.state.categories) || this.isEmptyObj(store.state.categoriesSlugsName)) {
+      if(store.state.searchList || store.state.categories || store.state.categoriesSlugsName) {
         this.get();
+        this.searchCourses()
       } else {
         this.listLoad = true;
       }
     })
   },
-  created: function() {
-    window.addEventListener('resize', this.onResize);
-  },
+  //created: function() {
+  //  window.addEventListener('resize', this.onResize);
+  //},
   methods: {
     addNewKeyword: function(value) {
       this.keywords.push(value);
@@ -151,8 +152,9 @@ export default {
         }
       })
     },
-    get: function() {
-      this.http.get(`course/categories?count=false&_position=courses`).then( r => {
+    get: async function() {
+     await this.$axios.$get(`/rest/course/categories?count=false&_position=courses&_path=/courses`).then( r => {
+       console.log('Line 156', r)
         let arr = [];
         let categories = {};
         let categoriesSlugsName = {};
@@ -182,7 +184,8 @@ export default {
         }
       });
     },
-    searchCourses: function () {
+    searchCourses: async function () {
+      
       this.loader = false;
       this.clickToCourse = false;
       
@@ -194,7 +197,8 @@ export default {
 
       let query_str = '';
 
-      this.http.post(`courses/search?_position=courses&_path=${this.$route.path}`, {
+      await this.$axios.$post(`/rest/courses/search?_position=courses&_path=/courses`, {
+        
         typeSearch: this.keywords.length,
         page: this.page,
         speciality: this.searchWords['speciality'].join('|'),
@@ -210,13 +214,14 @@ export default {
         providersPage: this.providersPage
       })
       .then( r => {
-        if ( r.data.total > 0 ) {
-          this.courses.total = r.data.total;
-          this.courses.array = r.data.array;
-          this.courses.seo = r.data.seoData;
-          this.categoriesNumbers = r.data.filter;
-          this.providers.total = r.data.providers_total;
-          this.providers.array = r.data.providers.array;
+        console.log('Line 216', r)
+        if ( r.total > 0 ) {
+          this.courses.total = r.total;
+          this.courses.array = r.array;
+          this.courses.seo = r.seoData;
+          this.categoriesNumbers = r.filter;
+          this.providers.total = r.providers_total;
+          this.providers.array = r.providers.array;
         } else {
           this.courses.total = 0;
           this.courses.array = [];

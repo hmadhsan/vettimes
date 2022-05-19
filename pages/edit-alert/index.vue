@@ -5,7 +5,7 @@
         <div class="site-title-wrapper">
           <h1 class="site-title">Edit your alert</h1>
         </div>
-        <p><router-link :to="`/your-courses`">←Back to your course alerts</router-link></p>
+        <p><nuxt-link :to="`/your-courses`">←Back to your course alerts</nuxt-link></p>
         <div class="content__inner">
           <el-row :gutter="20">
             <el-col :span="16">

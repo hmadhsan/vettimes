@@ -5,13 +5,14 @@
     <div class="content">
       <div class="row">
         <RemoteSearch
-          v-if="listLoad"
+        
           @setKeywords="setKeywords"
           :keywords="keywords"
           :catList="$store.state.searchList"
           :categoriesObj="$store.state.categories"
           :catsSlugsName="$store.state.categoriesSlugsName"
         ></RemoteSearch>
+       {{$store.state.searchList}}
 
         <!-- add ons -->
         <div v-if="this.sponsorship" v-html="this.sponsorshipHtml"></div>
@@ -89,12 +90,12 @@
                         v-for="cat in filterPopupEmptyCats($store.state.categories[categoryDialog])"
                         :key="cat.id"
                       >
-                        <router-link
+                        <nuxt-link
                           class="category-dialog__list-link"
                           @click.native="handleNewSearchItem"
                           :data-cat="cat.name"
                           :to="`/courses/${cat.slug}/`"
-                        >{{ cat.name }} <span>{{ categoriesNumbers[cat.name] }}</span></router-link>
+                        >{{ cat.name }} <span>{{ categoriesNumbers[cat.name] }}</span></nuxt-link>
                       </li>
                     </ul>
                   </div>
@@ -122,8 +123,8 @@
                   </el-popover>
                 </transition>
               </div>
-              <router-link @click.native="tabListener" :to="'/courses'" class="tab" :class="[{activeTab : !$attrs.providers}]">Courses <span>({{courses.total}})</span></router-link>
-              <router-link @click.native="tabListener" :to="'/course-providers'" class="tab" :class="[{activeTab : $attrs.providers}]">Course Providers <span>({{ providers.total }})</span></router-link>
+              <nuxt-link @click.native="tabListener" :to="'/courses'" class="tab" :class="[{activeTab : !$attrs.providers}]">Courses <span>({{courses.total}})</span></nuxt-link>
+              <nuxt-link @click.native="tabListener" :to="'/course-providers'" class="tab" :class="[{activeTab : $attrs.providers}]">Course Providers <span>({{ providers.total }})</span></nuxt-link>
             </div>
             <h2 class="popover-form__title" style="padding: 0 10px 0; margin-top:20px;">Found {{ courses.total }}
             <span class="text-capitalize">{{ findCourses.concat(searchWords.speciality, searchWords.course_type).join(', ') }}</span>
