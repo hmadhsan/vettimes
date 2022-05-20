@@ -293,7 +293,8 @@ export default {
     goToPage: function (page) {
       this.page = page;
       this.searchCourses();
-      this.$scrollToElement('search-block');
+      //this.$scrollToElement('search-block');
+      window.scrollTo(0, 0);
     },
     goToProvidersPage: function (page) {
       this.providersPage = page;

@@ -43,12 +43,12 @@ export default {
       if(!this.value) {
         this.value = '';
       }
-      this.http.get(`providers?name=${this.value}&page=${this.page}&_path=${this.$route.path}`).then( r => {
-        if(r.data.total === 1) {
-          this.$router.push(`/provider-details/${r.data.array[0].id}/${r.data.array[0].slug}`);
-        } else if(r.data.total > 1) {
+      this.$axios.$get(`/rest/providers?name=${this.value}&page=${this.page}&_path=${this.$route.path}`).then( r => {
+        if(r.total === 1) {
+          this.$router.push(`/provider-details/${r.array[0].id}/${r.array[0].slug}`);
+        } else if(r.total > 1) {
           this.noData = false;
-          this.providers = r.data;
+          this.providers = r;
           this.$router.push(`/providers?q=${this.value.replace(' ', '+')}`);
         } else {
           this.noData = true;
@@ -62,9 +62,9 @@ export default {
       this.get();
     },
     getSearchList: function () {
-      this.http.get(`providers/names`).then( r => {
-        if(r.data) {
-          this.list = r.data.map(item => {
+      this.$axios.$get(`/rest/providers/names`).then( r => {
+        if(r) {
+          this.list = r.map(item => {
             return { value: item.name, label: item.name };
           });
         }
@@ -73,7 +73,8 @@ export default {
     goToPage: function (page) {
       this.page = page;
       this.get();
-      this.$scrollToTop();
+      //this.$scrollToTop();
+      window.scroll(0, 0);
     },
     remoteMethod: function(query) {
       if (query !== '') {
