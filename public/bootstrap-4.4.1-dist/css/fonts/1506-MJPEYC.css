@@ -1,0 +1,572 @@
+/*
+        This font software is the property of Commercial Type.
+
+        You may not modify the font software, use it on another website, or install it on a computer.
+
+        License information is available at http://commercialtype.com/eula
+        For more information please visit Commercial Type at http://commercialtype.com or email us at info[at]commercialtype.com
+
+        Copyright (C) 2013 Schwartzco Inc.
+        License: 1506-MJPEYC     
+*/
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-Thin-Web.eot');
+  src: url('Stag-Thin-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-Thin-Web.woff') format('woff'),
+     url('Stag-Thin-Web.ttf') format('truetype'),
+     url('Stag-Thin-Web.svg#Stag Web') format('svg');
+  font-weight:  100;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Stag-Thin-Web {
+  font-family: 'Stag Web';
+  font-weight:  100;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-ThinItalic-Web.eot');
+  src: url('Stag-ThinItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-ThinItalic-Web.woff') format('woff'),
+     url('Stag-ThinItalic-Web.ttf') format('truetype'),
+     url('Stag-ThinItalic-Web.svg#Stag Web') format('svg');
+  font-weight:  100;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Stag-ThinItalic-Web {
+  font-family: 'Stag Web';
+  font-weight:  100;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-Light-Web.eot');
+  src: url('Stag-Light-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-Light-Web.woff') format('woff'),
+     url('Stag-Light-Web.ttf') format('truetype'),
+     url('Stag-Light-Web.svg#Stag Web') format('svg');
+  font-weight:  300;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Stag-Light-Web {
+  font-family: 'Stag Web';
+  font-weight:  300;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-LightItalic-Web.eot');
+  src: url('Stag-LightItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-LightItalic-Web.woff') format('woff'),
+     url('Stag-LightItalic-Web.ttf') format('truetype'),
+     url('Stag-LightItalic-Web.svg#Stag Web') format('svg');
+  font-weight:  300;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Stag-LightItalic-Web {
+  font-family: 'Stag Web';
+  font-weight:  300;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-Book-Web.eot');
+  src: url('Stag-Book-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-Book-Web.woff') format('woff'),
+     url('Stag-Book-Web.ttf') format('truetype'),
+     url('Stag-Book-Web.svg#Stag Web') format('svg');
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Stag-Book-Web {
+  font-family: 'Stag Web';
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-BookItalic-Web.eot');
+  src: url('Stag-BookItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-BookItalic-Web.woff') format('woff'),
+     url('Stag-BookItalic-Web.ttf') format('truetype'),
+     url('Stag-BookItalic-Web.svg#Stag Web') format('svg');
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Stag-BookItalic-Web {
+  font-family: 'Stag Web';
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-Medium-Web.eot');
+  src: url('Stag-Medium-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-Medium-Web.woff') format('woff'),
+     url('Stag-Medium-Web.ttf') format('truetype'),
+     url('Stag-Medium-Web.svg#Stag Web') format('svg');
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Stag-Medium-Web {
+  font-family: 'Stag Web';
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-MediumItalic-Web.eot');
+  src: url('Stag-MediumItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-MediumItalic-Web.woff') format('woff'),
+     url('Stag-MediumItalic-Web.ttf') format('truetype'),
+     url('Stag-MediumItalic-Web.svg#Stag Web') format('svg');
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Stag-MediumItalic-Web {
+  font-family: 'Stag Web';
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-Semibold-Web.eot');
+  src: url('Stag-Semibold-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-Semibold-Web.woff') format('woff'),
+     url('Stag-Semibold-Web.ttf') format('truetype'),
+     url('Stag-Semibold-Web.svg#Stag Web') format('svg');
+  font-weight:  600;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Stag-Semibold-Web {
+  font-family: 'Stag Web';
+  font-weight:  600;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-SemiboldItalic-Web.eot');
+  src: url('Stag-SemiboldItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-SemiboldItalic-Web.woff') format('woff'),
+     url('Stag-SemiboldItalic-Web.ttf') format('truetype'),
+     url('Stag-SemiboldItalic-Web.svg#Stag Web') format('svg');
+  font-weight:  600;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Stag-SemiboldItalic-Web {
+  font-family: 'Stag Web';
+  font-weight:  600;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-Bold-Web.eot');
+  src: url('Stag-Bold-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-Bold-Web.woff') format('woff'),
+     url('Stag-Bold-Web.ttf') format('truetype'),
+     url('Stag-Bold-Web.svg#Stag Web') format('svg');
+  font-weight:  700;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Stag-Bold-Web {
+  font-family: 'Stag Web';
+  font-weight:  700;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-BoldItalic-Web.eot');
+  src: url('Stag-BoldItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-BoldItalic-Web.woff') format('woff'),
+     url('Stag-BoldItalic-Web.ttf') format('truetype'),
+     url('Stag-BoldItalic-Web.svg#Stag Web') format('svg');
+  font-weight:  700;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Stag-BoldItalic-Web {
+  font-family: 'Stag Web';
+  font-weight:  700;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-Black-Web.eot');
+  src: url('Stag-Black-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-Black-Web.woff') format('woff'),
+     url('Stag-Black-Web.ttf') format('truetype'),
+     url('Stag-Black-Web.svg#Stag Web') format('svg');
+  font-weight:  900;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Stag-Black-Web {
+  font-family: 'Stag Web';
+  font-weight:  900;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Web';
+  src: url('Stag-BlackItalic-Web.eot');
+  src: url('Stag-BlackItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('Stag-BlackItalic-Web.woff') format('woff'),
+     url('Stag-BlackItalic-Web.ttf') format('truetype'),
+     url('Stag-BlackItalic-Web.svg#Stag Web') format('svg');
+  font-weight:  900;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Stag-BlackItalic-Web {
+  font-family: 'Stag Web';
+  font-weight:  900;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-Thin-Web.eot');
+  src: url('StagSans-Thin-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-Thin-Web.woff') format('woff'),
+     url('StagSans-Thin-Web.ttf') format('truetype'),
+     url('StagSans-Thin-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  100;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.StagSans-Thin-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  100;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-ThinItalic-Web.eot');
+  src: url('StagSans-ThinItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-ThinItalic-Web.woff') format('woff'),
+     url('StagSans-ThinItalic-Web.ttf') format('truetype'),
+     url('StagSans-ThinItalic-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  100;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.StagSans-ThinItalic-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  100;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-Light-Web.eot');
+  src: url('StagSans-Light-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-Light-Web.woff') format('woff'),
+     url('StagSans-Light-Web.ttf') format('truetype'),
+     url('StagSans-Light-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  300;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.StagSans-Light-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  300;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-LightItalic-Web.eot');
+  src: url('StagSans-LightItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-LightItalic-Web.woff') format('woff'),
+     url('StagSans-LightItalic-Web.ttf') format('truetype'),
+     url('StagSans-LightItalic-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  300;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.StagSans-LightItalic-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  300;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-Book-Web.eot');
+  src: url('StagSans-Book-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-Book-Web.woff') format('woff'),
+     url('StagSans-Book-Web.ttf') format('truetype'),
+     url('StagSans-Book-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.StagSans-Book-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-BookItalic-Web.eot');
+  src: url('StagSans-BookItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-BookItalic-Web.woff') format('woff'),
+     url('StagSans-BookItalic-Web.ttf') format('truetype'),
+     url('StagSans-BookItalic-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.StagSans-BookItalic-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-Medium-Web.eot');
+  src: url('StagSans-Medium-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-Medium-Web.woff') format('woff'),
+     url('StagSans-Medium-Web.ttf') format('truetype'),
+     url('StagSans-Medium-Web.svg#StagSans-Medium') format('svg');
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.StagSans-Medium-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-MediumItalic-Web.eot');
+  src: url('StagSans-MediumItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-MediumItalic-Web.woff') format('woff'),
+     url('StagSans-MediumItalic-Web.ttf') format('truetype'),
+     url('StagSans-MediumItalic-Web.svg#StagSans-MediumItalic') format('svg');
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.StagSans-MediumItalic-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-Semibold-Web.eot');
+  src: url('StagSans-Semibold-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-Semibold-Web.woff') format('woff'),
+     url('StagSans-Semibold-Web.ttf') format('truetype'),
+     url('StagSans-Semibold-Web.svg#StagSans-Semibold') format('svg');
+  font-weight:  600;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.StagSans-Semibold-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  600;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-SemiboldItalic-Web.eot');
+  src: url('StagSans-SemiboldItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-SemiboldItalic-Web.woff') format('woff'),
+     url('StagSans-SemiboldItalic-Web.ttf') format('truetype'),
+     url('StagSans-SemiboldItalic-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  600;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.StagSans-SemiboldItalic-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  600;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-Bold-Web.eot');
+  src: url('StagSans-Bold-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-Bold-Web.woff') format('woff'),
+     url('StagSans-Bold-Web.ttf') format('truetype'),
+     url('StagSans-Bold-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  700;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.StagSans-Bold-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  700;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-BoldItalic-Web.eot');
+  src: url('StagSans-BoldItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-BoldItalic-Web.woff') format('woff'),
+     url('StagSans-BoldItalic-Web.ttf') format('truetype'),
+     url('StagSans-BoldItalic-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  700;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.StagSans-BoldItalic-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  700;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-Black-Web.eot');
+  src: url('StagSans-Black-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-Black-Web.woff') format('woff'),
+     url('StagSans-Black-Web.ttf') format('truetype'),
+     url('StagSans-Black-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  900;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.StagSans-Black-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  900;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Stag Sans Web';
+  src: url('StagSans-BlackItalic-Web.eot');
+  src: url('StagSans-BlackItalic-Web.eot?#iefix') format('embedded-opentype'),
+     url('StagSans-BlackItalic-Web.woff') format('woff'),
+     url('StagSans-BlackItalic-Web.ttf') format('truetype'),
+     url('StagSans-BlackItalic-Web.svg#Stag Sans Web') format('svg');
+  font-weight:  900;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.StagSans-BlackItalic-Web {
+  font-family: 'Stag Sans Web';
+  font-weight:  900;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
