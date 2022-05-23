@@ -5,14 +5,13 @@
     <div class="content">
       <div class="row">
         <RemoteSearch
-        
           @setKeywords="setKeywords"
           :keywords="keywords"
           :catList="$store.state.searchList"
           :categoriesObj="$store.state.categories"
           :catsSlugsName="$store.state.categoriesSlugsName"
         ></RemoteSearch>
-       {{$store.state.searchList}}
+
 
         <!-- add ons -->
         <div v-if="this.sponsorship" v-html="this.sponsorshipHtml"></div>

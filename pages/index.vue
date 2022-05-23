@@ -170,7 +170,7 @@
             <el-tab-pane v-for="(cats, key) in filteredCategories" :key="cats.id" :label="key" lazy>
               <ul class="cf click-cat">
                 <li v-for="(cat, index) in filterEmptyCats(cats, key).slice(0, 16)" :key="cat.id">
-                  <nuxt-link :key="`${cat.slug}-link-${index}`" :to="`/courses/${cat.slug}/`" :data-cat="cat.name"
+                  <nuxt-link :key="`${cat.slug}-link-${index}`" :to="`/courses/${cat.slug}`" :data-cat="cat.name"
                     :data-key="key">
                     {{cat.name}}<span> {{ categoriesNumbers[cat.name] }}</span>
                   </nuxt-link>

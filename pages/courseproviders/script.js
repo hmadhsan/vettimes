@@ -47,22 +47,27 @@ export default {
       this.getCoursesHomeContent();      
     });
     if( (['#why-choose-us', '#packages'].indexOf( this.$route.hash ) >= 0 ) ) {
-      let section = this.$route.hash.replace('#', ''); this.$scrollToElement( section );
+      let section = this.$route.hash.replace('#', ''); window.scroll( section );
     }
   },
   methods: {
+    goto() {
+      const element = document.getElementById('why-choose-us')
+      console.log(element);
+      element.scrollTop = element.offsetHeight + element.scrollHeight
+    },
     getCoursesHomeContent: function() {
-      this.http.get("pages?slug=providers&_path=" + this.$route.path).then( r => {
-        if(r.data.status) {
-          this.page = r.data.block || [];
+      this.$axios.$get("/rest/pages?slug=providers&_path=" + this.$route.path).then( r => {
+        if(r.status) {
+          this.page = r.block || [];
         }
       });
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.http.post(`email`, this.ruleForm).then( r => {
-            this.$error(r.data);
+          this.$axios.$post(`email`, this.ruleForm).then( r => {
+            this.$error(r);
           });
           this.dialogFormVisible = false;
         } else {

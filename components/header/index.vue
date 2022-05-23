@@ -63,8 +63,7 @@
             <div class="row cf">
                 <ul id="header-menu">
                   <li class="header-menu__item" v-for="item in filteredMenuList" :key="item.id">
-                    
-                    <a v-if="(item.title === 'Why choose us?' || item.title === 'Packages') && $route.path.indexOf('courseproviders') >= 0" @click="scrollToElement(item.scrollTo)">{{item.title}}</a>
+                    <a  v-scroll-to="item.title==='Packages'? '#packages': item.title==='Why choose us?'? '#why-choose-us' : ''"  v-if="(item.title === 'Why choose us?' || item.title === 'Packages') && $route.path.indexOf('courseproviders')>= 0"  @click="scrollToElement(item.scrollTo)">{{item.title}}</a>
                     
                     <nuxt-link v-else-if="item.url.indexOf('http') !== 0" :to="item.url" :exact="item.exact">
                       <span>{{ item.title }}</span>
@@ -85,6 +84,7 @@
                 </ul>
                 <ul id="header-second-menu" v-if="this.$route.path.indexOf('courseproviders') >= 0 ">
                     <li class="header-menu__item" v-for="item in providerMenuItems" :key="item.id">
+                    
                       <a class="upload-course-btn" :href="item.url"><span>{{ item.title }}</span></a>
                     </li>
                     <div class="desktop-hide header-menu__item">

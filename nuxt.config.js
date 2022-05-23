@@ -2,9 +2,6 @@ let webpack = require("webpack"),
   path = require("path"),
   TerserPlugin = require("terser-webpack-plugin"),
   credential = require("fs").readFileSync("./.credential", "utf8");
-
-  
-
 let app = {
   publicPath: "/",
   outputDir: "../public/",
@@ -29,8 +26,8 @@ let app = {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
     'vue2-editor/nuxt',
-    '@nuxtjs/proxy'
-    
+    '@nuxtjs/proxy',
+    'vue-scrollto/nuxt'
   ],
   axios: {
     // WARNING: proxy doesn't work with nuxt generate,
@@ -41,6 +38,9 @@ let app = {
   proxy: [
     ['/rest', { target: 'https://cpd.vettimes.co.uk' }]
 ],
+css: [
+  {src: '~public/app.css'}
+],
   auth:{
     
   },
@@ -49,6 +49,8 @@ let app = {
     { src: '~/plugins/myplugin.js', mode: 'client' },
     { src: '~/plugins/vue2-editor.js', mode: 'client' },
     { src:'~/plugins/element-ui.js', mode:'client'},
+ 
+
   ]
 };
 

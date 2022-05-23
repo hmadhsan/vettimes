@@ -264,7 +264,7 @@ export default {
         this.keywords.push(keyword);
       }
       this.dialogTableVisible = false;
-      this.$scrollToElement('search-block');
+    window.scroll(0,0)
     },
     handleDeleteSearchItem: function (e) { // delete cat from search
       let keyword = e.target.closest('div').firstChild.getAttribute('data-cat');
@@ -281,7 +281,7 @@ export default {
       if(this.keywords.length === 0) {
         this.$router.push(`/courses/`);
       }
-      this.$scrollToElement('search-block');
+    window.scroll(0,0)
     },
     specialitySearchNow: function (key, cat) { // filter speciality group cats for view after search
       let searchWords = this.findCategories(this.keywords, store.state.categories);
@@ -299,7 +299,8 @@ export default {
     goToProvidersPage: function (page) {
       this.providersPage = page;
       this.searchCourses();
-      this.$scrollToElement('search-block');
+    //window.scroll(0,0)
+    window.scrollTo(0, 0);
     },
     sortCourses: function () {
       this.searchCourses();

@@ -12,6 +12,7 @@ export default {
   data() {
 
     const contactUs = 'https://vettimes2.typeform.com/to/ONnQs0';
+    var header = "(item.title === 'Why choose us?' || item.title === 'Packages') && $route.path.indexOf('courseproviders')>= 0"
 
     return {
       stars: 0,
@@ -251,7 +252,8 @@ export default {
         this.$router.push('/courseproviders#' + section );
         return;
       }      
-      this.$scrollToElement(section);
+     // this.$scrollToElement(section);
+      window.scroll(0,0)
     },
   },
   computed: {

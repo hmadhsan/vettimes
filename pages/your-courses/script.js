@@ -115,7 +115,8 @@ export default {
     },
     toPage(page) {
       this.page = parseInt(page) || 1;
-      this.$scrollToElement('courses-table');
+     // this.$scrollToElement('courses-table');
+      window.scroll(0,0)
       this.$router.replace( this.$toQuery({
         page: this.page,
         keywords: this.searchKeywords,
