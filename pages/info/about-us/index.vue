@@ -12,7 +12,7 @@
         <div style="font-family: Sans-Serif;font-size: 12px;color: #999;opacity: 0.5; padding-top: 5px;"> powered by <a href="https://admin.typeform.com/signup?utm_campaign=ONnQs0&utm_source=typeform.com-14414595-ProPlus3&utm_medium=typeform&utm_content=typeform-embedded-poweredbytypeform&utm_term=EN" style="color: #999" target="_blank">Typeform</a></div>
       </template>
     </div>
-
+  
   </div>
 </template>
 

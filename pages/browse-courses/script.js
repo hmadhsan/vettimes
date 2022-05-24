@@ -28,7 +28,7 @@ export default {
   },
   mounted: function () {
     this.$nextTick(function () {
-      if(this.isEmptyObj(store.state.searchList) || this.isEmptyObj(store.state.categories) || this.isEmptyObj(store.state.categoriesSlugsName)) {
+      if (store.state.searchList || store.state.categories || store.state.categoriesSlugsName) {
         this.get();
       } else {
         this.getCategoriesNumber();
@@ -43,15 +43,15 @@ export default {
   },
   methods: {
     get: function() {
-      this.http.get(`course/categories?count=true&list=true`).then( r => {
+      this.$axios.$get(`/rest/course/categories?count=true&list=true`).then( r => {
         let arr = [];
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
-        if(r.data.status) {
-          this.categoriesNumbers = r.data.count;
-          for (let key in r.data.vars) {
+        if(r.status) {
+          this.categoriesNumbers = r.count;
+          for (let key in r.vars) {
             if(key !== 'cpd_hours') {
-              r.data.vars[key].forEach(item => {
+              r.vars[key].forEach(item => {
                 categoriesSlugsName[item.slug] = item.name;
                 categoriesNameSlugs[item.name] = item.slug;
                 arr.push({
@@ -62,19 +62,19 @@ export default {
             }
           }
           this.listLoad = true;
-          store.commit('setCategories', r.data.vars);
+          store.commit('setCategories', r.vars);
           store.commit('setCategoriesSlugsName', categoriesSlugsName);
           store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r.data['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r.data['categories_names']);
+          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
+          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
           store.commit('setSearchList', arr);
         }
       });
     },
     getCategoriesNumber: function() {
-      this.http.get(`course/categories?count=true&list=false`).then( r => {
-        if(r.data.status) {
-          this.categoriesNumbers = r.data.count;
+      this.$axios.$get(`/rest/course/categories?count=true&list=false`).then( r => {
+        if(r.status) {
+          this.categoriesNumbers = r.count;
         }
       });
     },

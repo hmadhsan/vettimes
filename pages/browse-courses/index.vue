@@ -25,14 +25,14 @@
             <h3>Browse by {{ keys[key] }}</h3>
             <ul>
               <li v-for="(cat, index) in filterEmptyCats(cats, key)" :key="cat.id">
-                <router-link
+                <nuxt-link
                     :key="`${cat.slug}-link-${index}`"
                     :to="`/courses/${cat.slug}/`"
                     :data-cat="cat.name"
                     :data-key="key"
                 >
                   {{cat.name}}<span> {{ categoriesNumbers[cat.name] }}</span>
-                </router-link>
+                </nuxt-link>
               </li>
             </ul>
             <div class="select-cat">

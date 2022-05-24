@@ -1,4 +1,4 @@
-import NF from "../404"
+import NF from "../../404"
 
 export default {
   components: { NF },
@@ -8,9 +8,9 @@ export default {
       extra: false
     }
   },
-  mounted() {
-    this.http.get("page?slug="+this.$route.params.slug + "&_path=" + this.$route.path).then( r => {
-      this.page = r.data.data || false;
+  created ()  {
+    this.$axios.$get("/rest/page?slug=about-us&_path=/info/about-us").then( r => {
+      this.page = r.data || false;
     });
     if ( this.$route.params.slug === 'contact-us' ) {
       this.extra = true;
@@ -24,8 +24,8 @@ export default {
   },
   beforeRouteUpdate (to, from, next) {
     next();
-    this.http.get("page?slug="+this.$route.params.slug + "&_path=" + this.$route.path).then( r => {
-      this.page = r.data.data || false;
+    this.$axios.$get("/rest/page?slug=about-us&_path=/info/about-us").then( r => {
+      this.page = r.data || false;
     });
   }
 }
