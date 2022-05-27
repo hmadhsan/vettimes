@@ -75,12 +75,12 @@ export default {
     this.$nextTick(function () {
       this.get();
     });
-    this.http.get('user/f-providers').then(r => {
-      if ( Array.isArray(r.data) ) {
-        this.disableFPC = r.data.length > 2;
-        this.disableFP = r.data.length > 2;
+    this.$axios.$get('/rest/user/f-providers').then(r => {
+      if ( Array.isArray(r) ) {
+        this.disableFPC = r.length > 2;
+        this.disableFP = r.length > 2;
         if ( this.disableFP ) return;
-        r.data.forEach(item => {
+        r.forEach(item => {
           if ( parseInt(item.provider) === this.$auth().provider_id ) this.disableFP = true;
         })
       }
@@ -93,16 +93,16 @@ export default {
   },
   methods: {
     get: function(credits = false) {      
-      this.http.get("course/info?id="+this.$parent.info.id + "&_path=/courseproviders/courses").then(r => {
-        if (this.$error(r.data)) {          
+      this.$axios.$get("/rest/course/info?id="+this.$parent.info.id + "&_path=/courseproviders/courses").then(r => {
+        if (this.$error(r)) {          
           if ( credits ) {
-            this.credits = r.data.credits;
+            this.credits = r.credits;
             return;
           }
-          this.prices = r.data.prices;
-          this.form = r.data.data;
-          this.products = r.data.products;
-          this.credits = r.data.credits;
+          this.prices = r.prices;
+          this.form = r.data;
+          this.products = r.products;
+          this.credits = r.credits;
           // this.$parent.showPublishButton = !this.isEmptyObj(this.credits);
           this.advertOldType = this.form.product_id;
           if(this.form.status == 1 || this.form.status == 4) this.disableFromDate = true; this.disableToDate = true;
@@ -197,8 +197,8 @@ export default {
         }
 
         //console.log('put')
-        this.http.put("course", this.form).then( r => {
-          if (this.$error(r.data)) {
+        this.$axios.$put("/rest/course", this.form).then( r => {
+          if (this.$error(r)) {
             //if(r.data.status) {
               // this.dataUpdateSuccess = 'The course details have been saved. To make your course live on the site, you must use the <strong>"Publish"</strong> button. A single credit will be taken from your balance. If you do not have any credits, please call us on <a href="callto:(0)1733 383534">(0)1733 383534</a> or email <a href="mailto:cpd@vettimes.co.uk">cpd@vettimes.co.uk</a> to purchase credits.'
             //}

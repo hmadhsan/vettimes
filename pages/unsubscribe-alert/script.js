@@ -19,7 +19,7 @@ export default {
   methods: {
     unsubscribe: function() {
       if(this.$route.query.token) {
-        this.http.delete(`useralerts?token=${this.$route.query.token}&_path=${this.$route.path}`).then( r => {
+        this.$axios.$delete(`/rest/useralerts?token=${this.$route.query.token}&_path=${this.$route.path}`).then( r => {
           this.isLoading = false;
           this.dataUpdateSuccess = 'Your course alert has been deleted.'
           setTimeout(() => {

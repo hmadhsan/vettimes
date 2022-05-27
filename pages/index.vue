@@ -62,7 +62,7 @@
             </div>
             <div class="CPD-browse-course">
               <nuxt-link :to="`/courses/student`">
-                <div class="CPD-browse-course-img"> <img src="../img/student.jpg"></div>
+                <div class="CPD-browse-course-img"> <img src="../img/student.jpg"/></div>
                 <h3>Student</h3>
               </nuxt-link>
             </div>
@@ -70,7 +70,7 @@
           </div>
           <div class="CPD-hot-course home-blocks cf">
             <a :href="cpdPlusUrl" target="_blank">
-              <div class="CPD-hot-course-img"> <img src="../img/cpd-plus-360x420.jpg"></div>
+              <div class="CPD-hot-course-img"> <img src="../img/cpd-plus-360x420.jpg"/></div>
             </a>
           </div>
         </div>
@@ -232,7 +232,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-12 section-heading mt-4 mb-4">
+            <div class="col-md-12 section-heading mt-4 mb-4">
                     <div class="heading">
                         <h1>Our Hubs</h1>
                     </div>

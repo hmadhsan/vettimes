@@ -34,8 +34,8 @@ export default {
   },
   methods: {
     noThanks: function() {
-      this.http.put("leads/no-thanks" + this.$toQuery(this.form)).then( r => {        
-        if(r.data.error !== undefined) return this.$ntf(r.data.error);
+      this.$axios.$put("/rest/leads/no-thanks" + this.$toQuery(this.form)).then( r => {        
+        if(r.error !== undefined) return this.$ntf(r.error);
         // if(r.data.status) window.location.href = store.state.url;
         this.closeCourseAlertPopup();
       });
@@ -72,8 +72,8 @@ export default {
       this.form.slug = this.$route.params.slug;
       this.form.value = this.$route.query.porder ? this.$route.query.porder.split('|') : '';
 
-      this.http.put("leads/course-alert" + this.$toQuery(this.form)).then( r => {
-        if(r.data.error !== undefined) return this.$ntf(r.data.error);
+      this.$axios.$put("/rest/leads/course-alert" + this.$toQuery(this.form)).then( r => {
+        if(r.error !== undefined) return this.$ntf(r.error);
         window.location.href = store.state.url;
         this.closeCourseAlertPopup();
       });

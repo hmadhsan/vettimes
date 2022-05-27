@@ -1,142 +1,241 @@
 import store from "../../config/store";
-import Table from "./table";
 import Popup from "./popup";
-import mixins from "../../config/mixins";
-import ProvidersOnly from "../../components/providers-only";
-import Loader from "../../components/loader";
 
 export default {
   store,
-  mixins: [ mixins.helpers ],
   components: {
-    Loader,
-    Table,
-    Popup,
-    ProvidersOnly
+    Popup
   },
   data() {
     return {
-      searchKeywords: '',
-      providerStatus: 'Live',
-      data: {
-        array: [],
-        total: 0
+      isCourses: false,
+      courses: [],
+      alerts:[],
+      activeNames: ['1', '2'],
+      addAlert: false,
+      options: [],
+      value: [],
+      list: [],
+      loading: false,
+      form: {
+        alert_id: '',
+        value: [],
+        frequency: 'Weekly',
+        received: '1',
+        action: ''
       },
-      leads: {
-        withLeads: 0,
-        withViews: 0
+      rules: {
+        value: [
+          { required: true, message: 'Please select Keywords' }
+        ],
+        frequency: [
+          { required: true, message: 'Please select Frequency' }
+        ],
+        received: [
+          { required: true, message: 'Please select Received' }
+        ]
       },
-      page: 1,
-      status: '1',
-      order_by: "id",
-      order: "descending" ,
-      advertise: false,
-      showCourses: false,
-      notAuth: false
+      keys: {
+        'speciality': 'Speciality',
+        'course_type' : 'Course type',
+        'price' : 'Price',
+        'location': 'Location',
+        'skill_level': 'Skill level',
+        'audience': 'Audience',
+        'keyword': 'Keyword'
+      }
     }
   },
-  mounted: function () {
-    this.$nextTick(function () {
-      if(!this.isEmptyObj(this.$route.query)) {
-        this.page = parseInt(this.$route.query.page);
-        this.searchKeywords = this.$route.query.keywords;
-        this.providerStatus = this.$route.query.status;
-        this.order_by = this.$route.query.order_by;
-        this.order = this.$route.query.order;
-      }
-      this.get();
-    })
+  created: function () {
+    if(store.state.searchList || store.state.categories || store.state.categoriesSlugsName) {
+      this.getCategories();
+    } else {
+      this.list = store.state.searchList;
+    }
+    this.getUserCourses();
+    this.getUserAlerts();
+  //  if ( window.location.hash === '#add-alert' ) this.addAlert = true;
   },
   methods: {
-    get: function () {
-      
-      if(!store.state.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
+    createPreviewLink: function (categories) {
 
-      this.http.get("courses/providercourses"+this.$toQuery({
-        page: this.page,
-        keywords: this.searchKeywords,
-        status: this.providerStatus,
-        order_by: this.order_by,
-        order: this.order
-      }) + "&_path=" + this.$route.path).then( r => {        
-          if(this.$error(r.data)) {
-            this.data.array = r.data.array;
-            this.data.total = r.data.total;
-            this.leads = r.data.leads;
-            this.showCourses = true;
-          } else {            
-            this.notAuth = true;
-          }
-      })
-      .catch(e => {
-        console.log(e);
-      });
+      let slugs = [];
+      let keywords = '';
 
+      for (let key in categories) {
+        if(key === 'keyword') {
+          keywords = categories[key].replace(/ /g, '+');
+        } else {
+          categories[key].split('|').forEach(item => {
+            if(store.state.categoriesNameSlugs[item]) {
+              slugs.push(store.state.categoriesNameSlugs[item]);
+            }
+          });
+        }
+      }
+      let rout = '';
+      if(slugs.length > 0 && keywords === '') {
+        rout = `/courses/${slugs.join('/')}`;
+      } else if (slugs.length === 0 && keywords !== '') {
+        rout = `/courses/?kw=${keywords}`;
+      } else {
+        rout = `/courses/${slugs.join('/')}?kw=${keywords}`;
+      }
+      return rout;
     },
-    handlerSubmitSearchCourse: function (e) {
-      e.preventDefault();
-      this.get();
-    },
-    setStatus(id, value) {
-      this.$confirm("", "Are you sure?", {
-        confirmButtonText: "Yes",
-        cancelButtonText: 'No'
+    deleteAlert: function (data) {
+
+      let str = '';
+      for (let key in this.getNotNullCategories(data.keywords)) {
+        str += `<p>${this.keys[key]}: ${data.keywords[key].split('|').join(', ')}</p>`;
+      }
+      str += `<p>Sent: ${data.frequency}</p>`;
+
+      this.$confirm(str, "Delete your alert?", {
+        confirmButtonText: "Delete",
+        cancelButtonText: 'No',
+        dangerouslyUseHTMLString: true
       }).then(() => {
-        this.http.put("course/status", { id: id, value: value }).then( r => {
-          this.$error(r.data) && this.get();
+        this.http.post('useralerts', {'action': 'deleteAlert', 'alert_id': data.id}).then( r => {
+          this.alerts = r.data.array;
         })
       }).catch((e) => {
         console.log(e);
       });
     },
-    doCopy(id) {
-      this.http.post("course/copy", { id: id }).then( r => {
-        if ( this.$error(r.data) ) {
-          if ( !r.data.id ) return this.$ntf({});
-          this.$router.push(`/courseproviders/courses/${r.data.id}/details/`);
+    editAlert: function(data) {
+      this.form.alert_id = data.id;
+      this.form.value = data.categories.slice();
+      this.form.frequency = data.frequency;
+      this.form.received = data.receive + '';
+      this.form.action = 'addAlert';
+      this.addAlert = true;
+    },
+    getNotNullCategories: function(obj) {
+      let temp = {};
+      for(let key in obj) {
+        if(obj[key] !== null) {
+          temp[key] = obj[key];
+        }
+      }
+      return temp;
+    },
+    submitForm() {
+      this.$refs.alert.$refs.form.validate((valid) => {
+        if (valid) {
+          this.userAlerts();
+        } else {
+          return false;
+        }
+      });
+    },
+    resetForm() {
+      this.$refs.alert.$refs.form.resetFields();
+      this.form = {
+        alert_id: '',
+        value: [],
+        frequency: 'Weekly',
+        received: '1',
+        action: ''
+      }
+    },
+    userAlerts: async function() {
+      this.form.action = 'addAlert';
+     await this.$axios.$post('/rest/useralerts', this.form).then( r => {
+        if ( this.$error(r) ) {
+          this.alerts = r.array;
+          this.resetForm();
+          this.addAlert = false;
         }
       }).catch((e) => {
         console.log(e);
       });
     },
-    doDelete(id) {
-      this.$confirm("", "Are you sure?", {
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No'
-      }).then(() => {
-        this.http.delete(`course?id=${id}`).then( r => {
-          if(this.$error(r.data) ) {
-            this.get();
+    getUserAlerts: function() {
+      this.$axios.$post('/rest/useralerts', {'action': 'getAlerts'}).then( r => {
+        if ( this.$error(r) ) {
+          this.alerts = r.array;
+        }
+      }).catch((e) => {
+        console.log(e);
+      });
+    },
+    getCategories: function() {
+      this.$axios.$get(`/rest/course/categories?count=false&list=true`).then( r => {
+        let arr = [];
+        let categoriesSlugsName = {};
+        let categoriesNameSlugs = {};
+        if(r.status) {
+          for (let key in r.vars) {
+            if(key !== 'cpd_hours') {
+              r.vars[key].forEach(item => {
+                categoriesSlugsName[item.slug] = item.name;
+                categoriesNameSlugs[item.name] = item.slug;
+                arr.push({
+                  'value': item.name,
+                  'label': item.name
+                });
+              })
+            }
           }
+          this.listLoad = true;
+          store.commit('setCategories', r.vars);
+          store.commit('setCategoriesSlugsName', categoriesSlugsName);
+          store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
+          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
+          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
+          store.commit('setSearchList', arr);
+          this.list = arr;
+        }
+      });
+    },
+    getUserCourses: async function() {
+    await  this.$axios.$get("/rest/course/users?_path=" + this.$route.path).then( r => {
+        if(r.status) {
+          this.courses = r.array;
+          this.isCourses = true;
+        } else {
+          this.courses = [];
+          this.isCourses = false;
+        }
+      }).catch((e) => {
+        console.log(e);
+      });
+    },
+    getStars: function () {
+      let stars = store.state.stars.length;
+      if (stars > 0) {
+        return stars;
+      } else {
+        return '';
+      }
+    },
+    deleteCourse: function(course_id) {
+      if(store.state.auth) {
+        this.$axios.$post('/rest/usercourses', {  action: 'deleteCourse' ,course_id: course_id }).then( r => {
+          store.commit({
+            type: 'changeStars',
+            stars: r.data
+          });
+          this.getUserCourses();
         }).catch((e) => {
           console.log(e);
         });
-      }).catch(() => {});
+      }
     },
-    toPage(page) {
-      this.page = parseInt(page) || 1;
-     // this.$scrollToElement('courses-table');
-      window.scroll(0,0)
-      this.$router.replace( this.$toQuery({
-        page: this.page,
-        keywords: this.searchKeywords,
-        status: this.providerStatus,
-        id: store.state.currentProviderId,
-        order_by: this.order_by,
-        order: this.order
-      }) );
-      this.get();
-    },
-    toOrder(obj) {
-      this.order = obj.order;
-      this.order_by = obj.prop;
-      this.toPage(parseInt(this.page));
-    },
-    gotoLeads(id) {
-      this.$router.push(`/courseproviders/courses/${id}/leads/`);
-    },
-    gotoCourse(id) {
-      this.$router.push(`/courseproviders/courses/${id}/details?fromEdit=true`);
+    remoteMethod: function(query) {
+      if (query !== '') {
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          this.options = this.list.filter(item => {
+            return item.label.toLowerCase()
+            .indexOf(query.toLowerCase()) > -1;
+          });
+        }, 200);
+      } else {
+        this.options = [];
+      }
     }
   }
 }

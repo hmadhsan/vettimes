@@ -6,13 +6,13 @@
     </div>
     <ol v-if="courses.total > 0">
       <li v-for="course in courses.array" :key="course.id">
-        <router-link
+        <nuxt-link
           :to="`/course-details/${course.id}/${course.slug}/`"
           @click.native="getNewCourse"
           :class="[{ 'current': parseInt(course.id) === parseInt(id) }, '']"
         >
           <strong>{{ course.title }}</strong>  · {{ course.delivery_method }} · {{ course.price }}
-        </router-link>
+        </nuxt-link>
       </li>
     </ol>
     <div class="pagination">

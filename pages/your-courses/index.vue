@@ -1,71 +1,81 @@
 <template>
-    <div id="your-courses">
+    <div id="user-courses">
         <div class="content">
-          <Loader v-if="!showCourses && !notAuth" />
-          <template v-else-if="showCourses">
-            <div class="site-title-wrapper" id="courses-table">
-                <h1 class="site-title">Your courses</h1>
-                <form @submit="handlerSubmitSearchCourse">
-                  <div class="row">
-                    <el-row :gutter="20">
-                      <el-col :span="9" :xs="24" :lg="10">
-                        <div class="grid-content">
-                          <span class="input-label d-block">Keywords</span>
-                          <el-input
-                              v-model="searchKeywords"
-                              clearable>
-                          </el-input>
-                        </div>
-                      </el-col>
-                      <el-col :span="9" :xs="24" :lg="10">
-                        <div class="grid-content">
-                          <span class="input-label d-block">Status</span>
-                          <el-select v-model="providerStatus" placeholder="Select Status" class="d-block">
-                            <el-option label="All" value="-1" />
-                            <el-option label="Live" value="1" />
-                            <el-option label="Draft" value="2" />
-                            <el-option label="Awaiting Release" value="3" />
-                            <el-option label="Expired" value="4" />
-                            <el-option label="Archived" value="0" />
-                          </el-select>
-                        </div>
-                      </el-col>
-                      <el-col :span="6" :xs="24" :lg="4">
-                        <div class="grid-content">
-                          <span class="input-label d-block faked-label"></span>
-                          <button type="submit" class="button button_brand button_block">Filter</button>
-                        </div>
-                      </el-col>
-                    </el-row>
-                  </div>
-                </form>
+          <div class="row">
+            <div class="site-title-wrapper">
+              <h1 class="site-title">Your courses</h1>
             </div>
-            <div class="row">
-                <div class="inner">
-                  <el-row>
-                    <el-col :span="16">
-                      <div class="grid-content">
-                        <ul class="list-inline list-inline_pipe">
-                          <li>Courses found: {{ data.total }}</li>
-                          <li>Views: {{ leads.withViews }}</li>
-                          <li>Leads: {{ leads.withLeads }}</li>
-                        </ul>
-                      </div>
-                    </el-col>
-                    <el-col :span="8">
-                      <div class="grid-content text-r">
-                        <button class="button button_brand" @click="advertise=true">Advertise a course</button>
-                      </div>
-                    </el-col>
-                  </el-row>
-                    <Table v-if="data.total > 0"></Table>
-                    <p v-else>No matching courses found</p>
-                </div>
-            </div>
-          </template>
-          <ProvidersOnly v-if="notAuth && !showCourses"/>
+            <el-row :gutter="20">
+              <el-col :span="16" :xs="24">
+                <el-collapse v-model="activeNames">
+                  <el-collapse-item name="1">
+                    <template slot="title">
+                      <h3 class="h3 icon-before">
+                        Saved courses
+                        <span class="float-r">
+                            <span class="stars-number" v-if="getStars()">{{ getStars() }}</span>
+                            <i data-icon="★" class="icon-before"></i>
+                        </span>
+                      </h3>
+                    </template>
+                    <ul v-if="isCourses" class="courses-list">
+                      <li v-for="course in courses" class="courses-list__item d-table">
+                        <div class="d-table-cell">
+                          <router-link :to="`/course-details/${course.id}/${course.slug}/`" class="courses-list__link">{{ course.title }}</router-link>
+                        </div>
+                        <div class="d-table-cell">
+                          <button class="courses-list__btn" @click="deleteCourse(course.id)">Delete</button>
+                        </div>
+                      </li>
+                    </ul>
+                    <div v-else class="text-c"><p>You do not currently have any saved courses</p></div>
+                  </el-collapse-item>
+                  <el-collapse-item name="2">
+                    <template slot="title">
+                      <h3 class="h3 no-margin">
+                        Course alerts
+                        <span class="float-r">
+                          <span class="stars-number" v-if="alerts.length > 0">{{ alerts.length }}</span>
+                          <i data-icon="✉" class="icon-before"></i>
+                        </span>
+                      </h3>
+                    </template>
+                    <ul v-if="alerts.length > 0" class="courses-list courses-list_alert">
+                      <li v-for="alert in alerts" class="courses-list__item d-table">
+                        <div class="d-table-cell alert-cell">
+                          <ul>
+                            <li v-for="(item, index) in getNotNullCategories(alert.keywords)" :key="item.id">
+                              <p>{{ keys[index] }}: {{ item.split('|').join(', ') }}</p>
+                            </li>
+                            <li><p>Sent: {{ alert.frequency }}</p></li>
+                          </ul>
+                        </div>
+                        <div class="d-table-cell alert-cell">
+                          <span class="button-wrapper">
+                            <router-link :to="createPreviewLink(getNotNullCategories(alert.keywords))"><button class="courses-list__btn">Preview</button></router-link>
+                          </span>
+                          <span class="button-wrapper">
+                            <button class="courses-list__btn" @click="deleteAlert(alert)">Delete</button>
+                          </span>
+                          <span class="button-wrapper">
+                            <button class="courses-list__btn" @click="editAlert(alert)">Edit</button>
+                          </span>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="text-c" v-if="alerts.length < 12">
+                      <p>Get the latest courses sent straight to your inbox</p>
+                      <p>
+                        <button class="button button_brand icon-before icon-white" data-icon="✉" @click="addAlert = true">Create a course alert</button>
+                      </p>
+                    </div>
+                  </el-collapse-item>
+                </el-collapse>
+              </el-col>
+            </el-row>
+          </div>
         </div>
-        <Popup v-if="advertise"></Popup>
+      <Popup ref="alert" />
     </div>
 </template>
 

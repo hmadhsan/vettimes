@@ -1,0 +1,325 @@
+@import "../../style/options";
+
+#courses {
+  font-family: $ffTipperary;
+  margin-top: 23px;
+  margin-bottom: 20px;
+  .inner {
+    margin: 24px 0 0;
+
+    &__sidebar {
+      .filter-title {
+        text-transform: capitalize;
+        background: $cPink;
+        padding: 4px 8px;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: 400;
+        display: inline-block;
+      }
+
+      .select-cat {
+        margin-bottom: 8px;
+
+        .el-select {
+          width: 100%;
+        }
+      }
+
+
+
+      .isSearchNow {
+        border-color: #d3d3d3;
+      }
+
+      .link-wrapper {
+        position: relative;
+
+        .clear-filter {
+          position: absolute;
+          right: 5px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          cursor: pointer;
+        }
+      }
+
+      .el-button.more-cats {
+        padding: 3px 25px 3px 8px;
+        margin-bottom: 1px;
+        margin-top: 3px;
+        font-size: 15.2px;
+        color: $cBlue;
+        transition: .12s all ease-in;
+
+        &:hover {
+          color: $cBlueHover;
+        }
+      }
+    }
+    .courses__tabs {
+      border-bottom: 1px solid #cbcbcb;
+      padding: 0 10px 0;
+      .tab {
+        line-height: 25px;
+        color: inherit;
+        display: inline-block;
+        padding: 6px 15px;
+        border: 1px solid #cbcbcb;
+        border-radius: 4px 4px 0 0;
+        font-size: 18.24px;
+        margin-right: 5px;
+        position: relative;
+        top: 1px;
+        background-color: #eeeeee;
+        transition: 0.3s color;
+        span {
+          font-size: 15.504px;
+        }
+      }
+      .tab.activeTab {
+        border-bottom-color: $cWhite;
+        background-color: $cWhite;
+      }
+      .tab:hover {
+        color: $cBlue;
+      }
+
+    }
+
+    .email {
+      /*float: right;
+      margin-right: -10px;*/
+      button {
+        margin-bottom: 20px;
+        border: 0;
+        width: 100%;
+      }
+
+      .icon-before {
+        text-align: center;
+        background-color: #A70050;
+        color: #ffffff;
+        display: inline-block;
+        font-size: 15.2px;
+        padding: 7px 11px 8px 15px;
+        border-radius: 3px;
+        transition: 0.3s background-color;
+
+        &:hover {
+          background-color: $cPinkHover;
+          cursor: pointer;
+        }
+
+        &:before {
+          position: relative;
+          left: -4px;
+        }
+      }
+    }
+
+    .courses__no-data {
+      h3 {
+        margin-bottom: 15px;
+      }
+
+      .dots {
+        margin-left: 20px;
+        padding-left: 20px;
+      }
+
+      p {
+        display: block;
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      .email {
+        float: none;
+      }
+    }
+    .courses__inner {
+      margin: 40px 0 0;
+      padding: 0;
+      .sort {
+        text-align: right;
+        font-size: 15.2px;
+        margin: 0 0 11px;
+
+        > span {
+          margin-right: 5px;
+        }
+
+        .el-select {
+          width: 120px;
+
+          .el-icon-arrow-up:before {
+            top: -4px;
+            position: relative;
+          }
+        }
+
+        .el-input {
+          &__inner {
+            border: 1px solid #eee;
+            padding: 5px 10px;
+            height: 33px;
+            color: $cBlueHover;
+            text-align: left;
+          }
+        }
+      }
+
+      .sponsor-head-block {
+        font-family: $ffStagSans;
+        font-size: 25px;
+        margin-bottom: 5px;
+        color: $cText;
+      }
+
+      &_providers {
+        padding-top: 20px;
+      }
+    }
+
+    .providers__item-container {
+      margin-bottom: 17px;
+    }
+
+    .providers__items {
+      padding-right: 0;
+    }
+
+    .el-dialog {
+      position: relative;
+      width: auto;
+      max-width: 800px;
+      background: $cWhite;
+      border-radius: 4px;
+
+      &__headerbtn {
+        position: absolute;
+        top: -3px;
+        right: -33px;
+
+        &:before {
+          display: inline-block;
+          font-family: 'mdgx-icons';
+          font-size: 24px;
+          content: 'x';
+          speak: none;
+          font-weight: normal;
+          font-variant: normal;
+          text-transform: none;
+          line-height: 1;
+          padding: 0;
+          font-style: normal;
+          color: $cWhite;
+        }
+
+        .el-icon {
+          display: none;
+        }
+      }
+
+      &__header {
+        padding: 0;
+      }
+
+      &__body {
+        padding: 0;
+      }
+    }
+
+    .category-dialog {
+      &__title {
+        font-family: $ffStagSans;
+        text-align: center;
+        background: $cLightYellow;
+        padding: 20px;
+        font-weight: 400;
+        font-size: 30px;
+        border-radius: 4px 4px 0 0;
+        margin-bottom: 0;
+
+        span {
+          text-transform: capitalize;
+        }
+      }
+
+      &__list {
+        column-count: 3;
+        column-gap: 20;
+      }
+
+      &__list-link {
+        span {
+          color: $cText;
+          padding-left: 6px;
+          opacity: 0.8;
+          font-size: 13px;
+        }
+      }
+
+      &__filters {
+        padding: 20px;
+      }
+    }
+  }
+
+  .head-filter-mobile {
+    display: none;
+    .el-button--text {
+      color: $cText;
+    }
+  }
+
+  @media only screen and (max-width: 640px) {
+    .head-filter-desktop {
+      display: none;
+    }
+
+    #filterBar {
+      display: none;
+    }
+
+    .head-filter-mobile {
+      display: block;
+    }
+
+    .inner__sidebar {
+      display: block;
+      float: none;
+      width: 100%;
+
+      .filter-title {
+        /*padding-bottom: 8px;*/
+        margin-bottom: 10px;
+        display: block;
+      }
+    }
+  }
+}
+
+.el-select-dropdown__item.selected {
+  color: $cBlueHover;
+  font-weight: normal;
+}
+
+@media only screen and (max-width: 1200px) {
+  #courses .inner .courses__tabs .email {
+    float: none;
+    text-align: right;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  #courses .inner .courses__tabs .tab {
+    font-size: 15.69px;
+    span {
+      font-size: 13.56px;
+    }
+  }
+}

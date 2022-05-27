@@ -67,9 +67,9 @@ export default {
 
       if(!store.state.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
 
-      this.http.get("course/title?id="+ this.$router.currentRoute.params.id + "&_path=" + this.$route.path).then( r => {
-        if ( this.$error(r.data) ) {
-          this.info = r.data.data;          
+      this.$axios.$get("/rest/course/title?id="+ this.$router.currentRoute.params.id + "&_path=" + this.$route.path).then( r => {
+        if ( this.$error(r) ) {
+          this.info = r.data;          
           if(this.info.product_id == 8 && [1,3,4].indexOf(this.info.status === 0) ) {
             this.tabLeadsOnlyPlatinum = true;
           }
@@ -95,8 +95,8 @@ export default {
       let roles = [2,3];
 
       if(roles.indexOf(auth.role) >= 0 ) {
-        this.http.get("credits").then( r => {
-          store.commit('setCredits', r.data.data);
+        this.$axios.$get("/rest/credits").then( r => {
+          store.commit('setCredits', r.data);
         }).catch((e) => {
           console.log(e);
         });
@@ -111,8 +111,8 @@ export default {
         confirmButtonText: 'Yes',
         cancelButtonText: 'No'
       }).then(() => {
-        this.http.put("course/status", { id: this.info.id, value: value }).then( r => {
-          if(this.$error(r.data)) {
+        this.$axios.$put("/rest/course/status", { id: this.info.id, value: value }).then( r => {
+          if(this.$error(r)) {
             this.get();
             this.getCreditBalance();
           }
@@ -122,10 +122,10 @@ export default {
       }).catch(() => {});
     },
     doCopy() {
-      this.http.post("course/copy", { id: this.info.id }).then( r => {
-        if ( this.$error(r.data) ) {
-          if ( !r.data.id ) return this.$ntf({});
-          this.$router.push(`/courseproviders/courses/${r.data.id}/details/`);
+      this.$axios.$post("/rest/course/copy", { id: this.info.id }).then( r => {
+        if ( this.$error(r) ) {
+          if ( !r.id ) return this.$ntf({});
+          this.$router.push(`/courseproviders/courses/${r.id}/details/`);
           window.location.reload();
         }
       }).catch((e) => {
@@ -137,8 +137,8 @@ export default {
         confirmButtonText: 'Yes',
         cancelButtonText: 'No'
       }).then(() => {
-        this.http.delete("course?id="+this.info.id).then( r => {
-          if(this.$error(r.data) ) {
+        this.$axios.$delete("/rest/course?id="+this.info.id).then( r => {
+          if(this.$error(r) ) {
             setTimeout(() => {
               this.$router.push(`/courseproviders/courses/`);
             }, 2000)

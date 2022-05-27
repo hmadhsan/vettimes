@@ -16,8 +16,8 @@ export default {
       if(!auth) {
         return false;
       }
-      this.http.delete(`useralerts/all`).then( r => {
-        if( this.$error(r.data) ) {
+      this.$axios.$delete(`/rest/useralerts/all`).then( r => {
+        if( this.$error(r) ) {
           setTimeout(() => {
             this.$router.push('/');
           }, 3000)

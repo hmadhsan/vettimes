@@ -15,14 +15,14 @@ export default {
   },
   methods: {
     get() {
-      this.http.get("course/dates?id="+this.id + "&_path=/courseproviders/courses").then( r => {
-        this.$error(r.data) && (this.array = r.data.array);
+      this.$axios.$get("/rest/course/dates?id="+this.id + "&_path=/courseproviders/courses").then( r => {
+        this.$error(r) && (this.array = r.array);
       });
     },
     update() {
       this.dialog.course_id = this.id;
-      this.http.post("course/dates", this.dialog).then( r => {
-        if ( this.$error(r.data) ) {
+      this.$axios.$post("/rest/course/dates", this.dialog).then( r => {
+        if ( this.$error(r) ) {
           this.get();
           this.dialog = false;
         }
@@ -33,8 +33,8 @@ export default {
         confirmButtonText: 'Yes',
         cancelButtonText: 'No'
       }).then(() => {
-        this.http.delete("course/dates"+this.$toQuery(obj)).then( r => {
-          if ( this.$error(r.data) ) {
+        this.$axios.$delete("/rest/course/dates"+this.$toQuery(obj)).then( r => {
+          if ( this.$error(r) ) {
             this.get();
             this.dialog = false;
           }

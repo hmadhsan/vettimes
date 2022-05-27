@@ -1,6 +1,6 @@
 <template>
   <div class="course-item-container">
-    <router-link
+    <nuxt-link
        :to="`/course-details/${course.id}/${course.slug}/${generateQuery()}`"
        class="course-item"
        v-bind:class="[
@@ -65,7 +65,7 @@
                 <strong>Price</strong>{{ course.price }}
             </li>
         </ul>
-    </router-link>
+    </nuxt-link>
     <el-popover v-if="checkAuth()"
         placement="top"
         width="170"

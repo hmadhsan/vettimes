@@ -21,6 +21,7 @@ export default new Vuex.Store({
     categoriesNamesCatgroup: {},
     credits: []
   },
+
   mutations: {
     auth(state, value = false) {
       state.auth = typeof value === "object" ? value : false;

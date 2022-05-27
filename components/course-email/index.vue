@@ -15,12 +15,12 @@
                                 <label class="ce-form__label" for="yourEmailAddress">Email Address<span>
                                         *</span></label>
                                 <input type="email" id="yourEmailAddress" name="yourEmailAddress" required
-                                    autocomplete="off" v-model="form.email">
+                                    autocomplete="off" v-model="form.email" />
                             </div>
 
                             <div class="ce-form__footer">                                
                                 <div class="CPD-checkbox">
-                                    <input class="custom-checkbox" id="custom-checkbox" type="checkbox" value="value1" v-model="form.concern_box">
+                                    <input class="custom-checkbox" id="custom-checkbox" type="checkbox" value="value1" v-model="form.concern_box"/>
                                     <label for="custom-checkbox">Email me CPD courses like this one</label>
                                 </div>                                
                                 

@@ -44,8 +44,8 @@ export default {
     },
     methods: {
       userAlerts: function() {
-        this.http.post('useralerts', this.form).then( r => {
-          this.$error(r.data);
+        this.$axios.$post('/rest/useralerts', this.form).then( r => {
+          this.$error(r);
         }).catch((e) => {
           console.log(e);
         });

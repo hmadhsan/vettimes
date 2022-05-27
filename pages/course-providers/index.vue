@@ -197,8 +197,7 @@
                </div>
               </div>
               <div class="pagination">
-             <!--  <a rel="alternate" type="application/rss+xml" :href="$store.state.base+`rss/courses?keyword=${keywords.join('|')}`" class="icon-before pagination__subscriber" data-icon="☲">Subscribe</a> -->  
-              <a rel="alternate" type="application/rss+xml" :href="$store.state.base+`rss/courses?keyword=${keywords.join('|')}`" class="icon-before pagination__subscriber" data-icon="☲">Subscribe</a>
+                <a rel="alternate" type="application/rss+xml" :href="$store.state.base+`rss/courses?keyword=${keywords.join('|')}`" class="icon-before pagination__subscriber" data-icon="☲">Subscribe</a>
                 <el-pagination
                     class="pagination__items"
                     v-if="courses.total > 20"

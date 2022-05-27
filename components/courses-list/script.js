@@ -16,10 +16,10 @@ export default {
     this.findCategoriesInRoute();
   },
   methods: {
-    get: function () {
-      this.http.get(`courses/latest?provider=${this.provider_id}&page=${this.page}&course_number=${this.course_number}`).then( r => {
-        if ( r.data.total > 0 ) {
-          this.courses = r.data;
+    get: async function () {
+    await  this.$axios.$get(`/rest/courses/latest?provider=${this.provider_id}&page=${this.page}&course_number=${this.course_number}`).then( r => {
+        if ( r.total > 0 ) {
+          this.courses = r;
         }
       });
     },
@@ -35,15 +35,15 @@ export default {
 
       let pid = !this.$route.query.pid ? null : this.$route.query.pid;
 
-      this.http.post('courses/searchsimilar', {
+      this.$axios.$post('/rest/courses/searchsimilar', {
         page: this.page,
         keywords: this.founder.join('|'),
         pid: pid
       })
       .then( r => {
-        if ( r.data.total > 0 ) {
-          this.courses.total = r.data.total;
-          this.courses.array = r.data.array;
+        if ( r.total > 0 ) {
+          this.courses.total = r.total;
+          this.courses.array = r.array;
         } else {
           this.courses.total = 0;
           this.courses.array = [];

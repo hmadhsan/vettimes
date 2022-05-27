@@ -55,6 +55,7 @@ export default {
         {
           title: 'Courses',
           url: '/courses'
+          
         },
         {
           title: 'Browse courses',

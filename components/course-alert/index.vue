@@ -25,7 +25,7 @@
                             <div class="ce-form__footer">                                
                                 
                                 <p>
-                                    All emails will contain a link in the footer to enable you to ubsubscribe at any time.
+                                    All emails will contain a link in the footer to enable you to unsubscribe at any time.
                                     <br/>
                                     By registering you agree to our <a href="https://cpd.vettimes.co.uk/info/terms/"
                                         target="_blank">terms and conditions</a> and <a

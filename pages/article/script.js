@@ -14,11 +14,11 @@ export default {
   },
   methods: {
     getCategories: function() {
-      this.http.get(`course/categories?count=false&list=true`).then( r => {
-        if(r.data.status) {
-          for (let key in r.data.vars) {
+      this.$axios.$get(`/rest/course/categories?count=false&list=true`).then( r => {
+        if(r.status) {
+          for (let key in r.vars) {
             if(key === 'speciality') {
-              r.data.vars[key].forEach(item => {
+              r.vars[key].forEach(item => {
                 this.list.push({
                   'value': item.name,
                   'label': item.name
@@ -44,9 +44,9 @@ export default {
       }
     },
     get() {
-      this.http.get("article?id="+this.$route.params.id + "&_path=" + this.$route.path).then( r => {
-        if ( this.$error(r.data) ) {
-          this.page = r.data.data || false;
+      this.$axios.$get("/rest/article?id="+this.$route.params.id + "&_path=" + this.$route.path).then( r => {
+        if ( this.$error(r) ) {
+          this.page = r.data || false;
         }
       });
     },
