@@ -122,15 +122,15 @@
                   </el-popover>
                 </transition>
               </div>
-              <nuxt-link @click.native="tabListener" :to="'/courses'" class="tab" :class="[{activeTab : !$attrs.providers}]">Courses <span>({{courses.total}})</span></nuxt-link>
-              <nuxt-link @click.native="tabListener" :to="'/course-providers'" class="tab" :class="[{activeTab : $attrs.providers}]">Course Providers <span>({{ providers.total }})</span></nuxt-link>
+              <nuxt-link @click.native="tabListener" :to="'/courses'" class="tab" :class="[{activeTab : false}]">Courses <span>({{courses.total}})</span></nuxt-link>
+              <nuxt-link @click.native="tabListener" :to="'/course-providers'" class="tab" :class="[{activeTab : true}]">Course Providers <span>({{ providers.total }})</span></nuxt-link>
             </div>
             <h2 class="popover-form__title" style="padding: 0 10px 0; margin-top:20px;">Found {{ courses.total }}
             <span class="text-capitalize">{{ findCourses.concat(searchWords.speciality, searchWords.course_type).join(', ') }}</span>
              veterinary courses
             <span v-show="searchWords.location.length > 0">in <span class="text-capitalize">{{ searchWords.location.join(', ') }}</span></span></h2>
             <p style="padding: 0 10px 0; margin-top:20px;">{{ courses.seo.intro }}</p>
-            <div class="courses__inner" v-if="!$attrs.providers">
+            <div class="courses__inner" v-if="false">
               <div class="sort" v-if="courses.total > 1">
                 <span>Sort by:</span>
                 <el-select v-model="sortType" @change="sortCourses" class="courses-sort-type">
@@ -210,7 +210,7 @@
                 </el-pagination>
               </div>
             </div>
-            <div class="course__inner courses__inner_providers" v-if="$attrs.providers">
+            <div class="course__inner courses__inner_providers" v-if="true">
               <div v-if="!loader">
                 <Loader />
               </div>

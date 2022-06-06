@@ -159,11 +159,11 @@ export default {
         let categories = {};
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
-        if(r.data.status) {
-          categories = r.data.vars;
-          for (let key in r.data.vars) {
+        if(r.status) {
+          categories = r.vars;
+          for (let key in r.vars) {
             if(key !== 'cpd_hours') {
-              r.data.vars[key].forEach(item => {
+              r.vars[key].forEach(item => {
                 categoriesSlugsName[item.slug] = item.name;
                 categoriesNameSlugs[item.name] = item.slug;
                 arr.push({
@@ -178,8 +178,8 @@ export default {
           store.commit('setCategories', categories);
           store.commit('setCategoriesSlugsName', categoriesSlugsName);
           store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r.data['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r.data['categories_names']);
+          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
+          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
           store.commit('setSearchList', arr);
         }
       });
@@ -210,7 +210,7 @@ export default {
         kw: this.searchWords['keywords'].join('|'),
         sortBy: this.sortType,
         pid: this.pid,
-        isProviders: this.$attrs.providers,
+        isProviders: false,
         providersPage: this.providersPage
       })
       .then( r => {
@@ -315,12 +315,12 @@ export default {
     },
     sponsorShip: function() {
       this.resetSponsorShip();
-      this.http.post(`course/sponsorship`, {
+      this.$axios.$post(`/rest/course/sponsorship`, {
         path: this.$route.path
       }).then( r => {
-        if(r.status && r.data.data != 'noup') {
+        if(r.status && r.data != 'noup') {
           this.sponsorship = true;
-          this.sponsorshipHtml = r.data.data;
+          this.sponsorshipHtml = r.data;
         }
       });
       

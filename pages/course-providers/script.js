@@ -159,11 +159,11 @@ export default {
         let categories = {};
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
-        if(r.data.status) {
-          categories = r.data.vars;
-          for (let key in r.data.vars) {
+        if(r.status) {
+          categories = r.vars;
+          for (let key in r.vars) {
             if(key !== 'cpd_hours') {
-              r.data.vars[key].forEach(item => {
+              r.vars[key].forEach(item => {
                 categoriesSlugsName[item.slug] = item.name;
                 categoriesNameSlugs[item.name] = item.slug;
                 arr.push({
@@ -210,7 +210,7 @@ export default {
         kw: this.searchWords['keywords'].join('|'),
         sortBy: this.sortType,
         pid: this.pid,
-        isProviders: this.$attrs.providers,
+        isProviders: true,
         providersPage: this.providersPage
       })
       .then( r => {

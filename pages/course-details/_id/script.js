@@ -176,7 +176,7 @@ export default {
       })
     },    
     toRedirect: function(url, form) {      
-      this.$axios.$put("/rest/leads"+this.$toQuery(form)).then( r => {});
+      this.$axios.$put(`/rest/leads/booknow?course_id=${this.id}(form)`).then( r => {});
       let params = {
         url: this.checkUrl(url),
         title: '',

@@ -79,10 +79,10 @@ export default {
         let arr = [];
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
-        if(this.$error(r.data)) {
-          for (let key in r.data.vars) {
+        if(r) {
+          for (let key in r.vars) {
             if(key !== 'cpd_hours') {
-              r.data.vars[key].forEach(item => {
+              r.vars[key].forEach(item => {
                 categoriesSlugsName[item.slug] = item.name;
                 categoriesNameSlugs[item.name] = item.slug;
                 arr.push({
@@ -109,17 +109,17 @@ export default {
       }
       this.$axios.$get(`/rest/course?id=${this.id}${query}&_path=${this.$route.path}`).then( r => {
         console.log('rrr', r)
-        if (r.data)  {
+        if (r)  {
 
-          this.course = r.data;
+          this.course = r;
           this.form.course_id = this.course.id;
           this.web_form.course_id = this.course.id;
           this.book_form.course_id = this.course.id;
           this.view_form.course_id = this.course.id;
           this.$axios.$put("/rest/leads"+this.$toQuery(this.view_form)).then( r => {});
           this.noCourse = true;
-          if(r.data.video) {
-            this.video = r.data.video
+          if(r.video) {
+            this.video = r.video
           }
 
           if(this.course.status === 2) {
@@ -163,15 +163,15 @@ export default {
     },
     getArticle: function () {
       this.$axios.$get("/rest/articles?number=3").then( r => {
-        if(this.$error(r.data)) {
-          this.article = r.data.data.array;
+        if(r.data) {
+          this.article = r.data.array;
         }
       })
     },
     getArticleBySpeciality: function () {
       this.$axios.$get(`/rest/articles/speciality?course_id=${this.id}&number=3`).then( r => {
-        if(this.$error(r.data)) {
-          this.article = r.data.data;
+        if(r) {
+          this.article = r;
         }
       })
     },    

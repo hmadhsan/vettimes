@@ -1,0 +1,129 @@
+@import "../../style/options";
+
+#provider-single {
+  font-family: $ffTipperary;
+  margin-top: 20px;
+  .inner__sidebar {
+    .logo img {
+      border: 1px solid #eee;
+    }
+    .details {
+      margin: 18px 0 0;
+      font-size: 15.2px;
+      line-height: 20px;
+      dt {
+        font-weight: bold;
+      }
+
+      dd {
+        margin-bottom: 17px;
+        a {
+          position: relative;
+        }
+
+        .phone {
+          margin: 0 0 0 4px;
+
+          .icon-before:before {
+            z-index: 1;
+            position: relative;
+          }
+
+          .overlay {
+            position: absolute;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            text-align: center;
+            display: inline-block;
+            line-height: 1;
+            background-image: linear-gradient(270deg, rgba(255, 255, 255, 0.5), white 25%, white 35%, white 65%, white 75%, rgba(255, 255, 255, 0.5) 100%);
+            background-repeat: no-repeat;
+            background-position: center;
+            padding-top: 2px;
+          }
+        }
+      }
+    }
+    .email {
+      text-align: center;
+      background-color: #A70050;
+      color: #ffffff;
+      display: inline-block;
+      width: 100%;
+      font-size: 15.2px;
+      padding: 7px 0 8px;
+      margin: -1px 0 0;
+      border-radius: 3px;
+      transition: 0.3s background-color;
+    }
+    .email:hover {
+      background-color: $cPinkHover;
+    }
+    .email:before {
+      position: relative;
+      left: -4px;
+    }
+  }
+  .inner__content {
+    padding: 3px 9px 0 0;
+    .info {
+      margin: 24px 0 0;
+      font-size: 15.2px;
+      line-height: 21px;
+      p {
+        margin: 0 0 12px;
+      }
+    }
+    .email {
+      text-align: right;
+      margin: 52px 0 0 0;
+
+      .icon-before {
+        text-align: center;
+        background-color: #A70050;
+        color: #ffffff;
+        display: inline-block;
+        font-size: 15.2px;
+        padding: 7px 11px 8px 15px;
+        border-radius: 3px;
+        transition: 0.3s background-color;
+
+        &:hover {
+          background-color: $cPinkHover;
+          cursor: pointer;
+        }
+
+        &:before {
+          position: relative;
+          left: -4px;
+        }
+      }
+
+    }
+    .courses {
+      padding-top: 25px;
+      &_provider-name {
+        margin-bottom: 20px;
+      }
+      margin: 0 0 12px;
+      .more {
+        text-align: right;
+        a {
+          background-color: $cPink;
+          color: $cWhite;
+          border-radius: 3px;
+          padding: 7px 11px 8px;
+          display: inline-block;
+          font-size: 15.2px;
+          transition: 0.3s background-color;
+        }
+        a:hover {
+          background-color: $cPinkHover;
+        }
+      }
+    }
+  }
+}
+
