@@ -46,7 +46,6 @@ console.log('first')
   },
 
   mounted  : function () {
-    debugger
     this.$nextTick(function () {
       console.log('mounted')
       if(this.isEmptyObj(store.state.searchList) || this.isEmptyObj(store.state.categories) || this.isEmptyObj(store.state.categoriesSlugsName)) {
@@ -84,22 +83,21 @@ console.log('first')
   },
   methods: {
     getContentPosition: function() {
-      this.http.get(`pages/block?slug=courses`).then( r => {
+      this.$axios.$get(`/rest/pages/block?slug=courses`).then( r => {
         // console.log(r.data);
       });
     },
     get: async function() {
       console.log('mounted')
-     await this.$http.$get(`course/categories?count=true&list=true&courses=count&_path=${this.$route.path}`).then( r => {
-       console.log(r.data);
+     await this.$axios.$get(`/rest/course/categories?count=true&list=true&courses=count&_path=${this.$route.path}`).then( r => {     
         let arr = [];
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
-        if(r.data.status) {
-          this.categoriesNumbers = r.data.count;
-          for (let key in r.data.vars) {
+        if(r.status) {
+          this.categoriesNumbers = r.count;
+          for (let key in r.vars) {
             if(key !== 'cpd_hours') {
-              r.data.vars[key].forEach(item => {
+              r.vars[key].forEach(item => {
                 categoriesSlugsName[item.slug] = item.name;
                 categoriesNameSlugs[item.name] = item.slug;
                 arr.push({
@@ -110,29 +108,29 @@ console.log('first')
             }
           }
           this.listLoad = true;
-          this.coursesTotal = r.data['courses_total'];
-          store.commit('setCategories', r.data.vars);
+          this.coursesTotal = r['courses_total'];
+          store.commit('setCategories', r.vars);
           store.commit('setCategoriesSlugsName', categoriesSlugsName);
           store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r.data['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r.data['categories_names']);
+          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
+          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
           store.commit('setSearchList', arr);
         }
       });
     },
     getArticles: function() {
       console.log('mounted')
-      this.http.get("articles?homePage=true&_path=articles").then( r => {
-        if(this.$error(r.data)) {
-          this.articles = r.data.data.array;          
+      this.$axios.$get("/rest/articles?homePage=true&_path=articles").then( r => {
+        if(r) {
+          this.articles = r.array;          
         }      
       });
     },
     getCategoriesNumber: function() {
-      this.http.get(`course/categories?count=true&list=false&courses=count&_path=${this.$route.path}`).then( r => {
-        if(r.data.status) {
-          this.categoriesNumbers = r.data.count;
-          this.coursesTotal = r.data['courses_total'];
+      this.$axios.$get(`/rest/course/categories?count=true&list=false&courses=count&_path=${this.$route.path}`).then( r => {
+        if(r.status) {
+          this.categoriesNumbers = r.count;
+          this.coursesTotal = r['courses_total'];
         }
       });
     },
@@ -144,24 +142,24 @@ console.log('first')
       })
     },
     getCoursesHomeContent: function() {
-      this.http.get(`pages?slug=courses`).then( r => {
-        if(r.data.status) {
-          this.page = r.data.block || [];          
+      this.$axios.$get(`/rest/pages?slug=courses`).then( r => {
+        if(r.status) {
+          this.page = r.block || [];          
         }
       });
     },
     getRss: function() { debugger
-      this.http.get(`pages/rss`).then( r => {
-        if(r.data.status) {
-          this.rssLinks = r.data.links.item.slice(0, 6);
+      this.$axios.$get(`pages/rss`).then( r => {
+        if(r.status) {
+          this.rssLinks = r.links.item.slice(0, 6);
         }
       }).catch(e => {
         console.log(e);
       });
     },
     getCpdHubs: function() {
-      this.http.get(`cpd/hubs`).then( r => {
-      this.cpdPlusHubs = r.data.hubs;
+      this.$axios.$get(`/rest/cpd/hubs`).then( r => {
+      this.cpdPlusHubs = r.hubs;
       //console.log(this.cpdPlusHubs);
       }).catch(e => {
         console.log(e);
@@ -174,10 +172,10 @@ console.log('first')
           action = 'deleteCourse';
         }
 
-        this.http.post(`usercourses?_path=${this.$route.path}`, {  action: action ,course_id: course_id }).then( r => {
+        this.$axios.$post(`/rest/usercourses?_path=${this.$route.path}`, {  action: action ,course_id: course_id }).then( r => {
           store.commit({
             type: 'changeStars',
-            stars: r.data.data
+            stars: r.data
           });
           this.$error(r.data);
         }).catch((e) => {

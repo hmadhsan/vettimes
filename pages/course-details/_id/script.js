@@ -80,7 +80,7 @@ export default {
         let arr = [];
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
-        if(this.$error(r)) {
+        if(r) {
           for (let key in r.vars) {
             if(key !== 'cpd_hours') {
               r.vars[key].forEach(item => {
@@ -109,7 +109,7 @@ export default {
         query = `&preview=${this.$route.query.preview}`
       }
       this.$axios.$get(`/rest/course?id=${this.id}${query}&_path=${this.$route.path}`).then( r => {
-        if (r.data) {
+        if (r) {
           this.course = r.data;
           this.form.course_id = this.course.id;
           this.web_form.course_id = this.course.id;
@@ -139,8 +139,8 @@ export default {
     },
     getEmbed: function () {
       this.$axios.$get(`/rest/course/embed?url=${this.video}`).then( r => {
-        if(r.data.url) {
-          this.videoUrl = r.data.url;
+        if(r.url) {
+          this.videoUrl = r.url;
         }
       });
     },
@@ -163,15 +163,15 @@ export default {
     },
     getArticle: function () {
       this.$axios.$get("/rest/articles?number=3").then( r => {
-        if(r.data) {
-          this.article = r.data.array;
+        if(r) {
+          this.article = r.array;
         }
       })
     },
     getArticleBySpeciality: function () {
       this.$axios.$get(`/rest/articles/speciality?course_id=${this.id}&number=3`).then( r => {
-        if(r.data) {
-          this.article = r.data;
+        if(r) {
+          this.article = r;
         }
       })
     },    

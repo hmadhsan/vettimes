@@ -140,8 +140,8 @@ export default {
     },
     getEmbed: function () {
       this.$axios.$get(`/rest/course/embed?url=${this.video}`).then( r => {
-        if(r.data.url) {
-          this.videoUrl = r.data.url;
+        if(r.url) {
+          this.videoUrl = r.url;
         }
       });
     },
@@ -163,8 +163,8 @@ export default {
     },
     getArticle: function () {
       this.$axios.$get("/rest/articles?number=3").then( r => {
-        if(r.data) {
-          this.article = r.data.array;
+        if(r) {
+          this.article = r.array;
         }
       })
     },
@@ -176,7 +176,7 @@ export default {
       })
     },    
     toRedirect: function(url, form) {      
-      this.$axios.$put("/rest/leads"+this.$toQuery(form)).then( r => {});
+      this.$axios.$put(`/rest/leads/booknow?course_id=${this.id}(form)`).then( r => {});
       let params = {
         url: this.checkUrl(url),
         title: '',

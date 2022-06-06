@@ -85,11 +85,7 @@ export default {
     },
     get: async function () {
       this.coursesTotal = 32;
-       await this.$axios.$get(`/rest/course/categories?count=true&list=true&courses=count&_path=/`).then((r) => {
-         console.log(r);
-     
-
-        console.log('r0', r['courses_total'])
+       await this.$axios.$get(`/rest/course/categories?count=true&list=true&courses=count&_path=/`).then((r) => {   
         
         let arr = [];
         let categoriesSlugsName = {};
@@ -123,8 +119,8 @@ export default {
     },
     getArticles: async function () {
       await this.$axios.$get("/rest/articles?homePage=true&_path=articles").then(r => {
-        console.log(r.data)
-        if (this.$error(r)) {
+        console.log(r)
+        if (r) {
           this.articles = r.array;
         }
       });
@@ -162,7 +158,7 @@ export default {
     },
     getCpdHubs: async function () {
     await this.$axios.$get(`/rest/cpd/hubs`).then(r => {
-      console.log("line 161",r.hubs);
+
         this.cpdPlusHubs = r.hubs;
     
       }).catch(e => {
