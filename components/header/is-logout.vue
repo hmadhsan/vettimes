@@ -21,5 +21,5 @@
         // redirectTo: window.location.href
       }
     },
-  
+  }
 </script>
