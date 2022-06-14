@@ -1,7 +1,30 @@
+export default {
+  // localRuntimeConfig: {
+  //   myLocalHost: process.env.LOCAL_HOST,
+  // },
+  // serverRuntimeConfig: {
+  //   serverRuntimeConfig: process.env.BASE_URL
+  // },
+
+  
+  head: {
+    title: 'Vet Times | The website for the veterinary profession',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hider: 'description', name: 'description', content: 'Vet Times is the website for the veterinary profession' },
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
+}
+
+
+
 let webpack = require("webpack"),
   path = require("path"),
   TerserPlugin = require("terser-webpack-plugin"),
   credential = require("fs").readFileSync("./.credential", "utf8");
+
 let app = {
   publicPath: "/",
   outputDir: "../public/",
@@ -71,19 +94,12 @@ if (process.env.NODE_ENV === "production") {
       new webpack.BannerPlugin(credential)
     ]
   };
-  app.css = {
-    extract: { filename: "app.css" }
-  };
+  // app.css = {
+  //   extract: { filename: "app.css" }
+  // };
   app.indexPath = path.resolve(__dirname, "../resources/views/app.blade.php");
 }
-export default {
-  localRuntimeConfig: {
-    myLocalHost: process.env.LOCAL_HOST,
-  },
-  serverRuntimeConfig: {
-    serverRuntimeConfig: process.env.BASE_URL
-  }
-}
+
 
 
 module.exports = app;

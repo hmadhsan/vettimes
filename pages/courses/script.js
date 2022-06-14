@@ -8,6 +8,15 @@ import store from "../../config/store";
 import EmailMeCourses from "../../components/email-me-courses";
 
 export default {
+  head: {
+    title: 'Vet Times | The website for the veterinary profession',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hider: 'description', name: 'description', content: 'Vet Times is the website for the veterinary profession' },
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
   store,
   mixins: [ mixins.helpers ],
   components: {
@@ -97,7 +106,7 @@ export default {
     addNewKeyword: function(value) {
       this.keywords.push(value);
       let block = document.getElementById('filterBar');
-      block.style.display = '';
+     // block.style.display = '';
     },
     onResize() {
       if(document.getElementById('filterBar')) {
@@ -184,7 +193,7 @@ export default {
         }
       });
     },
-    searchCourses: async function () {
+    searchCourses : async function () {
       
       this.loader = false;
       this.clickToCourse = false;
@@ -253,7 +262,7 @@ export default {
         })
       }
       let block = document.getElementById('filterBar');
-      block.style.display = '';
+    //  block.style.display = '';
     },
     handleNewSearchItem: function (e) { //add new cat to search
       e.preventDefault();
@@ -311,7 +320,7 @@ export default {
     tabListener: function() {
       this.page = 1;
       this.providersPage = 1;
-      this.searchCourses();
+     this.searchCourses();
     },
     sponsorShip: function() {
       this.resetSponsorShip();

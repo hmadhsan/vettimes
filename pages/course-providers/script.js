@@ -8,6 +8,16 @@ import store from "../../config/store";
 import EmailMeCourses from "../../components/email-me-courses";
 
 export default {
+    
+  head: {
+    title: 'Vet Times | The website for the veterinary profession',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hider: 'description', name: 'description', content: 'Vet Times is the website for the veterinary profession' },
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
   store,
   mixins: [ mixins.helpers ],
   components: {
@@ -97,7 +107,7 @@ export default {
     addNewKeyword: function(value) {
       this.keywords.push(value);
       let block = document.getElementById('filterBar');
-      block.style.display = '';
+     // block.style.display = '';
     },
     onResize() {
       if(document.getElementById('filterBar')) {
@@ -178,8 +188,8 @@ export default {
           store.commit('setCategories', categories);
           store.commit('setCategoriesSlugsName', categoriesSlugsName);
           store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r.data['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r.data['categories_names']);
+          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
+          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
           store.commit('setSearchList', arr);
         }
       });
@@ -253,7 +263,7 @@ export default {
         })
       }
       let block = document.getElementById('filterBar');
-      block.style.display = '';
+      //block.style.display = '';
     },
     handleNewSearchItem: function (e) { //add new cat to search
       e.preventDefault();
@@ -309,6 +319,8 @@ export default {
       return this.sortType === type;
     },
     tabListener: function() {
+      
+      console.log('ppppppppppppppppppppp')
       this.page = 1;
       this.providersPage = 1;
       this.searchCourses();
