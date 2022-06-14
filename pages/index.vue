@@ -110,7 +110,7 @@
                             trigger="click">
 
                   <div class="popover-content">
-                    <p>You need to <a :href="'https://my.vettimes.co.uk/login?redirectTo='+location">sign in as user</a> to save a course.</p>
+                    <p>You need to <a :href="'https://my.vettimes.co.uk/login?redirectTo=http://cpdlocal.vettimes.co.uk:3000'">sign in as user</a> to save a course.</p>
                   </div>
                   
                   <span aria-describedby="el-popover-1051" tabindex="0" slot="reference" class="star-icon">

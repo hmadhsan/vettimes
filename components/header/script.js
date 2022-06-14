@@ -125,27 +125,27 @@ export default {
           url: 'https://www.vettimes.co.uk/'
         }
       ],
-      // providerMenuItems: [
-      //   {
-      //     title: 'Upload course',
-      //     // url: this.$auth() ? '/courseproviders/courses/new' : contactUs,
-      //     url: 
-      //       ( this.$auth() && this.$auth().role === 2 )
-      //       ? '/courseproviders/courses/new'
-      //       : ( this.$auth() ) ? '/courseproviders/company-management' 
-      //       : 'https://my.vettimes.co.uk/register?redirectTo=' + window.location.href + '&fromCPD=true',
-      //     role: 'provider',
-      //     auth: [-1,1,2,3,4]
-      //   }
-      // ],
+      providerMenuItems: [
+        {
+          title: 'Upload course',
+          // url: this.$auth() ? '/courseproviders/courses/new' : contactUs,
+          url: 
+            ( store.state.auth && store.state.auth.role === 2 )
+            ? '/courseproviders/courses/new'
+            : ( store.state.auth ) ? '/courseproviders/company-management' 
+            : 'https://my.vettimes.co.uk/register?redirectTo=http://cpdlocal.vettimes.co.uk:3000'+'&fromCPD=true',
+          role: 'provider',
+          auth: [-1,1,2,3,4]
+        }
+      ],
     }
   },
-  // created: function () {
-  //   window.addEventListener('click', this.closeActiveMenu);
-  //   this.getCourses();
-  //   this.getProviderName();
-  //   this.getCreditBalance();
-  // },
+  created: function () {
+   // window.addEventListener('click', this.closeActiveMenu);
+    this.getCourses();
+    this.getProviderName();
+    this.getCreditBalance();
+  },
   methods: {
     getProviderName: function() {
       let auth = store.state.auth;
@@ -193,8 +193,8 @@ export default {
       let roles = [2,3];
 
       if(roles.indexOf(auth.role) >= 0 ) {
-        this.http.get("credits").then( r => {
-          store.commit('setCredits', r.data.data);
+        this.$axios.$get("/rest/credits").then( r => {
+          store.commit('setCredits', r.data);
         }).catch((e) => {
           console.log(e);
         });

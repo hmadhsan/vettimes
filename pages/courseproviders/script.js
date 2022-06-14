@@ -2,18 +2,18 @@ import store from "../../config/store"
 export default {
   store,
   data() {
-    return {   
+    return {
       loginTo: 'https://my.vettimes.co.uk/login',
       registerTo: 'https://my.vettimes.co.uk/register',
      // redirectTo: window.location.href,
       registerHere:
-        ( store.auth ) 
+        ( store.state.auth ) 
         ? '/courseproviders/company-management'
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       buyTo: 
-        (store.auth && store.auth === 2 )
+        (store.state.auth && store.state.auth === 2 )
         ? '/courseproviders/courses/new'
-        : ( store.auth ) ? '/courseproviders/company-management' 
+        : ( store.state.auth ) ? '/courseproviders/company-management' 
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       dialogFormVisible: false,
       page: [],
@@ -66,7 +66,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$axios.$post(`email`, this.ruleForm).then( r => {
+          this.$axios.$post(`/rest/email`, this.ruleForm).then( r => {
             this.$error(r);
           });
           this.dialogFormVisible = false;

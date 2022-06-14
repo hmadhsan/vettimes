@@ -84,7 +84,7 @@ export default {
       });
     },
     get: async function () {
-      this.coursesTotal = 32;
+    //  this.coursesTotal = 32;
        await this.$axios.$get(`/rest/course/categories?count=true&list=true&courses=count&_path=/`).then((r) => {   
         
         let arr = [];
