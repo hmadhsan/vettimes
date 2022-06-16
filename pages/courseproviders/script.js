@@ -4,9 +4,10 @@ export default {
   store,
   data() {
     return {
+      cpdBaseUrl,
       loginTo: 'https://my.vettimes.co.uk/login',
       registerTo: 'https://my.vettimes.co.uk/register',
-     // redirectTo: window.location.href,
+     redirectTo: window.location.href,
       registerHere:
         ( store.state.auth ) 
         ? '/courseproviders/company-management'
