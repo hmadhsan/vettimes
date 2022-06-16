@@ -1,0 +1,1 @@
+export const cpdBaseUrl = `http://cpdlocal.vettimes.co.uk:3000`

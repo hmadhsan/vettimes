@@ -1,4 +1,5 @@
 import store from "../../config/store"
+import { cpdBaseUrl } from "~/config/constants";
 export default {
   store,
   data() {

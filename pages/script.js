@@ -5,7 +5,7 @@ import store from "../config/store"
 import TopHeading from "./top-heading"
 import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
-
+import { cpdBaseUrl } from "~/config/constants";
 export default {
   store,
   mixins: [mixins.helpers],
@@ -32,9 +32,9 @@ export default {
       uploadCourseUrl: (store.auth) ?
         '/courseproviders/courses/new' :
         (store.auth) ? '/courseproviders/company-management' :
-        'https://my.vettimes.co.uk/register?redirectTo=' + "localhost:3000" + '&fromCPD=true',
-      registerHere: 'https://my.vettimes.co.uk/register?redirectTo=' + "localhost:3000",
-      location: "localhost:3000",
+        'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}` + '&fromCPD=true',
+      registerHere: 'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}`,
+      location: `${cpdBaseUrl}`,
       cpdPlusUrl: 'https://cpd.vettimes.co.uk/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch'
     }
   },

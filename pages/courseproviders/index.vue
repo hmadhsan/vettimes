@@ -12,8 +12,8 @@
           v-if="store && [2,3].indexOf(store.auth.role) > -1">Upload a Course Now</nuxt-link>
 
           <div class="btn-group" >
-            <!-- <a :href="loginTo+`?redirectTo=http://cpdlocal.vettimes.co.uk:3000`" class="banner-btn">Sign in</a>
-            <a :href="registerTo+`?redirectTo=${redirectTo}`" class="banner-btn">Register</a> -->
+            <a :href="loginTo+`?redirectTo=${cpdBaseUrl}`" class="banner-btn">Sign in</a>
+            <a :href="registerTo+`?redirectTo=${redirectTo}`" class="banner-btn">Register</a>
             <a href="javascript:void(0);" v-scroll-to="'#why-choose-us'" class="banner-btn">Find out
               more</a>
           </div>

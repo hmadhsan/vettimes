@@ -4,7 +4,8 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
+  state:()=>(
+    {
     auth: null,
     stars: [],
     base: process.env.BASE_URL,
@@ -20,7 +21,7 @@ export default new Vuex.Store({
     categoriesSlugsCatgroup: {},
     categoriesNamesCatgroup: {},
     credits: []
-  },
+  }),
   mutations: {
     auth(state, value = false) {
       state.auth = typeof value === "object" ? value : false;

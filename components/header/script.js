@@ -2,6 +2,7 @@ import store from "../../config/store"
 import IsLogout from "./is-logout"
 import IsLogin from "./is-login"
 import ProviderLogin from "./provider-login"
+import { cpdBaseUrl } from "~/config/constants"
 export default {
   store,
   components: {
@@ -133,7 +134,7 @@ export default {
             ( store.state.auth && store.state.auth.role === 2 )
             ? '/courseproviders/courses/new'
             : ( store.state.auth ) ? '/courseproviders/company-management' 
-            : 'https://my.vettimes.co.uk/register?redirectTo=http://cpdlocal.vettimes.co.uk:3000'+'&fromCPD=true',
+            : `https://my.vettimes.co.uk/register?redirectTo=${cpdBaseUrl}`+'&fromCPD=true',
           role: 'provider',
           auth: [-1,1,2,3,4]
         }
