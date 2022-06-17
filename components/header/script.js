@@ -135,7 +135,7 @@ export default {
           //  ? 
             '/courseproviders/courses/new'
           //  : ( store.state.auth ) ? '/courseproviders/company-management' 
-           // : 'https://my.vettimes.co.uk/register?redirectTo=http://cpdlocal.vettimes.co.uk:3000'+'&fromCPD=true',
+          //  : `https://my.vettimes.co.uk/register?redirectTo=${cpdBaseUrl}`+'&fromCPD=true',
           //role: 'provider',
           //auth: [-1,1,2,3,4]
         }
