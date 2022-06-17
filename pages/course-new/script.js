@@ -18,9 +18,9 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.http.post("course", { title: this.form.title }).then( r => {
-            if ( this.$error(r.data) ) {
-              this.$router.push(`/courseproviders/courses/${r.data.id}/details/`);
+          this.$axios.$post("/rest/course", { title: this.form.title }).then( r => {
+            if (r) {
+              this.$router.push(`/courseproviders/courses/${r.id}/details/`);
             }
           })
         } else {
