@@ -130,12 +130,13 @@ export default {
           title: 'Upload course',
           // url: this.$auth() ? '/courseproviders/courses/new' : contactUs,
           url: 
-            ( store.state.auth && store.state.auth.role === 2 )
-            ? '/courseproviders/courses/new'
-            : ( store.state.auth ) ? '/courseproviders/company-management' 
-            : 'https://my.vettimes.co.uk/register?redirectTo=http://cpdlocal.vettimes.co.uk:3000'+'&fromCPD=true',
-          role: 'provider',
-          auth: [-1,1,2,3,4]
+           // ( store.state.auth && store.state.auth.role === 2 )
+          //  ? 
+            '/courseproviders/courses/new'
+          //  : ( store.state.auth ) ? '/courseproviders/company-management' 
+           // : 'https://my.vettimes.co.uk/register?redirectTo=http://cpdlocal.vettimes.co.uk:3000'+'&fromCPD=true',
+          //role: 'provider',
+          //auth: [-1,1,2,3,4]
         }
       ],
     }
