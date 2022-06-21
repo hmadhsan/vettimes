@@ -39,7 +39,7 @@ let app = {
   
   },
   proxy: [
-    ['/rest', { target: 'https://cpd.vettimes.co.uk' }]
+    ['/rest', { target: 'http://cpdlocal.vettimes.co.uk' }]
 ],
   auth:{
     

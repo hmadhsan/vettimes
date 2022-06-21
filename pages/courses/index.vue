@@ -12,7 +12,6 @@
           :categoriesObj="$store.state.categories"
           :catsSlugsName="$store.state.categoriesSlugsName"
         ></RemoteSearch>
-       {{$store.state.searchList}}
 
         <!-- add ons -->
         <div v-if="this.sponsorship" v-html="this.sponsorshipHtml"></div>
