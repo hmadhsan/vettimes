@@ -5,7 +5,8 @@ import store from "../config/store"
 import TopHeading from "./top-heading"
 import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
-import Axios from "axios";
+// import Axios from "axios";
+import { cpdBaseUrl } from "~/config/constants";
 // import router from "~/config/routes";
 
 export default {
