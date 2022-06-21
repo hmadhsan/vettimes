@@ -255,7 +255,8 @@ let helpers = {
     },
     isStar: function(id) {
       if(store.state.auth) {
-        return store.state.stars.indexOf(id) >= 0;
+        console.log("STAR=======>",store.state.stars)
+        return store.state.stars?.data?.indexOf(id) >= 0;
       } else {
         return false;
       }
