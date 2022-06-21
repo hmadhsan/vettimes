@@ -12,7 +12,6 @@
           :catsSlugsName="$store.state.categoriesSlugsName"
         ></RemoteSearch>
 
-
         <!-- add ons -->
         <div v-if="this.sponsorship" v-html="this.sponsorshipHtml"></div>
         <h1 v-if="courses.seo.h1_title" class="site-title">{{ courses.seo.h1_title }}</h1>

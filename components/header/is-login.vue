@@ -63,5 +63,10 @@
 
       }
     },
+    methods:{
+    truncate(text, max) {
+        return (typeof text === 'string' && text.length > max ? text.substring(0,max)+'...' : text);
+    }
+    }
   }
 </script>

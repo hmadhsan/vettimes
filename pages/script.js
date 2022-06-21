@@ -5,7 +5,9 @@ import store from "../config/store"
 import TopHeading from "./top-heading"
 import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
-import { cpdBaseUrl } from "~/config/constants";
+import Axios from "axios";
+// import router from "~/config/routes";
+
 export default {
   store,
   mixins: [mixins.helpers],
@@ -37,6 +39,15 @@ export default {
       location: `${cpdBaseUrl}`,
       cpdPlusUrl: 'https://cpd.vettimes.co.uk/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch'
     }
+  },
+  mounted(){
+    this.$axios.get("/rest/auth").then(res => {
+      store.commit( "auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
+      this.access(this.$route);
+    }).catch( () => {
+      store.commit("auth");
+      this.access(this.$route);
+    });
   },
   created() {
     this.$nextTick(function () {
@@ -78,6 +89,19 @@ export default {
   },
 
   methods: {
+    access(to) {
+      let auth = store.state.auth;
+      if (auth === null) return false;
+    
+      const names = ['Your Courses', 'Edit Alert', 'Privacy Dashboard'];
+      if(!!to.meta.auth) {
+        if(to.meta.auth.indexOf(auth.role) === -1 && names.indexOf(to.name) >= 0) {
+          return location.href = 'https://my.vettimes.co.uk/login?redirectTo='+window.location.href;
+        }
+      }
+      document.title = to.name;
+      return true;
+    },
     getContentPosition: async function () {
     await this.$axios.$get(`/rest/pages/block?slug=courses`).then(r => {
         // console.log(r);

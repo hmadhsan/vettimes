@@ -19,7 +19,6 @@
       return {
         loginTo: 'https://my.vettimes.co.uk/login',
         registerTo: 'https://my.vettimes.co.uk/register',
-        cpdBaseUrl,
         redirectTo: process.browser ? window.location.href : ''
       }
     },
