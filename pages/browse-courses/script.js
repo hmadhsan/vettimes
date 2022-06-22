@@ -1,7 +1,7 @@
 import RemoteSearch from "../../components/remoteSearch";
 import Loader from "../../components/loader";
 import mixins from "../../config/mixins"
-import store from "../../config/store"
+import store from "../../store"
 
 export default {
   store,
@@ -28,7 +28,7 @@ export default {
   },
   mounted: function () {
     this.$nextTick(function () {
-      if (store.state.searchList || store.state.categories || store.state.categoriesSlugsName) {
+      if (this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
         this.get();
       } else {
         this.getCategoriesNumber();

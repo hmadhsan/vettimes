@@ -4,7 +4,7 @@ import Rolling from "../../components/rolling";
 import mixins from "../../config/mixins";
 import CoursePreview from "../../components/course-preview";
 import Provider from "../../components/provider-preview";
-import store from "../../config/store";
+import store from "../../store";
 import EmailMeCourses from "../../components/email-me-courses";
 
 export default {
@@ -91,7 +91,7 @@ export default {
   },
   created() {
     this.$nextTick(function () {
-      if(store.state.searchList || store.state.categories || store.state.categoriesSlugsName) {
+      if(this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
         this.get();
         this.searchCourses()
       } else {

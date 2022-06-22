@@ -1,6 +1,6 @@
 import CourseEmail from "./index";
 import mixins from "../../config/mixins";
-import store from "../../config/store";
+import store from "../../store";
 
 export default {
   store,

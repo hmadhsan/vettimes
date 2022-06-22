@@ -1,4 +1,4 @@
-import store from "../../config/store"
+import store from "../../store"
 import mixins from "../../config/mixins";
 
 export default {
@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     courseProcess: function (course_id, type) {
-      if(store.state.auth && [1,4].indexOf(store.state.auth.role) >= 0) {
+      if(this.$store.state.auth && [1,4].indexOf(this.$store.state.auth.role) >= 0) {
         let action = 'addCourse';
         if(!type) {
           action = 'deleteCourse';
@@ -54,7 +54,7 @@ export default {
       }
     },
     checkAuth: function () {
-      let auth = store.state.auth;
+      let auth = this.$store.state.auth;
       if(auth) {
         return !!auth.role && [1, 4].indexOf(auth.role) === -1;
       } else {

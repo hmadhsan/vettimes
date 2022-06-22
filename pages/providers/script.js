@@ -1,6 +1,6 @@
 import Loader from "../../components/loader";
 import Provider from "../../components/provider-preview";
-import store from "../../config/store";
+import store from "../../store";
 
 export default {
   store,

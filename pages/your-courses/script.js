@@ -1,4 +1,4 @@
-import store from "../../config/store";
+import store from "../../store";
 import Popup from "./popup";
 
 export default {
@@ -47,10 +47,10 @@ export default {
     }
   },
   created: function () {
-    if(store.state.searchList || store.state.categories || store.state.categoriesSlugsName) {
+    if(this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
       this.getCategories();
     } else {
-      this.list = store.state.searchList;
+      this.list = this.$store.state.searchList;
     }
     this.getUserCourses();
     this.getUserAlerts();
@@ -203,7 +203,7 @@ export default {
       });
     },
     getStars: function () {
-      let stars = store.state.stars.length;
+      let stars = this.$store.state.stars.length;
       if (stars > 0) {
         return stars;
       } else {
@@ -211,7 +211,7 @@ export default {
       }
     },
     deleteCourse: function(course_id) {
-      if(store.state.auth) {
+      if(this.$store.state.auth) {
         this.$axios.$post('/rest/usercourses', {  action: 'deleteCourse' ,course_id: course_id }).then( r => {
           store.commit({
             type: 'changeStars',

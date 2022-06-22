@@ -1,0 +1,33 @@
+@import "../../../style/options";
+
+#company-management {
+  font-family: $ffTipperary;
+
+  .site-title-wrapper {
+    margin-bottom: 20px;
+    padding: 20px 10px 23px;
+    background: $cHighLight;
+  }
+
+  .site-title {
+    text-align: center;
+  }
+
+  p {
+    line-height: 1.4;
+
+    a {
+      color: $cBlue;
+      transition: .12s all linear;
+      white-space: nowrap;
+
+      &:hover {
+        color: $cBlueHover;
+      }
+    }
+  }
+}
+
+.el-form-item__content img {
+  width: 100%;
+}

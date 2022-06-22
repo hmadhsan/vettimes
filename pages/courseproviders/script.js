@@ -1,21 +1,22 @@
-import store from "../../config/store"
+import store from "../../store"
 import { cpdBaseUrl } from "~/config/constants";
 export default {
-  store,
+  
   data() {
     return {
+      store,
       cpdBaseUrl,
       loginTo: 'https://my.vettimes.co.uk/login',
       registerTo: 'https://my.vettimes.co.uk/register',
-     redirectTo: window.location.href,
+      redirectTo: process.browser ? window.location.href : '',
       registerHere:
-        ( store.state.auth ) 
+        ( this.$store.state.auth ) 
         ? '/courseproviders/company-management'
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       buyTo: 
-        (store.state.auth && store.state.auth === 2 )
+        (this.$store.state.auth && this.$store.state.auth === 2 )
         ? '/courseproviders/courses/new'
-        : ( store.state.auth ) ? '/courseproviders/company-management' 
+        : ( this.$store.state.auth ) ? '/courseproviders/company-management' 
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       dialogFormVisible: false,
       page: [],
@@ -45,6 +46,9 @@ export default {
     }
   },
   mounted: function () {
+
+    
+
     this.$nextTick(function () {
       this.getCoursesHomeContent();      
     });
@@ -54,7 +58,7 @@ export default {
   },
   methods: {
     goto() {
-      const element = document.getElementById('why-choose-us')
+      const element = process.browser ? document.getElementById('why-choose-us') : ''
       console.log(element);
       element.scrollTop = element.offsetHeight + element.scrollHeight
     },

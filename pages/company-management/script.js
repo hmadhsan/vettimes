@@ -1,6 +1,6 @@
 // import CKEditor from '@ckeditor/ckeditor5-vue';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import store from "../../config/store"
+import store from "../../store"
 import mixins from "../../config/mixins";
 import ProvidersOnly from "../../components/providers-only"
 import UserManagement from "../user-management"

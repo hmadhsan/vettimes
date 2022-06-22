@@ -1,7 +1,7 @@
 import RemoteSearch from "../components/remoteSearch";
 import Loader from "../components/loader";
 import mixins from "../config/mixins"
-import store from "../config/store"
+import store from "../store"
 import TopHeading from "./top-heading"
 import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
@@ -21,6 +21,7 @@ export default {
   },
   data() {
     return {
+      cpdBaseUrl,
       listLoad: false,
       keywords: [],
       categoriesNumbers: [], // numbers of categories in database
@@ -32,9 +33,9 @@ export default {
       category: '',
       coursesTotal: 0,
       articles: [],
-      uploadCourseUrl: (store.auth) ?
+      uploadCourseUrl: (this.$store.auth) ?
         '/courseproviders/courses/new' :
-        (store.auth) ? '/courseproviders/company-management' :
+        (this.$store.auth) ? '/courseproviders/company-management' :
         'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}` + '&fromCPD=true',
       registerHere: 'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}`,
       location: `${cpdBaseUrl}`,
@@ -43,21 +44,21 @@ export default {
   },
   mounted(){
     this.$axios.get("/rest/auth").then(res => {
-      store.commit( "auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
+      console.log("RRRRRRRRRR==========>",res)
+      this.$store.commit( "auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
       this.access(this.$route);
     }).catch( () => {
-      store.commit("auth");
+      this.$store.commit("auth");
       this.access(this.$route);
     });
   },
   created() {
     this.$nextTick(function () {
-      if (store.state.searchList || store.state.categories || store.state.categoriesSlugsName) {
+      if (this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
         this.get();
       } else {
         this.getCategoriesNumber();
-        this.listLoad = true;
-     
+        this.listLoad = true; 
       }
       this.getCoursesHomeContent();
       this.getRss();
@@ -79,9 +80,9 @@ export default {
         'location': 'location'
       };
    
-      for (let key in store.state.categories) {
+      for (let key in this.$store.state.categories) {
         if (key !== 'audience' && key !== 'skill_level') {
-          result[keys[key]] = store.state.categories[key];
+          result[keys[key]] = this.$store.state.categories[key];
         }
       }
       return result;
@@ -91,7 +92,7 @@ export default {
 
   methods: {
     access(to) {
-      let auth = store.state.auth;
+      let auth = this.$store.state.auth;
       if (auth === null) return false;
     
       const names = ['Your Courses', 'Edit Alert', 'Privacy Dashboard'];
@@ -131,12 +132,12 @@ export default {
           }
           this.listLoad = true;
           this.coursesTotal = r.courses_total;
-          store.commit('setCategories', r.vars);
-          store.commit('setCategoriesSlugsName', categoriesSlugsName);
-          store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
-          store.commit('setSearchList', arr);
+          this.$store.commit('setCategories', r.vars);
+          this.$store.commit('setCategoriesSlugsName', categoriesSlugsName);
+          this.$store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
+          this.$store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
+          this.$store.commit('setCategoriesNamesCatgroup', r['categories_names']);
+          this.$store.commit('setSearchList', arr);
         }
       })
 
@@ -191,7 +192,7 @@ export default {
       });
     },
     courseProcess:  function (course_id, type) {
-      if (store.state.auth && [1, 4].indexOf(store.state.auth.role) >= 0) {
+      if (this.$store.state.auth && [1, 4].indexOf(this.$store.state.auth.role) >= 0) {
         let action = 'addCourse';
         if (!type) {
           action = 'deleteCourse';
@@ -201,7 +202,7 @@ export default {
           action: action,
           course_id: course_id
         }).then(r => {
-          store.commit({
+          this.$store.commit({
             type: 'changeStars',
             stars: r
           });
@@ -213,7 +214,7 @@ export default {
       return false;
     },
     checkAuth: function () {
-      let auth = store.state.auth;
+      let auth = this.$store.state.auth;
       if (auth) {
         return !!auth.role && [1, 4].indexOf(auth.role) === -1;
       } else {

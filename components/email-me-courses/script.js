@@ -1,4 +1,4 @@
-import store from '../../config/store';
+import store from '../../store';
 
 export default {
     store,
@@ -38,8 +38,8 @@ export default {
       }
     },
     created: function() {
-      if(store.state.auth) {
-        this.form.email = store.state.auth.email
+      if(this.$store.state.auth) {
+        this.form.email = this.$store.state.auth.email
       }
     },
     methods: {

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import store from "./store";
+import store from "./store2";
 
 import NotFound from "../view/404.vue";
 import Home from "../view/home/index.vue";

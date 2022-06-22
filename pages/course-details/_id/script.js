@@ -4,7 +4,7 @@ import CourseAlert from "../../../components/course-alert"
 import mixins from "../../../config/mixins"
 import CoursesList from "../../../components/courses-list"
 import Loader from "../../../components/loader"
-import store from "../../../config/store";
+import store from "../../../store";
 import RemoteSearch from "../../../components/remoteSearch";
 import MessageInfo from "../../../components/message-info";
 
@@ -60,7 +60,7 @@ export default {
   mounted: function () {
     this.$nextTick(function () {
       this.get();
-      if(store.state.searchList || store.state.categories || store.state.categoriesSlugsName) {
+      if(this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
         this.getCategories();
       } else {
         this.listLoad = true;

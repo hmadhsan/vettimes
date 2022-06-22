@@ -10,7 +10,7 @@
 
 
 <script>
-  import store from "../../config/store"
+  import store from "../../store"
   import { cpdBaseUrl } from "~/config/constants"
 
   export default {
@@ -19,7 +19,8 @@
       return {
         loginTo: 'https://my.vettimes.co.uk/login',
         registerTo: 'https://my.vettimes.co.uk/register',
-        redirectTo: process.browser ? window.location.href : ''
+        redirectTo: process.browser ? window.location.href : '',
+        cpdBaseUrl
       }
     },
   }

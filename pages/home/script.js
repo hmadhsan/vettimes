@@ -1,7 +1,7 @@
 import RemoteSearch from "../../components/remoteSearch";
 import Loader from "../../components/loader";
 import mixins from "../../config/mixins"
-import store from "../../config/store"
+import store from "../../store"
 import TopHeading from "./top-heading"
 import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
@@ -34,9 +34,9 @@ console.log('first')
       uploadCourseUrl: 
     
        
-        ( store.auth  ) 
+        ( this.$store.state.auth  ) 
         ? '/courseproviders/courses/new'
-        : ( store.auth ) ? '/courseproviders/company-management' 
+        : ( this.$store.state.auth ) ? '/courseproviders/company-management' 
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       registerHere:
         'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST,
@@ -48,7 +48,7 @@ console.log('first')
   mounted  : function () {
     this.$nextTick(function () {
       console.log('mounted')
-      if(this.isEmptyObj(store.state.searchList) || this.isEmptyObj(store.state.categories) || this.isEmptyObj(store.state.categoriesSlugsName)) {
+      if(this.isEmptyObj(this.$store.state.searchList) || this.isEmptyObj(this.$store.state.categories) || this.isEmptyObj(this.$store.state.categoriesSlugsName)) {
         this.get();
       } else {
         this.getCategoriesNumber();
@@ -166,7 +166,7 @@ console.log('first')
       });
     },
     courseProcess: function (course_id, type) {
-      if(store.state.auth && [1,4].indexOf(store.state.auth.role) >= 0) {
+      if(this.$store.state.auth && [1,4].indexOf(this.$store.state.auth.role) >= 0) {
         let action = 'addCourse';
         if(!type) {
           action = 'deleteCourse';
@@ -185,7 +185,7 @@ console.log('first')
       return false;
     },
     checkAuth: function () {
-      let auth = store.state.auth;
+      let auth = this.$store.state.auth;
       if(auth) {
         return !!auth.role && [1, 4].indexOf(auth.role) === -1;
       } else {

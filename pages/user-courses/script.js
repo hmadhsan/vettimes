@@ -1,4 +1,4 @@
-import store from "../../config/store";
+import store from "../../store";
 import Table from "./table";
 import Popup from "./popup";
 import mixins from "../../config/mixins";
@@ -50,7 +50,7 @@ export default {
   methods: {
     get: function () {
       
-      if(!store.state.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
+      if(!this.$store.state.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
 
       this.http.get("courses/providercourses"+this.$toQuery({
         page: this.page,

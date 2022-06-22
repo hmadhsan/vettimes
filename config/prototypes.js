@@ -1,5 +1,5 @@
 import Vue from "vue";
-import store from "./store";
+import store from "./store2";
 import router from "./routes";
 import ElementUI from "../../../front-admin/src/config/element-ui";
 

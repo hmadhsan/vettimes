@@ -54,7 +54,7 @@
 </template>
 
 <script>
-  import store from "../../config/store"
+  import store from "../../store"
 
   export default {
     store,

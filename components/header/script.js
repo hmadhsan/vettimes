@@ -1,10 +1,9 @@
-import store from "../../config/store"
+import store from "../../store"
 import IsLogout from "./is-logout"
 import IsLogin from "./is-login"
 import ProviderLogin from "./provider-login"
 import { cpdBaseUrl } from "~/config/constants"
 export default {
-  store,
   components: {
     IsLogout,
     IsLogin,
@@ -16,6 +15,7 @@ export default {
     var header = "(item.title === 'Why choose us?' || item.title === 'Packages') && $route.path.indexOf('courseproviders')>= 0"
 
     return {
+      cpdBaseUrl,
       stars: 0,
       activeMenu: false,
       menuOpen: false,
@@ -147,10 +147,15 @@ export default {
     this.getCourses();
     this.getProviderName();
     this.getCreditBalance();
+
+
+    console.log("lkweof",this.$store.state)
+
+
   },
   methods: {
     getProviderName: function() {
-      let auth = store.state.auth;
+      let auth = this.$store.state.auth;
       if(!auth) {
         return false;
       }
@@ -158,7 +163,7 @@ export default {
       let roles = [2,3];
 
       if(roles.indexOf(auth.role) >= 0 ) {
-        this.http.get("provider/name").then( r => {
+        this.$axios.$get("/rest/provider/name").then( r => {
           if(this.$error(r.data)) {
             this.provider = r.data.data;
           }
@@ -168,7 +173,10 @@ export default {
       }
     },
     getCourses: function () {
-      let auth = store.state.auth;
+    
+      let auth = this.$store.state.auth;
+
+
       if(!auth) {
         return false;
       }
@@ -176,7 +184,7 @@ export default {
       let roles = [1,4];
 
       if(roles.indexOf(auth.role) >= 0 ) {
-        this.http.post("usercourses", {  action: 'getCourses' }).then( r => {
+        this.$axios.$post("/rest/usercourses", {  action: 'getCourses' }).then( r => {
           store.commit({
             type: 'changeStars',
             stars: r.data
@@ -187,7 +195,7 @@ export default {
       }
     },
     getCreditBalance: function() {
-      let auth = store.state.auth;
+      let auth = this.$store.state.auth;
       if(!auth) {
         return false;
       }
@@ -261,7 +269,8 @@ export default {
   computed: {
     filteredMenuList: function() {
       let route = this.$route.path;
-      let auth = store.state.auth;
+      let auth = this.$store.state.auth;
+      console.log("OOO===>",auth)
       let role = 4;
       if(auth) {
         role = auth.role;

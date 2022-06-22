@@ -1,4 +1,4 @@
-import store from "./store";
+import store from "./store2";
 
 let helpers = {
   store,
@@ -107,10 +107,10 @@ let helpers = {
           }
         });
         this.value = this.value.concat(paths.kw);
-        let searchWords = this.keywordIsCategory(this.value, store.state.categories);
+        let searchWords = this.keywordIsCategory(this.value, this.$store.state.categories);
       } else if (paths.kw.length > 0) {
         this.value = this.value.concat(paths.kw);
-        let searchWords = this.keywordIsCategory(this.value, store.state.categories);
+        let searchWords = this.keywordIsCategory(this.value, this.$store.state.categories);
       } else if (!!this.$route.query.porder) {
           if(this.$route.query.porder) {
             this.value = this.$route.query.porder.split('|');
@@ -254,9 +254,8 @@ let helpers = {
       e.container.offsetParent.closest('.cm-form__field').classList.remove('hasFocus');
     },
     isStar: function(id) {
-      if(store.state.auth) {
-        console.log("STAR=======>",store.state.stars)
-        return store.state.stars?.data?.indexOf(id) >= 0;
+      if(this.$store.state.auth) {
+        return this.$store.state.stars?.data?.indexOf(id) >= 0;
       } else {
         return false;
       }
