@@ -147,11 +147,6 @@ export default {
     this.getCourses();
     this.getProviderName();
     this.getCreditBalance();
-
-
-    console.log("lkweof",this.$store.state)
-
-
   },
   methods: {
     getProviderName: function() {

@@ -6,7 +6,6 @@ export default {
   //   serverRuntimeConfig: process.env.BASE_URL
   // },
 
-  
   head: {
     title: 'Vet Times | The website for the veterinary profession',
     meta: [

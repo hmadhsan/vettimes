@@ -43,15 +43,18 @@ export default {
     }
   },
   mounted(){
+
     this.$axios.get("/rest/auth").then(res => {
-      console.log("RRRRRRRRRR==========>",res)
       this.$store.commit( "auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
       this.access(this.$route);
     }).catch( () => {
       this.$store.commit("auth");
       this.access(this.$route);
     });
-  },
+
+    
+  }
+  ,
   created() {
     this.$nextTick(function () {
       if (this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
