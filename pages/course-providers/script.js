@@ -4,7 +4,7 @@ import Rolling from "../../components/rolling";
 import mixins from "../../config/mixins";
 import CoursePreview from "../../components/course-preview";
 import Provider from "../../components/provider-preview";
-import store from "../../store";
+
 import EmailMeCourses from "../../components/email-me-courses";
 
 export default {
@@ -18,7 +18,7 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-  store,
+  
   mixins: [ mixins.helpers ],
   components: {
     RemoteSearch,
@@ -92,7 +92,7 @@ export default {
   },
   created() {
     this.$nextTick(function () {
-      if(this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
+      if(this.$store.state.mystore.searchList || this.$store.state.mystore.categories || this.$store.state.mystore.categoriesSlugsName) {
         this.get();
         this.searchCourses()
       } else {
@@ -185,12 +185,12 @@ export default {
           }
           this.listLoad = true;
           this.loadingProviders = true;
-          store.commit('setCategories', categories);
-          store.commit('setCategoriesSlugsName', categoriesSlugsName);
-          store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
-          store.commit('setSearchList', arr);
+          this.$store.commit('mystore/setCategories', categories);
+          this.$store.commit('mystore/setCategoriesSlugsName', categoriesSlugsName);
+          this.$store.commit('mystore/setCategoriesNameSlugs', categoriesNameSlugs);
+          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r['categories_slugs']);
+          this.$store.commit('mystore/setCategoriesNamesCatgroup', r['categories_names']);
+          this.$store.commit('mystore/setSearchList', arr);
         }
       });
     },

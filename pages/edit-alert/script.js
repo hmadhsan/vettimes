@@ -1,7 +1,7 @@
-import store from "../../store";
+
 
 export default {
-  store,
+  
   data() {
     return {
       options: [],
@@ -75,12 +75,12 @@ export default {
             }
           }
           this.listLoad = true;
-          store.commit('setCategories', r.data.vars);
-          store.commit('setCategoriesSlugsName', categoriesSlugsName);
-          store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r.data['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r.data['categories_names']);
-          store.commit('setSearchList', arr);
+          this.$store.commit('mystore/setCategories', r.data.vars);
+          this.$store.commit('mystore/setCategoriesSlugsName', categoriesSlugsName);
+          this.$store.commit('mystore/setCategoriesNameSlugs', categoriesNameSlugs);
+          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r.data['categories_slugs']);
+          this.$store.commit('mystore/setCategoriesNamesCatgroup', r.data['categories_names']);
+          this.$store.commit('mystore/setSearchList', arr);
           this.list = arr;
         }
       });

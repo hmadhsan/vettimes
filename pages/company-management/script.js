@@ -1,6 +1,6 @@
 // import CKEditor from '@ckeditor/ckeditor5-vue';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import store from "../../store"
+
 import mixins from "../../config/mixins";
 import ProvidersOnly from "../../components/providers-only"
 import UserManagement from "../user-management"
@@ -8,7 +8,7 @@ import Media from "../../components/company-management-popup";
 //import { VueEditor } from "vue2-editor";
 
 export default {
-  store,
+  
   mixins: [ mixins.helpers ],
   name: 'appEditor',
   components: {

@@ -1,8 +1,8 @@
 import mixins from "../../config/mixins"
-import store from "../../store";
+
 
 export default {
-  store,
+  
   props:['setKeywords', 'catList', 'categoriesObj', 'catsSlugsName', 'keywords', 'pagePosition'],
   mixins: [ mixins.helpers ],
   data() {

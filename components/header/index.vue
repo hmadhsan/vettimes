@@ -25,19 +25,19 @@
             </a>
         </div>
         <div class="top" id="top-bar" :class="{ 'top_active': userMenuOpen, 'user-login': $store.state.auth && $store.state.auth.userStatus !== 'expired' }">
-            <IsLogin v-if="$store.state.auth && [1,4].indexOf($store.state.auth.role) >= 0 && $store.state.auth.userStatus !== 'expired'" />
-            <ProviderLogin v-else-if="$store.state.auth && [2,3].indexOf($store.state.auth.role) >= 0 && $store.state.auth.userStatus !== 'expired'"/>
+            <IsLogin v-if="$store.state.mystore.auth && [1,4].indexOf($store.state.mystore.auth.role) >= 0 && $store.state.mystore.auth.userStatus !== 'expired'" />
+            <ProviderLogin v-else-if="$store.state.mystore.auth && [2,3].indexOf($store.state.mystore.auth.role) >= 0 && $store.state.mystore.auth.userStatus !== 'expired'"/>
             <IsLogout v-else/>
         </div>
 
-        <div class="row cf" v-if="$store.state.auth && [2,3].indexOf($store.state.auth.role) >= 0 && $store.state.auth.userStatus !== 'expired'">
-          <div class="credit-balance float-r" v-if="$store.state.credits.length > 0">
+        <div class="row cf" v-if="$store.state.mystore.auth && [2,3].indexOf($store.state.mystore.auth.role) >= 0 && $store.state.mystore.auth.userStatus !== 'expired'">
+          <div class="credit-balance float-r" v-if="$store.state.mystore.credits.length > 0">
             <el-dropdown trigger="click">
             <span class="el-dropdown-link">
               Credit balance <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
               <el-dropdown-menu slot="dropdown" class="provider-credits-menu">
-                <el-dropdown-item v-for="(credit, index) in $store.state.credits" :key="index">{{ credit }}</el-dropdown-item>
+                <el-dropdown-item v-for="(credit, index) in $store.state.mystore.credits" :key="index">{{ credit }}</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </div>

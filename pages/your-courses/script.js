@@ -1,8 +1,8 @@
-import store from "../../store";
+
 import Popup from "./popup";
 
 export default {
-  store,
+  
   components: {
     Popup
   },
@@ -47,10 +47,10 @@ export default {
     }
   },
   created: function () {
-    if(this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
+    if(this.$store.state.mystore.searchList || this.$store.state.mystore.categories || this.$store.state.mystore.categoriesSlugsName) {
       this.getCategories();
     } else {
-      this.list = this.$store.state.searchList;
+      this.list = this.$store.state.mystore.searchList;
     }
     this.getUserCourses();
     this.getUserAlerts();
@@ -179,12 +179,12 @@ export default {
             }
           }
           this.listLoad = true;
-          store.commit('setCategories', r.vars);
-          store.commit('setCategoriesSlugsName', categoriesSlugsName);
-          store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
-          store.commit('setSearchList', arr);
+          this.$store.commit('mystore/setCategories', r.vars);
+          this.$store.commit('mystore/setCategoriesSlugsName', categoriesSlugsName);
+          this.$store.commit('mystore/setCategoriesNameSlugs', categoriesNameSlugs);
+          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r['categories_slugs']);
+          this.$store.commit('mystore/setCategoriesNamesCatgroup', r['categories_names']);
+          this.$store.commit('mystore/setSearchList', arr);
           this.list = arr;
         }
       });
@@ -203,7 +203,7 @@ export default {
       });
     },
     getStars: function () {
-      let stars = this.$store.state.stars.length;
+      let stars = this.$store.state.mystore.stars.length;
       if (stars > 0) {
         return stars;
       } else {
@@ -211,10 +211,10 @@ export default {
       }
     },
     deleteCourse: function(course_id) {
-      if(this.$store.state.auth) {
+      if(this.$store.state.mystore.auth) {
         this.$axios.$post('/rest/usercourses', {  action: 'deleteCourse' ,course_id: course_id }).then( r => {
-          store.commit({
-            type: 'changeStars',
+          this.$store.commit({
+            type: 'mystore/changeStars',
             stars: r.data
           });
           this.getUserCourses();

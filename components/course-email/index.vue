@@ -11,7 +11,7 @@
                     <div class="ce-body">
                         <form class="ce-form cf" @submit="submitForm">
                             <input type="hidden" name="courseId" value="0000">
-                            <div class="ce-form__field" v-if="!$store.state.auth">
+                            <div class="ce-form__field" v-if="!$store.state.mystore.auth">
                                 <label class="ce-form__label" for="yourEmailAddress">Email Address<span>
                                         *</span></label>
                                 <input type="email" id="yourEmailAddress" name="yourEmailAddress" required

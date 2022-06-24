@@ -1,7 +1,7 @@
-import store from '../../store';
+
 
 export default {
-    store,
+
     props: ['keywords'],
     data() {
       return {
@@ -38,8 +38,8 @@ export default {
       }
     },
     created: function() {
-      if(this.$store.state.auth) {
-        this.form.email = this.$store.state.auth.email
+      if(this.$store.state.mystore.auth) {
+        this.form.email = this.$store.state.mystore.auth.email
       }
     },
     methods: {

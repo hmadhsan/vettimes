@@ -10,11 +10,11 @@
 
 
 <script>
-  import store from "../../store"
+  
   import { cpdBaseUrl } from "~/config/constants"
 
   export default {
-    store,
+    
     data() {
       return {
         loginTo: 'https://my.vettimes.co.uk/login',

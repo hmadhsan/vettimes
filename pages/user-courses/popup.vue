@@ -22,10 +22,10 @@
 </template>
 
 <script>
-  import store from "../../store";
+  
 
 export default {
-  store,
+  
   data() {
     return {
       title: ""

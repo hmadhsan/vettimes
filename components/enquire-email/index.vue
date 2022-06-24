@@ -13,7 +13,7 @@
                     <div class="ee-body">
                         <form class="ee-form cf" @submit="submitForm">
                             <input type="hidden" name="courseId" value="0000">
-                            <div class="ee-form__field" v-if="!$store.state.auth">
+                            <div class="ee-form__field" v-if="!$store.state.mystore.auth">
                                 <label class="ee-form__label" for="yourEmailAddress">{{ content.labelEmail }}</label>
                                 <input type="email" id="yourEmailAddress" name="yourEmailAddress" required autocomplete="off" v-model="form.email">
                             </div>

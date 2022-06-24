@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import store from "./store2";
+
 
 import NotFound from "../view/404.vue";
 import Home from "../view/home/index.vue";
@@ -231,7 +231,7 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => { 
-  store.commit('googleAnalyticsTagManager');
+  this.$store.commit('mystore/googleAnalyticsTagManager');
   if (store.state.auth === null || Vue.prototype.$access(to)) next();
 });
 

@@ -1,9 +1,9 @@
 import CourseEmail from "./index";
 import mixins from "../../config/mixins";
-import store from "../../store";
+
 
 export default {
-  store,
+
   components: { CourseEmail },
   props: ['course_id', 'provider_id', 'keywords', 'url'],  
   mixins: [ mixins.helpers ],
@@ -33,8 +33,8 @@ export default {
   methods: {
     closeCourseEmailPopup: function(redirectWebsite = false) {
       // if(redirectWebsite) window.location.href = store.state.url;
-      store.commit({
-        type: 'changeCourseEmailDialog',
+      this.$store.commit({
+        type: 'mystore/changeCourseEmailDialog',
         dialog: false
       });
       document.body.style.overflow = '';      

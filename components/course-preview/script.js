@@ -1,8 +1,8 @@
-import store from "../../store"
+
 import mixins from "../../config/mixins";
 
 export default {
-  store,
+
   mixins: [ mixins.helpers ],
   props: ['course', 'logo', 'porder', 'type'],
   data() {
@@ -12,15 +12,15 @@ export default {
   },
   methods: {
     courseProcess: function (course_id, type) {
-      if(this.$store.state.auth && [1,4].indexOf(this.$store.state.auth.role) >= 0) {
+      if(this.$store.state.mystore.auth && [1,4].indexOf(this.$store.state.mystore.auth.role) >= 0) {
         let action = 'addCourse';
         if(!type) {
           action = 'deleteCourse';
         }
 
         this.http.post('usercourses', {  action: action ,course_id: course_id }).then( r => {
-          store.commit({
-            type: 'changeStars',
+          this.$store.commit({
+            type: 'mystore/changeStars',
             stars: r.data.data
           });
           this.$error(r.data);
@@ -54,7 +54,7 @@ export default {
       }
     },
     checkAuth: function () {
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
       if(auth) {
         return !!auth.role && [1, 4].indexOf(auth.role) === -1;
       } else {

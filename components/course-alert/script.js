@@ -1,9 +1,9 @@
 import CourseAlert from "./index";
 import mixins from "../../config/mixins";
-import store from "../../store";
+
 
 export default {
-  store,
+  
   components: { CourseAlert },
   props: ['course_id', 'provider_id', 'keywords', 'url'],  
   mixins: [ mixins.helpers ],
@@ -41,8 +41,8 @@ export default {
       });
     },
     closeCourseAlertPopup: function() {
-      store.commit({
-        type: 'changeCourseAlertDialog',
+      this.$store.commit({
+        type: 'mystore/changeCourseAlertDialog',
         dialog: false
       });
       document.body.style.overflow = '';      

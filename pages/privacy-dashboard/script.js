@@ -1,7 +1,7 @@
-import store from "../../store";
+
 
 export default {
-  store,
+  
   data() {
     return {
 
@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     unsubscribe: function() {
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
       if(!auth) {
         return false;
       }

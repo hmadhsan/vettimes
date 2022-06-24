@@ -1,22 +1,22 @@
-import store from "../../store"
+
 import { cpdBaseUrl } from "~/config/constants";
 export default {
   
   data() {
     return {
-      store,
+      
       cpdBaseUrl,
       loginTo: 'https://my.vettimes.co.uk/login',
       registerTo: 'https://my.vettimes.co.uk/register',
       redirectTo: process.browser ? window.location.href : '',
       registerHere:
-        ( this.$store.state.auth ) 
+        ( this.$store.state.mystore.auth ) 
         ? '/courseproviders/company-management'
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       buyTo: 
-        (this.$store.state.auth && this.$store.state.auth === 2 )
+        (this.$store.state.mystore.auth && this.$store.state.mystore.auth === 2 )
         ? '/courseproviders/courses/new'
-        : ( this.$store.state.auth ) ? '/courseproviders/company-management' 
+        : ( this.$store.state.mystore.auth ) ? '/courseproviders/company-management' 
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       dialogFormVisible: false,
       page: [],

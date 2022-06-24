@@ -1,4 +1,4 @@
-import store from "../../store"
+
 import IsLogout from "./is-logout"
 import IsLogin from "./is-login"
 import ProviderLogin from "./provider-login"
@@ -150,7 +150,7 @@ export default {
   },
   methods: {
     getProviderName: function() {
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
       if(!auth) {
         return false;
       }
@@ -169,7 +169,7 @@ export default {
     },
     getCourses: function () {
     
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
 
 
       if(!auth) {
@@ -180,8 +180,8 @@ export default {
 
       if(roles.indexOf(auth.role) >= 0 ) {
         this.$axios.$post("/rest/usercourses", {  action: 'getCourses' }).then( r => {
-          store.commit({
-            type: 'changeStars',
+          this.$store.commit({
+            type: 'mystore/changeStars',
             stars: r.data
           });
         }).catch((e) => {
@@ -190,7 +190,7 @@ export default {
       }
     },
     getCreditBalance: function() {
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
       if(!auth) {
         return false;
       }
@@ -199,7 +199,7 @@ export default {
 
       if(roles.indexOf(auth.role) >= 0 ) {
         this.$axios.$get("/rest/credits").then( r => {
-          store.commit('setCredits', r.data);
+          this.$store.commit('mystore/setCredits', r.data);
         }).catch((e) => {
           console.log(e);
         });
@@ -242,10 +242,10 @@ export default {
       /*this.http.delete('auth').then( () => {
 
         this.http.get("auth").then(res => {
-          store.commit( "auth", ( !res || !res.data || !res.data.id ) ? false : res.data );
+          this.$store.commit( "auth", ( !res || !res.data || !res.data.id ) ? false : res.data );
           this.$access(router.currentRoute);
         }).catch( () => {
-          store.commit("auth");
+          this.$store.commit("auth");
           this.$access(router.currentRoute);
         });
 
@@ -264,7 +264,7 @@ export default {
   computed: {
     filteredMenuList: function() {
       let route = this.$route.path;
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
       console.log("OOO===>",auth)
       let role = 4;
       if(auth) {

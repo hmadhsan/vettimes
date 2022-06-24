@@ -1,7 +1,7 @@
-import store from "./store2";
+
 
 let helpers = {
-  store,
+  
   computed: {
     dialog () {
       return store.state.enquireEmailDialog
@@ -16,15 +16,15 @@ let helpers = {
   methods: {
     openEnquireEmailPopup: function(event) {
       event.preventDefault();
-      store.commit({
-        type: 'changeEnquireEmailDialog',
+      this.$store.commit({
+        type: 'mystore/changeEnquireEmailDialog',
         dialog: true
       });
       document.body.style.overflow = 'hidden';
     },
     openCourseEmailPopup: function(bookUrl) {            
-      store.commit({
-        type: 'changeCourseEmailDialog',
+      this.$store.commit({
+        type: 'mystore/changeCourseEmailDialog',
         status: 'course',
         url: bookUrl,
         dialog: true
@@ -32,8 +32,8 @@ let helpers = {
       document.body.style.overflow = 'hidden';      
     },
     openCourseAlertPopup: function(bookUrl) {            
-      store.commit({
-        type: 'changeCourseAlertDialog',
+      this.$store.commit({
+        type: 'mystore/changeCourseAlertDialog',
         status: 'course',
         url: bookUrl,
         dialog: true
@@ -107,10 +107,10 @@ let helpers = {
           }
         });
         this.value = this.value.concat(paths.kw);
-        let searchWords = this.keywordIsCategory(this.value, this.$store.state.categories);
+        let searchWords = this.keywordIsCategory(this.value, this.$store.state.mystore.categories);
       } else if (paths.kw.length > 0) {
         this.value = this.value.concat(paths.kw);
-        let searchWords = this.keywordIsCategory(this.value, this.$store.state.categories);
+        let searchWords = this.keywordIsCategory(this.value, this.$store.state.mystore.categories);
       } else if (!!this.$route.query.porder) {
           if(this.$route.query.porder) {
             this.value = this.$route.query.porder.split('|');
@@ -254,8 +254,8 @@ let helpers = {
       e.container.offsetParent.closest('.cm-form__field').classList.remove('hasFocus');
     },
     isStar: function(id) {
-      if(this.$store.state.auth) {
-        return this.$store.state.stars?.data?.indexOf(id) >= 0;
+      if(this.$store.state.mystore.auth) {
+        return this.$store.state.mystore.stars.data.indexOf(id) >= 0;
       } else {
         return false;
       }
@@ -274,7 +274,7 @@ let helpers = {
       if ( this.data.total < 101 ) {
         this.http.post("export", data).then( r => {
           if ( this.$error(r.data) && r.data.name ) {            
-            window.open(this.$store.state.base +"rest/download?filename="+ r.data.name);
+            window.open(this.$store.state.mystore.base +"rest/download?filename="+ r.data.name);
           }
         });
         return;

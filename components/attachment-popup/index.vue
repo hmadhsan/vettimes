@@ -27,7 +27,7 @@
             :accept="$parent.accept[$parent.dialog.type]"
             :auto-upload="false"
             :headers="{ 'X-CSRF-TOKEN': $CSRF }"
-            :action="$store.state.base+`rest/media`"
+            :action="$store.state.mystore.base+`rest/media`"
             :data="$parent.dialog"
             :limit="1"
             :file-list="list"

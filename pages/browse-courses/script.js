@@ -1,10 +1,10 @@
 import RemoteSearch from "../../components/remoteSearch";
 import Loader from "../../components/loader";
 import mixins from "../../config/mixins"
-import store from "../../store"
+
 
 export default {
-  store,
+  
   mixins: [ mixins.helpers ],
   components: {
     RemoteSearch,
@@ -28,7 +28,7 @@ export default {
   },
   mounted: function () {
     this.$nextTick(function () {
-      if (this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
+      if (this.$store.state.mystore.searchList || this.$store.state.mystore.categories || this.$store.state.mystore.categoriesSlugsName) {
         this.get();
       } else {
         this.getCategoriesNumber();
@@ -62,12 +62,12 @@ export default {
             }
           }
           this.listLoad = true;
-          store.commit('setCategories', r.vars);
-          store.commit('setCategoriesSlugsName', categoriesSlugsName);
-          store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
-          store.commit('setSearchList', arr);
+          this.$store.commit('mystore/setCategories', r.vars);
+          this.$store.commit('mystore/setCategoriesSlugsName', categoriesSlugsName);
+          this.$store.commit('mystore/setCategoriesNameSlugs', categoriesNameSlugs);
+          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r['categories_slugs']);
+          this.$store.commit('mystore/setCategoriesNamesCatgroup', r['categories_names']);
+          this.$store.commit('mystore/setSearchList', arr);
         }
       });
     },

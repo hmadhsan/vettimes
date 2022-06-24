@@ -1,5 +1,5 @@
 import Vue from "vue";
-import store from "./store2";
+
 import router from "./routes";
 import ElementUI from "../../../front-admin/src/config/element-ui";
 
@@ -22,7 +22,7 @@ Vue.prototype.$CSRF = document.querySelector('meta[name="csrf_token"]').content;
  */
 
 Vue.prototype.$load = (num = -1) => {
-  store.commit("load", num === 1 ? 1 : -1);
+  this.$store.commit("mystore/load", num === 1 ? 1 : -1);
 };
 
 /**
@@ -111,7 +111,7 @@ Vue.prototype.$error = (data, message = false, duration = 5000) => {
 Vue.prototype.$providers = key => {
   if ( !key || key.length < 2 ) return store.state.providers = [];
   Vue.prototype.http.get('providers/live?keyword='+key).then( r => {
-    store.commit('providers', r.data.status ? r.data.array : {});
+    this.$store.commit('mystore/providers', r.data.status ? r.data.array : {});
   });
 };
 
@@ -146,7 +146,7 @@ Vue.prototype.$unique = function(arr) {
 
 /** Open Media popup */
 Vue.prototype.$mediaOpen = (form, key, type) => {
-  store.commit("media", {
+  this.$store.commit("mystore/media", {
     form: form, // Form of page, witch will update
     key: key,   // Key in form
     type: type  // Media type: 0, 1, 2

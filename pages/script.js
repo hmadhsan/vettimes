@@ -1,7 +1,7 @@
 import RemoteSearch from "../components/remoteSearch";
 import Loader from "../components/loader";
 import mixins from "../config/mixins"
-import store from "../store"
+
 import TopHeading from "./top-heading"
 import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
@@ -10,7 +10,7 @@ import { cpdBaseUrl } from "~/config/constants";
 // import router from "~/config/routes";
 
 export default {
-  store,
+  
   mixins: [mixins.helpers],
   components: {
     RemoteSearch,
@@ -33,7 +33,7 @@ export default {
       category: '',
       coursesTotal: 0,
       articles: [],
-      uploadCourseUrl: (this.$store.auth) ?
+      uploadCourseUrl: (this.$store.state.mystore.auth) ?
         '/courseproviders/courses/new' :
         (this.$store.auth) ? '/courseproviders/company-management' :
         'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}` + '&fromCPD=true',
@@ -45,10 +45,10 @@ export default {
   mounted(){
 
     this.$axios.get("/rest/auth").then(res => {
-      this.$store.commit( "auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
+      this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
       this.access(this.$route);
     }).catch( () => {
-      this.$store.commit("auth");
+      this.$store.commit("mystore/auth");
       this.access(this.$route);
     });
 
@@ -57,7 +57,7 @@ export default {
   ,
   created() {
     this.$nextTick(function () {
-      if (this.$store.state.searchList || this.$store.state.categories || this.$store.state.categoriesSlugsName) {
+      if (this.$store.state.mystore.searchList || this.$store.state.mystore.categories || this.$store.state.mystore.categoriesSlugsName) {
         this.get();
       } else {
         this.getCategoriesNumber();
@@ -83,9 +83,9 @@ export default {
         'location': 'location'
       };
    
-      for (let key in this.$store.state.categories) {
+      for (let key in this.$store.state.mystore.categories) {
         if (key !== 'audience' && key !== 'skill_level') {
-          result[keys[key]] = this.$store.state.categories[key];
+          result[keys[key]] = this.$store.state.mystore.categories[key];
         }
       }
       return result;
@@ -95,7 +95,7 @@ export default {
 
   methods: {
     access(to) {
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
       if (auth === null) return false;
     
       const names = ['Your Courses', 'Edit Alert', 'Privacy Dashboard'];
@@ -135,12 +135,12 @@ export default {
           }
           this.listLoad = true;
           this.coursesTotal = r.courses_total;
-          this.$store.commit('setCategories', r.vars);
-          this.$store.commit('setCategoriesSlugsName', categoriesSlugsName);
-          this.$store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          this.$store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
-          this.$store.commit('setCategoriesNamesCatgroup', r['categories_names']);
-          this.$store.commit('setSearchList', arr);
+          this.$store.commit('mystore/setCategories', r.vars);
+          this.$store.commit('mystore/setCategoriesSlugsName', categoriesSlugsName);
+          this.$store.commit('mystore/setCategoriesNameSlugs', categoriesNameSlugs);
+          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r['categories_slugs']);
+          this.$store.commit('mystore/setCategoriesNamesCatgroup', r['categories_names']);
+          this.$store.commit('mystore/setSearchList', arr);
         }
       })
 
@@ -195,7 +195,7 @@ export default {
       });
     },
     courseProcess:  function (course_id, type) {
-      if (this.$store.state.auth && [1, 4].indexOf(this.$store.state.auth.role) >= 0) {
+      if (this.$store.state.mystore.auth && [1, 4].indexOf(this.$store.state.mystore.auth.role) >= 0) {
         let action = 'addCourse';
         if (!type) {
           action = 'deleteCourse';
@@ -206,7 +206,7 @@ export default {
           course_id: course_id
         }).then(r => {
           this.$store.commit({
-            type: 'changeStars',
+            type: 'mystore/changeStars',
             stars: r
           });
           this.$error(r);
@@ -216,9 +216,10 @@ export default {
       }
       return false;
     },
+    
     checkAuth: function () {
-      let auth = this.$store.state.auth;
-      if (auth) {
+      let auth = this.$store.state.mystore.auth;
+      if(auth) {
         return !!auth.role && [1, 4].indexOf(auth.role) === -1;
       } else {
         return true;

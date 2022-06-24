@@ -1,8 +1,8 @@
 import EnquireEmail from "./index";
-import store from "../../store"
+
 
 export default {
-  store,
+
   components: { EnquireEmail },
   props: ['course_id', 'provider_id'],
   data() {
@@ -50,8 +50,8 @@ export default {
   },
   methods: {
     closeEnquireEmailPopup: function() {
-      store.commit({
-        type: 'changeEnquireEmailDialog',
+      this.$store.commit({
+        type: 'mystore/changeEnquireEmailDialog',
         dialog: false
       });
       document.body.style.overflow = '';

@@ -1,4 +1,4 @@
-import store from "../../store";
+
 import Table from "./table";
 import Popup from "./popup";
 import mixins from "../../config/mixins";
@@ -6,7 +6,7 @@ import ProvidersOnly from "../../components/providers-only";
 import Loader from "../../components/loader";
 
 export default {
-  store,
+  
   mixins: [ mixins.helpers ],
   components: {
     Loader,
@@ -50,7 +50,7 @@ export default {
   methods: {
     get: function () {
       
-      if(!this.$store.state.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
+      if(!this.$store.state.mystore.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
 
       this.http.get("courses/providercourses"+this.$toQuery({
         page: this.page,

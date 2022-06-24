@@ -1,8 +1,8 @@
 import SocialButtons from "../footerSocialButtons"
-import store from "../../store"
+
 
 export default {
-  store,
+
   components: {
     SocialButtons
   },

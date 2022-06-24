@@ -1,14 +1,14 @@
 import RemoteSearch from "../../components/remoteSearch";
 import Loader from "../../components/loader";
 import mixins from "../../config/mixins"
-import store from "../../store"
+
 import TopHeading from "./top-heading"
 import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
 
 export default {
 
-  store,
+  
   mixins: [ mixins.helpers ],
   components: {
     RemoteSearch,
@@ -34,9 +34,9 @@ console.log('first')
       uploadCourseUrl: 
     
        
-        ( this.$store.state.auth  ) 
+        ( this.$store.state.mystore.auth  ) 
         ? '/courseproviders/courses/new'
-        : ( this.$store.state.auth ) ? '/courseproviders/company-management' 
+        : ( this.$store.state.mystore.auth ) ? '/courseproviders/company-management' 
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       registerHere:
         'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST,
@@ -48,7 +48,7 @@ console.log('first')
   mounted  : function () {
     this.$nextTick(function () {
       console.log('mounted')
-      if(this.isEmptyObj(this.$store.state.searchList) || this.isEmptyObj(this.$store.state.categories) || this.isEmptyObj(this.$store.state.categoriesSlugsName)) {
+      if(this.isEmptyObj(this.$store.state.mystore.searchList) || this.isEmptyObj(this.$store.state.mystore.categories) || this.isEmptyObj(this.$store.state.mystore.categoriesSlugsName)) {
         this.get();
       } else {
         this.getCategoriesNumber();
@@ -109,12 +109,12 @@ console.log('first')
           }
           this.listLoad = true;
           this.coursesTotal = r['courses_total'];
-          store.commit('setCategories', r.vars);
-          store.commit('setCategoriesSlugsName', categoriesSlugsName);
-          store.commit('setCategoriesNameSlugs', categoriesNameSlugs);
-          store.commit('setCategoriesSlugsCatgroup', r['categories_slugs']);
-          store.commit('setCategoriesNamesCatgroup', r['categories_names']);
-          store.commit('setSearchList', arr);
+          this.$store.commit('mystore/setCategories', r.vars);
+          this.$store.commit('mystore/setCategoriesSlugsName', categoriesSlugsName);
+          this.$store.commit('mystore/setCategoriesNameSlugs', categoriesNameSlugs);
+          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r['categories_slugs']);
+          this.$store.commit('mystore/setCategoriesNamesCatgroup', r['categories_names']);
+          this.$store.commit('mystore/setSearchList', arr);
         }
       });
     },
@@ -166,14 +166,14 @@ console.log('first')
       });
     },
     courseProcess: function (course_id, type) {
-      if(this.$store.state.auth && [1,4].indexOf(this.$store.state.auth.role) >= 0) {
+      if(this.$store.state.mystore.auth && [1,4].indexOf(this.$store.state.mystore.auth.role) >= 0) {
         let action = 'addCourse';
         if(!type) {
           action = 'deleteCourse';
         }
 
         this.$axios.$post(`/rest/usercourses?_path=${this.$route.path}`, {  action: action ,course_id: course_id }).then( r => {
-          store.commit({
+          this.$store.commit({
             type: 'changeStars',
             stars: r.data
           });
@@ -185,7 +185,7 @@ console.log('first')
       return false;
     },
     checkAuth: function () {
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
       if(auth) {
         return !!auth.role && [1, 4].indexOf(auth.role) === -1;
       } else {

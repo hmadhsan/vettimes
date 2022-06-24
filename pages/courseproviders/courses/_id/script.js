@@ -5,10 +5,10 @@ import Attachments from "./attachments"
 import Enhancements from "./enhancements"
 import Categorisation from "./categorisation"
 import Leads from "./leads"
-import store from "../../../../store";
+
 
 export default {
-  store,
+  
   components: {
     Sidebar,
     Advert,
@@ -65,7 +65,7 @@ export default {
   methods: {
     get() {
 
-      if(!this.$store.state.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
+      if(!this.$store.state.mystore.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
 
       this.$axios.$get("/rest/course/title?id="+ this.$router.currentRoute.params.id + "&_path=" + this.$route.path).then( r => {
         if ( this.$error(r) ) {
@@ -87,7 +87,7 @@ export default {
       });
     },
     getCreditBalance: function() {
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
       if(!auth) {
         return false;
       }
@@ -96,7 +96,7 @@ export default {
 
       if(roles.indexOf(auth.role) >= 0 ) {
         this.$axios.$get("/rest/credits").then( r => {
-          store.commit('setCredits', r.data);
+          this.$store.commit('mystore/setCredits', r.data);
         }).catch((e) => {
           console.log(e);
         });

@@ -13,7 +13,7 @@
 
       <div class="sign-in top__item  mobile-hide">
         <el-dropdown trigger="click">
-          <a href="#" title="User Menu" data-icon="☺" class="icon-before el-dropdown-link">{{ truncate($store.state.auth.email, 19) }} <i class="el-icon-arrow-down el-icon--right"></i></a>
+          <a href="#" title="User Menu" data-icon="☺" class="icon-before el-dropdown-link">{{truncate($store.state.mystore.auth.email)}}<i class="el-icon-arrow-down el-icon--right"></i></a>
           <el-dropdown-menu slot="dropdown" class="user-dropdown">
             <el-dropdown-item>
               <nuxt-link
@@ -38,8 +38,8 @@
 
       <div class="create-acc top__item  mobile-hide">
         <nuxt-link to="/your-courses">
-          <span aria-hidden="true" class="icon-after" data-icon="★" title="Your shortlist">{{ $store.state.stars.length }}</span>
-          <span class="hidden">Your shortlist (<span>{{ $store.state.stars.length }}</span>)</span>
+          <span aria-hidden="true" class="icon-after" data-icon="★" title="Your shortlist">{{ this.$store.state.mystore.stars.length }}</span>
+          <span class="hidden">Your shortlist (<span>{{ this.$store.state.mystore.stars.length }}</span>)</span>
         </nuxt-link>
 
       </div>
@@ -54,10 +54,10 @@
 </template>
 
 <script>
-  import store from "../../store"
+  
 
   export default {
-    store,
+
     data() {
       return {
 

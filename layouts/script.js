@@ -9,18 +9,18 @@ export default {
     TopAd
   },
   mounted(){
-    this.$axios.get("/rest/auth").then(res => {
-      this.$store.commit( "auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
-      console.log("AAAAAAAAAAAA==========>",this.$store.state.auth)
-      this.access(this.$route);
-    }).catch( () => {
-      this.$store.commit("auth");
-      this.access(this.$route);
-    });
+    // this.$axios.get("/rest/auth").then(res => {
+    //   this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
+    //   console.log("AAAAAAAAAAAA==========>",this.$store.state.mystore.auth)
+    //   this.access(this.$route);
+    // }).catch( () => {
+    //   this.$store.commit("mystore/auth");
+    //   this.access(this.$route);
+    // });
   },
   methods:{
     access(to) {
-      let auth = this.$store.state.auth;
+      let auth = this.$store.state.mystore.auth;
       if (auth === null) return false;
     
       const names = ['Your Courses', 'Edit Alert', 'Privacy Dashboard'];
