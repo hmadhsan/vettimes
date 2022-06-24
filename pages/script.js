@@ -56,6 +56,7 @@ export default {
   }
   ,
   created() {
+    this.facebookInit()
     this.$nextTick(function () {
       if (this.$store.state.mystore.searchList || this.$store.state.mystore.categories || this.$store.state.mystore.categoriesSlugsName) {
         this.get();
@@ -94,6 +95,29 @@ export default {
   },
 
   methods: {
+    facebookInit() {
+      
+     
+      process.browser ?
+      window.fbAsyncInit = function () {
+     
+        FB.init({ appId: 'your-app-id', cookie: true, xfbml: true, oauth: true });
+    
+        // *** here is my code ***
+        if (typeof facebookInit == 'function') {
+            facebookInit();
+        }
+    }:null;
+    process.browser ?
+    (function(d){
+        var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        d.getElementsByTagName('head')[0].appendChild(js);
+    }(document)) : null;
+
+
+   },
     access(to) {
       let auth = this.$store.state.mystore.auth;
       if (auth === null) return false;
