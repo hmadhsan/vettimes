@@ -30,21 +30,22 @@ export default {
   },
   methods: {
     get() {
-      this.$axios.$get("/rest/course/category?id="+this.id + "&_path=/courseproviders/courses" ).then( r => {
-        if ( this.$error(r.data) ) {
-          this.vars = r.data.vars;
+      this.$axios.$get("/rest/course/category?id=" + this.id + "&_path=/courseproviders/courses").then(r => {
+        if (r) {
+          this.vars = r.vars;
+          console.log('dddddddddddddddddddddd' , this.vars);
           this.form = Object.assign({
             speciality: [],
             audience: [],
             skill_level: [],
-          }, r.data.data);
+          }, r.data);
         }
       });
     },
     update(next = false) {
       this.form.course_id = this.id;
-      this.$axios.$post("/rest/course/category", this.form).then( r => {
-        if ( this.$error(r.data) && true === next ) {
+      this.$axios.$post("/rest/course/category", this.form).then(r => {
+        if (r && true === next) {
           // window.location.href = this.$router.currentRoute.fullPath.replace('/categorisation', '/venues');
           this.$parent.activeTab('categorisation', 'venues'); this.$parent.activeTabAdditionalDates = true;
         }
@@ -53,6 +54,7 @@ export default {
       });
     },
     submitForm(form, next = false) {
+      
       this.$refs[form].validate((valid) => {
         if (valid) {
           this.update(next);

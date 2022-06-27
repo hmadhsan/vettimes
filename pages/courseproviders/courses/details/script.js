@@ -1,7 +1,7 @@
-import mixins from "../../../../../config/mixins";
+import mixins from "../../../../config/mixins";
 // import CKEditor from '@ckeditor/ckeditor5-vue';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import MessageInfo from "../../../../../components/message-info";
+import MessageInfo from "../../../../components/message-info";
 import Payment from "./payment"
 //import { VueEditor } from "vue2-editor";
 
@@ -177,6 +177,7 @@ export default {
       return !flag;
     },
     submit(e) {
+      
       if ( true !== e ) e.preventDefault();
 
       // if(this.isEmptyObj(this.credits)) {
@@ -199,7 +200,7 @@ export default {
         //console.log('put')
         this.$axios.$put("/rest/course", this.form).then( r => {
           if (r) {
-            if(r.data.status) {
+            if(r.status) {
               this.dataUpdateSuccess = 'The course details have been saved. To make your course live on the site, you must use the <strong>"Publish"</strong> button. A single credit will be taken from your balance. If you do not have any credits, please call us on <a href="callto:(0)1733 383534">(0)1733 383534</a> or email <a href="mailto:cpd@vettimes.co.uk">cpd@vettimes.co.uk</a> to purchase credits.'
             }
             if ( true === e ) {

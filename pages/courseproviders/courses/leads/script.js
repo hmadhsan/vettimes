@@ -1,4 +1,4 @@
-import mixins from "../../../../../config/mixins"
+import mixins from "../../../../config/mixins"
 
 export default {
   mixins: [ mixins.helpers ],

@@ -1,4 +1,4 @@
-@import "../../../../style/options";
+@import "../../../../../style/options";
 
 #course-advertise {
   font-family: $ffTipperary;
@@ -32,6 +32,7 @@
   .course-description {
     padding-top: 20px;
     margin-bottom: 20px;
+
     .pipe {
       border-right: 1px solid #ccc;
       margin-right: 12px;
@@ -39,7 +40,8 @@
     }
   }
 
-  .adv-form, .advert-setting {
+  .adv-form,
+  .advert-setting {
     p a {
       color: $cBlue;
       line-height: 22px;
@@ -82,7 +84,7 @@
         position: absolute;
         width: 1px;
 
-        &:checked + .adv-product__selector-label {
+        &:checked+.adv-product__selector-label {
           border-color: $cBlueHover;
           background: #fbfdfe;
 
@@ -93,7 +95,7 @@
           }
         }
 
-        &:disabled + .adv-product__selector-label {
+        &:disabled+.adv-product__selector-label {
           border-color: transparent !important;
           background: #f1f1f1 !important;
           cursor: default;
@@ -149,7 +151,7 @@
     }
   }
 
-  input[disabled] + label:before {
+  input[disabled]+label:before {
     opacity: 0 !important;
     cursor: not-allowed;
     pointer-events: none;
@@ -173,17 +175,22 @@
       color: $cText;
     }
   }
+
   .promote-alert {
     text-align: center;
     background: #7e7e7e;
     padding: 15px 0;
-    color: #fff; 
+    color: #fff;
     margin-top: 30px;
     font-weight: 600;
   }
+
   .cm-btn-container {
     padding-top: 20px;
-    button { margin-top: 20px }
+
+    button {
+      margin-top: 20px
+    }
   }
 
   .course-buttons {
@@ -205,7 +212,7 @@
     h2 {
       margin-bottom: 20px;
 
-      + .button {
+      +.button {
         margin-bottom: 20px;
       }
     }
@@ -248,6 +255,7 @@
 
       .el-button {
         padding: 0;
+
         span {
           color: $cBlue;
         }
@@ -310,4 +318,3 @@
     }
   }
 }
-

@@ -7,9 +7,9 @@
         <RemoteSearch
           @setKeywords="setKeywords"
           :keywords="keywords"
-          :catList="$store.state.searchList"
-          :categoriesObj="$store.state.categories"
-          :catsSlugsName="$store.state.categoriesSlugsName"
+          :catList="$store.state.mystore.searchList"
+          :categoriesObj="$store.state.mystore.categories"
+          :catsSlugsName="$store.state.mystore.categoriesSlugsName"
         ></RemoteSearch>
 
 
@@ -23,7 +23,7 @@
               <h3 class="icon-before head-filter-mobile" data-icon="▶"><button @click="showFilterBar" class="el-button--text">Filter your results</button></h3>
               <h3 class="head-filter-desktop">Filter your results</h3>
               <div id="filterBar">
-                <div v-for="(cats, key) in $store.state.categories" :key="cats.id">
+                <div v-for="(cats, key) in $store.state.mystore.categories" :key="cats.id">
                   <h4 class="filter-title" v-if="courses.total > 0 && filterEmptyCats(cats, key).length > 0">{{ categoriesKeys[key] }}</h4>
                   <ul class="head-filter-desktop">
                     <li v-for="(cat, index) in filterEmptyCats(cats, key)" :key="cat.id">
@@ -86,7 +86,7 @@
                     <ul class="category-dialog__list">
                       <li
                         class="category-dialog__list-item"
-                        v-for="cat in filterPopupEmptyCats($store.state.categories[categoryDialog])"
+                        v-for="cat in filterPopupEmptyCats($store.state.mystore.categories[categoryDialog])"
                         :key="cat.id"
                       >
                         <nuxt-link
@@ -197,7 +197,7 @@
                </div>
               </div>
               <div class="pagination">
-                <a rel="alternate" type="application/rss+xml" :href="$store.state.base+`rss/courses?keyword=${keywords.join('|')}`" class="icon-before pagination__subscriber" data-icon="☲">Subscribe</a>
+                <a rel="alternate" type="application/rss+xml" :href="$store.state.mystore.base+`rss/courses?keyword=${keywords.join('|')}`" class="icon-before pagination__subscriber" data-icon="☲">Subscribe</a>
                 <el-pagination
                     class="pagination__items"
                     v-if="courses.total > 20"

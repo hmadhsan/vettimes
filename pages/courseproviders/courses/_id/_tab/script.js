@@ -1,14 +1,14 @@
-import Sidebar from "../../../../components/sidebar";
-import Advert from "./details"
-import AdditionalDates from "./venues"
-import Attachments from "./attachments"
-import Enhancements from "./enhancements"
-import Categorisation from "./categorisation"
-import Leads from "./leads"
+import Sidebar from "../../../../../components/sidebar";
+import Advert from "../../details"
+import AdditionalDates from "../../venues"
+import Attachments from "../../attachments"
+import Enhancements from "../../enhancements"
+import Categorisation from "../../categorisation"
+import Leads from "../../leads"
 
 
 export default {
-  
+
   components: {
     Sidebar,
     Advert,
@@ -19,6 +19,7 @@ export default {
     Leads
   },
   data() {
+    
     return {
       deleteCourse: false,
       deleteCourseStatus: false,
@@ -47,7 +48,7 @@ export default {
       activeTabCategorisation: false,
       activeTabAdditionalDates: false,
       activeTabAttachments: false,
-      activeTabEnhancements: false,      
+      activeTabEnhancements: false,
       closeButton: false,
 
     }
@@ -56,29 +57,35 @@ export default {
     this.$nextTick(function () {
       this.get();
 
-      if( this.$route.query.fromEdit ) {
+      if (this.$route.query.fromEdit) {
         this.activeAllTabs();
       }
-      
+
     })
   },
   methods: {
+    isEmptyObj (obj) {
+      for (var key in obj) {
+        return false;
+      }
+      return true;
+    },
     get() {
+      
+      // if (!this.$store.state.mystore.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
 
-      if(!this.$store.state.mystore.auth) window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
-
-      this.$axios.$get("/rest/course/title?id="+ this.$router.currentRoute.params.id + "&_path=" + this.$route.path).then( r => {
-        if ( this.$error(r) ) {
-          this.info = r.data;          
-          if(this.info.product_id == 8 && [1,3,4].indexOf(this.info.status === 0) ) {
+      this.$axios.$get("/rest/course/title?id=" + this.$router.currentRoute.params.id + "&_path=" + this.$route.path).then(r => {
+        if ((r)) {
+          this.info = r.data;
+          if (this.info.product_id == 8 && [1, 3, 4].indexOf(this.info.status === 0)) {
             this.tabLeadsOnlyPlatinum = true;
           }
-          if(this.tabs[this.$route.params.tab]) {
-            this.tab = this.tabs[this.$route.params.tab];            
+          if (this.tabs[this.$route.params.tab]) {
+            this.tab = this.tabs[this.$route.params.tab];
           } else {
             this.$router.push('/');
           }
-          if(!this.info.product_id) this.info.product_id = 9
+          if (!this.info.product_id) this.info.product_id = 9
         } else {
           this.$router.push('/courseproviders/courses');
         }
@@ -86,16 +93,16 @@ export default {
         console.log(e);
       });
     },
-    getCreditBalance: function() {
+    getCreditBalance: function () {
       let auth = this.$store.state.mystore.auth;
-      if(!auth) {
+      if (!auth) {
         return false;
       }
 
-      let roles = [2,3];
+      let roles = [2, 3];
 
-      if(roles.indexOf(auth.role) >= 0 ) {
-        this.$axios.$get("/rest/credits").then( r => {
+      if (roles.indexOf(auth.role) >= 0) {
+        this.$axios.$get("/rest/credits").then(r => {
           this.$store.commit('mystore/setCredits', r.data);
         }).catch((e) => {
           console.log(e);
@@ -111,20 +118,20 @@ export default {
         confirmButtonText: 'Yes',
         cancelButtonText: 'No'
       }).then(() => {
-        this.$axios.$put("/rest/course/status", { id: this.info.id, value: value }).then( r => {
-          if(this.$error(r)) {
+        this.$axios.$put("/rest/course/status", { id: this.info.id, value: value }).then(r => {
+          if (this.$error(r)) {
             this.get();
             this.getCreditBalance();
           }
         }).catch((e) => {
           console.log(e);
         })
-      }).catch(() => {});
+      }).catch(() => { });
     },
     doCopy() {
-      this.$axios.$post("/rest/course/copy", { id: this.info.id }).then( r => {
-        if ( this.$error(r) ) {
-          if ( !r.id ) return this.$ntf({});
+      this.$axios.$post("/rest/course/copy", { id: this.info.id }).then(r => {
+        if (this.$error(r)) {
+          if (!r.id) return this.$ntf({});
           this.$router.push(`/courseproviders/courses/${r.id}/details/`);
           window.location.reload();
         }
@@ -137,8 +144,8 @@ export default {
         confirmButtonText: 'Yes',
         cancelButtonText: 'No'
       }).then(() => {
-        this.$axios.$delete("/rest/course?id="+this.info.id).then( r => {
-          if(this.$error(r) ) {
+        this.$axios.$delete("/rest/course?id=" + this.info.id).then(r => {
+          if (this.$error(r)) {
             setTimeout(() => {
               this.$router.push(`/courseproviders/courses/`);
             }, 2000)
@@ -146,17 +153,17 @@ export default {
         }).catch((e) => {
           console.log(e);
         });
-      }).catch(() => {});
+      }).catch(() => { });
     },
     statusDescription() {
-      if(this.info.status === 1 && this.info.postTo !== null) {
+      if (this.info.status === 1 && this.info.postTo !== null) {
         return {
           'status': true,
           'desc': `(expires ${this.info.postTo})`
         }
       }
 
-      if(this.info.status === 3 ) {
+      if (this.info.status === 3) {
         return {
           'status': true,
           'desc': `(live ${this.info.postFrom})`
@@ -168,7 +175,7 @@ export default {
       }
     },
     getPreviewLink() {
-      if(this.info.status === 1) {
+      if (this.info.status === 1) {
         return {
           'link': `/course-details/${this.info.id}/${this.info.slug}/`,
           'title': 'View Advert'
@@ -180,12 +187,12 @@ export default {
         }
       }
     },
-    activeTab(old_item, item) {     
+    activeTab(old_item, item) {
       this.$router.push(this.$router.currentRoute.fullPath.replace('/' + old_item, '/' + item));
       item = (item == 'venues') ? 'Additional Dates' : item;
-      this.setActive(item); 
+      this.setActive(item);
     },
-    activeAllTabs() {      
+    activeAllTabs() {
       this.activeTabAdvert = this.activeTabCategorisation = this.activeTabAdditionalDates = this.activeTabAttachments = this.activeTabEnhancements = this.closeButton = true;
     }
   }

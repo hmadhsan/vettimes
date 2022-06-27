@@ -1,4 +1,4 @@
-import Media from "../../../../../components/attachment-popup";
+import Media from "../../../../components/attachment-popup";
 
 export default {
   components: {

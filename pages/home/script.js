@@ -148,7 +148,7 @@ console.log('first')
         }
       });
     },
-    getRss: function() { debugger
+    getRss: function() { 
       this.$axios.$get(`pages/rss`).then( r => {
         if(r.status) {
           this.rssLinks = r.links.item.slice(0, 6);

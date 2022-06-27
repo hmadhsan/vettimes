@@ -1,8 +1,8 @@
-import mixins from "../../../../../config/mixins";
+import mixins from "../../../../config/mixins";
 // import CKEditor from '@ckeditor/ckeditor5-vue';
-import MessageInfo from "../../../../../components/message-info";
+import MessageInfo from "../../../../components/message-info";
 import Payment from "./payment";
-import Loader from "../../../../../components/loader";
+import Loader from "../../../../components/loader";
 
 export default {
   mixins: [ mixins.helpers ],

@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import MessageInfo from "../../../../../components/message-info";
+import MessageInfo from "../../../../components/message-info";
 
 export default {
   components: {

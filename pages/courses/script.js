@@ -199,9 +199,9 @@ export default {
       this.clickToCourse = false;
       
       if(this.keywords.length > 0) {
-        this.searchWords = this.keywordIsCategory(this.keywords, store.state.categories);
+        this.searchWords = this.keywordIsCategory(this.keywords, this.$store.state.mystore.categories);
       } else {
-        this.searchWords = this.findCategories(this.keywords, store.state.categories);
+        this.searchWords = this.findCategories(this.keywords, this.$store.state.mystore.categories);
       }
 
       let query_str = '';
