@@ -42,7 +42,7 @@ export default {
       }).catch(() => {});
     },
     next() {
-      // window.location.href = this.$router.currentRoute.fullPath.replace('/venues', '/attachments');
+      process.browser ? window.location.href = this.$router.currentRoute.fullPath.replace('/venues', '/attachments') : null ;
       this.$parent.activeTab('venues', 'attachments'); this.$parent.activeTabAttachments = true;
     }
   },

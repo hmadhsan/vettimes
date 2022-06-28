@@ -3,7 +3,7 @@ import mixins from "../../../../config/mixins";
 import MessageInfo from "../../../../components/message-info";
 import Payment from "./payment";
 import Loader from "../../../../components/loader";
-
+import {loadStripe} from '@stripe/stripe-js';
 export default {
   mixins: [ mixins.helpers ],
   components: {
@@ -53,7 +53,7 @@ export default {
   },
   mounted: function () {    
     this.$nextTick(function () {
-        this.$scrollToTop();
+        this.scrollToTop();
         this.get();
         this.mountStripe();
     });
@@ -61,21 +61,26 @@ export default {
   updated: function () {},
   computed: {},
   methods: {
+    scrollToTop (){
+      process.browser ? window.scrollTo(0, 0) : null;
+    },
     get: function(credits = false) {   
-      this.http.get("course/info?id=" + this.course_id + "&_path=/courseproviders/courses").then(r => {          
-      if (this.$error(r.data)) {
+      
+      this.$axios.$get("/rest/course/info?id=" + this.course_id + "&_path=/courseproviders/courses").then(r => {          
+      if (r) {
+        
           if ( credits ) {
-            this.credits = r.data.credits;
+            this.credits = r.credits;
             return;
           }
-          
-          this.prices = r.data.prices;
-          this.form = r.data.data;
-          this.products = r.data.products;
-          this.credits = r.data.credits;
-          this.provider = r.data.provider;
-          this.invoice_no = r.data.invoice;
-          this.last_subscription_plan = r.data.data.product_id;
+          console.log("PRICE=====>",r.prices)
+          this.prices = r.prices;
+          this.form = r.data;
+          this.products = r.products;
+          this.credits = r.credits;
+          this.provider = r.provider;
+          this.invoice_no = r.invoice;
+          this.last_subscription_plan = r.data.product_id;
           
           this.invoiceNo();
           // this.$parent.showPublishButton = !this.isEmptyObj(this.credits);
@@ -90,10 +95,9 @@ export default {
         console.log(e);
       });
     },
-    mountStripe: function() {
-      this.stripe = Stripe('pk_live_kSJZY8Ilm38Cq98vsKD5hCWD00zeNlkwhi');
-      // this.stripe = Stripe('pk_test_0PA9VM8o1d6aLbMIvtQ9vhCP00dM96abyo');
-      
+    mountStripe: async function() {
+      // this.stripe = await loadStripe('pk_live_kSJZY8Ilm38Cq98vsKD5hCWD00zeNlkwhi'); 
+      this.stripe = await loadStripe('pk_test_0PA9VM8o1d6aLbMIvtQ9vhCP00dM96abyo');  
       var elements = this.stripe.elements();
       this.cardElement = elements.create('card');
       this.cardElement.mount('#card-element');
@@ -158,16 +162,17 @@ export default {
 
       if( this.cardholderName == '' ) {
         error['error'] = 'Card holder name is required';
-        this.$error(error);
+        // this.$error(error);
       } else {        
-        this.loading = true;          
-        this.http.post("user/payment-intent",
+        this.loading = true;        
+         
+        this.$axios.$post("/rest/user/payment-intent",
           { price: this.totalPrice, invoice: this.invoice, provider: this.provider, package: this.packageName }
           ).then(r => {            
-          if (this.$error(r.data)) {
+          if (r) {
             
-            var clientSecret = r.data.client_secret;
-            this.paymentIntent = r.data.payment_intent;
+            var clientSecret = r.client_secret;
+            this.paymentIntent = r.payment_intent;
             
             this.stripe.handleCardPayment(
               clientSecret, this.cardElement, {
@@ -177,7 +182,8 @@ export default {
               }
             ).then(function(result) {
               if (result.error) {
-                error['error'] = result.error.message; el.$error(error);                                
+                error['error'] = result.error.message; 
+                el.$error(error);                                
               } else {
                 el.userCredit(clientSecret);
               }
@@ -198,10 +204,10 @@ export default {
       
     },
     userCredit: function(clientSecret) {
-      this.http.post('user/credits',
+      this.$axios.$post('/rest/user/credits',
         { product_id: this.subscription_plan, quantity: 1, token: clientSecret, course_id: this.course_id, invoice: this.invoice })
         .then( r => {
-        if ( this.$error(r.data) ) {
+        if ( r.data ) {
           this.get(true);
           this.setStatus(1, false);
           this.sendPaymentInfo();
@@ -213,7 +219,7 @@ export default {
       });
     },
     sendEmailAboutJob: function() {      
-      this.http.post('course/send-email-about-job', 
+      this.$axios.$post('/rest/course/send-email-about-job', 
         { data: this.form, product: { id: this.subscription_plan, name: this.packageName } })
         .then( r => {})
         .catch(e => {
@@ -235,33 +241,33 @@ export default {
 
     },
     setCourseStatus(value) {
-      this.http.put("course/status", { id: this.course_id, value: value, selected_product: this.subscription_plan })
+      this.$axios.$put("/rest/course/status", { id: this.course_id, value: value, selected_product: this.subscription_plan })
       .then( r => {
-        if(this.$error(r.data)) {
+        if(r.data) {
           if( this.subscription_plan == '2' || this.subscription_plan == '8' ) this.sendEmailAboutJob();
           this.$router.push('/courseproviders/courses');
-          window.location.reload();
+          process.browser ? window.location.reload() : null;
         }
       }).catch(e => {
           console.log(e);
       });
     },
     sendPaymentInfo: function() {
-      this.http.post('course/send-invoice', { form: this.form, provider: this.provider, packageName: this.packageName, invoice: this.invoice, packagePrice: this.packagePrice, vatPrice: this.vatPrice, paymentIntent: this.paymentIntent, cardHolder: this.cardholderName })
+      this.$axios.$post('/rest/course/send-invoice', { form: this.form, provider: this.provider, packageName: this.packageName, invoice: this.invoice, packagePrice: this.packagePrice, vatPrice: this.vatPrice, paymentIntent: this.paymentIntent, cardHolder: this.cardholderName })
       .then( r => {
-        this.$error(r.data);
+        // this.$error(r.data);
       }).catch(e => {
         console.log(e);
       });
     },
     saveEnhancement: function() {
-      this.http.post('course/enhancement',
+      this.$axios.$post('/rest/course/enhancement',
       { 
         product_id:   this.subscription_plan,
         course_id:    this.course_id
       }
       ).then( r => {    
-        this.$error(r.data);
+        // this.$error(r.data);
       }).catch(e => {
         console.log(e);
       });

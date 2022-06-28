@@ -1,6 +1,4 @@
-import store from "../../config/store"
 export default {
-  store,
   data() {
     return {   
       loginTo: 'https://my.vettimes.co.uk/login',
@@ -11,9 +9,9 @@ export default {
         ? '/courseproviders/company-management'
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       buyTo: 
-        (store.auth && store.auth === 2 )
+        (this.$store.state.mystore.auth && this.$store.state.mystore.auth === 2 )
         ? '/courseproviders/courses/new'
-        : ( store.auth ) ? '/courseproviders/company-management' 
+        : ( this.$store.state.mystore.auth ) ? '/courseproviders/company-management' 
         : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
       dialogFormVisible: false,
       page: [],

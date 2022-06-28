@@ -9,14 +9,13 @@ export default {
     TopAd
   },
   mounted(){
-    // this.$axios.get("/rest/auth").then(res => {
-    //   this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
-    //   console.log("AAAAAAAAAAAA==========>",this.$store.state.mystore.auth)
-    //   this.access(this.$route);
-    // }).catch( () => {
-    //   this.$store.commit("mystore/auth");
-    //   this.access(this.$route);
-    // });
+    this.$axios.get("/rest/auth").then(res => {
+      this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
+      this.access(this.$route);
+    }).catch( () => {
+      this.$store.commit("mystore/auth");
+      this.access(this.$route);
+    });
   },
   methods:{
     access(to) {

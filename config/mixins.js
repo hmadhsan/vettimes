@@ -4,13 +4,13 @@ let helpers = {
   
   computed: {
     dialog () {
-      return store.state.enquireEmailDialog
+      return this.$store.state.mystore.enquireEmailDialog
     },
     courseDialog () {
-      return store.state.courseEmailDialog
+      return this.$store.state.mystore.courseEmailDialog
     },
     courseAlertDialog() {
-      return store.state.courseAlertDialog
+      return this.$store.state.mystore.courseAlertDialog
     }
   },
   methods: {
@@ -254,6 +254,7 @@ let helpers = {
       e.container.offsetParent.closest('.cm-form__field').classList.remove('hasFocus');
     },
     isStar: function(id) {
+      debugger
       if(this.$store.state.mystore.auth) {
         return this.$store.state.mystore.stars.data.indexOf(id) >= 0;
       } else {

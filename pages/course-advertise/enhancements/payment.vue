@@ -53,10 +53,10 @@ export default {
         this.form = false;
     },
     setStatus(value) {
-      this.http.put("course/status", { id: this.$parent.course_id, value: value }).then( r => {
-        if(this.$error(r.data)) {
+      this.$axios.$put("/rest/course/status", { id: this.$parent.course_id, value: value }).then( r => {
+        if(r) {
           this.$router.push('/courseproviders/courses');
-          window.location.reload();
+          process.browser ? window.location.reload() : null ;
         }
       }).catch(e => {
           console.log(e);
@@ -73,8 +73,8 @@ export default {
       locale: 'auto',
       token: token => {
         if (token.id) {
-          el.http.post('user/credits', { product_id: el.type, quantity: 1, token: token.id, course_id: this.$parent.course_id }).then( r => {
-            if ( el.$error(r.data) ) {
+          el.$axios.$post('/rest/user/credits', { product_id: el.type, quantity: 1, token: token.id, course_id: this.$parent.course_id }).then( r => {
+            if ( r ) {
               el.$parent.get(true);
               this.setStatus(1);
             } else {

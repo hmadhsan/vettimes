@@ -8,7 +8,6 @@ import FbAd from "./fb_ad"
 // import Axios from "axios";
 import { cpdBaseUrl } from "~/config/constants";
 // import router from "~/config/routes";
-
 export default {
   
   mixins: [mixins.helpers],
@@ -44,13 +43,13 @@ export default {
   },
   mounted(){
 
-    this.$axios.get("/rest/auth").then(res => {
-      this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
-      this.access(this.$route);
-    }).catch( () => {
-      this.$store.commit("mystore/auth");
-      this.access(this.$route);
-    });
+    // this.$axios.get("/rest/auth").then(res => {
+    //   this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
+    //   this.access(this.$route);
+    // }).catch( () => {
+    //   this.$store.commit("mystore/auth");
+    //   this.access(this.$route);
+    // });
 
     
   }
@@ -219,6 +218,7 @@ export default {
       });
     },
     courseProcess:  function (course_id, type) {
+      
       if (this.$store.state.mystore.auth && [1, 4].indexOf(this.$store.state.mystore.auth.role) >= 0) {
         let action = 'addCourse';
         if (!type) {
@@ -242,8 +242,10 @@ export default {
     },
     
     checkAuth: function () {
+      debugger;
       let auth = this.$store.state.mystore.auth;
       if(auth) {
+        let a = !!auth.role && [1, 4].indexOf(auth.role) === -1
         return !!auth.role && [1, 4].indexOf(auth.role) === -1;
       } else {
         return true;

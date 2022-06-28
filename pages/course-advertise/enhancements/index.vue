@@ -162,15 +162,15 @@
         <div class="package-btns" v-else-if="!loading">
 
             <!-- @click="addCredits = true"  -->
-            <button type="submit" v-if="this.showButtonPublish" @click="setStatus(1)">Publish</button>
+            <button type="submit" v-if="this.showButtonPublish" @click="setStatus(1)">Publishssssssssss</button>
             <button type="submit" v-else @click="chargePayment">Pay & Publish</button>
 
-            <button type="submit" v-if="this.$parent.closeButton" @click="close">Close</button>
+            <button type="submit" v-if="this.$parent.closeButton" @click="close">Closessssssssssss</button>
 
             <button type="submit" v-if="(this.old_subscription_plan == this.subscription_plan)"
                 @click="saveEnhancement">Save</button>
             <!-- <button type="submit" v-else @click="chargePayment">Save</button> -->
-            <button type="submit" v-else-if="(this.paymentSection)" @click="chargePayment">Save</button>
+            <button type="submit" v-else-if="(this.paymentSection)" @click="chargePayment">Savesssssssssssss</button>
 
             <router-link v-if="[0,2].indexOf(this.$parent.info.status) > -1" class="preview-link"
                 :to="`/course-details/${ this.$parent.info.id}/${ this.$parent.info.slug}/?preview=preview`"

@@ -21,6 +21,7 @@ export default {
     }
   },
   methods: {
+    
     toQuery(obj) {
       return "?"+ Object.keys(obj)
       .map(key => key + "=" + (obj[key] || ""))
@@ -104,7 +105,7 @@ export default {
       this.dialogOpen = true;
     },
     next() {
-      // window.location.href = this.$router.currentRoute.fullPath.replace('/attachments', '/enhancements');
+      process.browser ? window.location.href = this.$router.currentRoute.fullPath.replace('/attachments', '/enhancements') : null ;
       this.$parent.activeTab('attachments', 'enhancements'); this.$parent.activeTabEnhancements = true;
     }
   },

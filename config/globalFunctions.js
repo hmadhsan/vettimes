@@ -64,3 +64,11 @@ export function ntf (obj)  {
   
     return res;
   };
+
+  export function isStar (id) {
+    if(this.$store.state.mystore.auth) {
+      return this.$store.state.mystore.stars.indexOf(id) >= 0;
+    } else {
+      return false;
+    }
+  }
