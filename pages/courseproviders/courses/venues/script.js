@@ -14,15 +14,22 @@ export default {
     }
   },
   methods: {
+    toQuery(obj){
+      return "?"+ Object.keys(obj)
+      .map(key => key + "=" + (obj[key] || ""))
+      .join("&")
+    },
     get() {
       this.$axios.$get("/rest/course/dates?id="+this.id + "&_path=/courseproviders/courses").then( r => {
-        this.$error(r) && (this.array = r.array);
+        r 
+        && 
+        (this.array = r.array);
       });
     },
     update() {
       this.dialog.course_id = this.id;
       this.$axios.$post("/rest/course/dates", this.dialog).then( r => {
-        if ( this.$error(r) ) {
+        if ( r ) {
           this.get();
           this.dialog = false;
         }
@@ -33,8 +40,8 @@ export default {
         confirmButtonText: 'Yes',
         cancelButtonText: 'No'
       }).then(() => {
-        this.$axios.$delete("/rest/course/dates"+this.$toQuery(obj)).then( r => {
-          if ( this.$error(r) ) {
+        this.$axios.$delete("/rest/course/dates"+this.toQuery(obj)).then( r => {
+          if ( r ) {
             this.get();
             this.dialog = false;
           }

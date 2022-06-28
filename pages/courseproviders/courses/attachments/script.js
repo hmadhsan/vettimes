@@ -80,19 +80,19 @@ export default {
     },
     get() {
       this.$axios.$get("/rest/course/attachments?id="+this.id + "&_path=/courseproviders/courses").then( r => {
-        this.error(r.data) && (this.array = r.data.array);
+        this.error(r) && (this.array = r.array);
       });
     },
     update() {
       this.$axios.$post("/rest/course/attachments", { course_id: this.id, media_id: this.media }).then( r => {
-        this.error(r.data) && this.get();
+        this.error(r) && this.get();
       });
       this.media = null;
     },
     remove(id, media_id) {
       this.$confirm("", "Are You sure?").then(() => {
         this.$axios.$delete("course/attachments"+this.toQuery({ id: id, course_id: this.id, media_id: media_id })).then( r => {
-          this.error(r.data) && this.get();
+          this.error(r) && this.get();
         });
       }).catch(() => {});
     },

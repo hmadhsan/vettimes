@@ -18,8 +18,9 @@ export default {
         }, 1000);
         return this.$refs.upload.submit();
       }
-      this.http.post("media", this.$parent.dialog).then( r => {
-        this.done(r.data);
+      this.$axios.$post("media", this.$parent.dialog).then( r => {
+        console.log("POST========>",r)
+        this.done(r);
       });
     },
     cancel() {

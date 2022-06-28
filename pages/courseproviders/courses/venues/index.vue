@@ -10,7 +10,6 @@
     >Add additional date</button>
 
     <el-table :data="array" class="m-top" stripe>
-
       <el-table-column label="Location \ Delivery">
         <template slot-scope="el">
           <el-button type="text" @click="dialog = el.row">
@@ -56,3 +55,12 @@
 </template>
 
 <script src="./script.js"></script>
+
+<style>
+.el-table__empty-block span {
+  display: none;
+}
+.el-table__empty-block:after {
+  content: 'No Data';
+}
+</style>
