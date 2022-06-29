@@ -4,20 +4,10 @@ import Rolling from "../../components/rolling";
 import mixins from "../../config/mixins";
 import CoursePreview from "../../components/course-preview";
 import Provider from "../../components/provider-preview";
-
 import EmailMeCourses from "../../components/email-me-courses";
 
+
 export default {
-  head: {
-    title: 'Vet Times | The website for the veterinary profession',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hider: 'description', name: 'description', content: 'Vet Times is the website for the veterinary profession' },
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-  },
-  
   mixins: [ mixins.helpers ],
   components: {
     RemoteSearch,
@@ -86,35 +76,47 @@ export default {
     }
   },
   watch: {
-    
     'keywords': 'searchCourses'
   },
-  created() {
+  mounted: function () {
     this.$nextTick(function () {
-      if(this.$store.state.mystore.searchList || this.$store.state.mystore.categories || this.$store.state.mystore.categoriesSlugsName) {
+      if(this.isEmptyObj(this.$store.state.mystore.searchList) || this.isEmptyObj(this.$store.state.mystore.categories) || this.isEmptyObj(this.$store.state.mystore.categoriesSlugsName)) {
         this.get();
-        this.searchCourses()
       } else {
         this.listLoad = true;
       }
     })
   },
-  //created: function() {
-  //  window.addEventListener('resize', this.onResize);
-  //},
+  created: function() {
+    process.browser ? window.addEventListener('resize', this.onResize) : null;
+  },
   methods: {
+    scrollToElement (id) {
+      let elem;
+      process.browser ? elem = document.getElementById(id) : null;
+      let coords = elem.getBoundingClientRect();
+    
+      process.browser ? window.scrollTo(0, coords.top + pageYOffset) :null;
+    
+    },
+    isEmptyObj (obj) {
+      for (var key in obj) {
+        return false;
+      }
+      return true;
+    },
     addNewKeyword: function(value) {
       this.keywords.push(value);
-      let block = document.getElementById('filterBar');
-     // block.style.display = '';
+      let block = process.browser ? document.getElementById('filterBar') : null ;
+      block.style.display = '';
     },
     onResize() {
-      if(document.getElementById('filterBar')) {
-        document.getElementById('filterBar').style.display = '';
+      if(process.browser ? document.getElementById('filterBar') : false) {
+        process.browser ? document.getElementById('filterBar').style.display = '' : null ;
       }
     },
     showFilterBar: function() {
-      let block = document.getElementById('filterBar');
+      let block = process.browser ? document.getElementById('filterBar') : null ;
       block.style.display = block.style.display === 'block' ? '': 'block';
     },
     setKeywords: function (data) {
@@ -161,9 +163,9 @@ export default {
         }
       })
     },
-    get: async function() {
-     await this.$axios.$get(`/rest/course/categories?count=false&_position=courses&_path=/courses`).then( r => {
-       console.log('Line 156', r)
+    get: function() {
+      this.$axios.$get(`/rest/course/categories?count=false&_position=courses`).then( r => {
+        debugger;
         let arr = [];
         let categories = {};
         let categoriesSlugsName = {};
@@ -193,8 +195,7 @@ export default {
         }
       });
     },
-    searchCourses : async function () {
-      
+    searchCourses: function () {
       this.loader = false;
       this.clickToCourse = false;
       
@@ -206,8 +207,7 @@ export default {
 
       let query_str = '';
 
-      await this.$axios.$post(`/rest/courses/search?_position=courses&_path=/courses`, {
-        
+      this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
         typeSearch: this.keywords.length,
         page: this.page,
         speciality: this.searchWords['speciality'].join('|'),
@@ -219,11 +219,10 @@ export default {
         kw: this.searchWords['keywords'].join('|'),
         sortBy: this.sortType,
         pid: this.pid,
-        isProviders: false,
+        isProviders: this.$attrs.providers,
         providersPage: this.providersPage
       })
       .then( r => {
-        console.log('Line 216', r)
         if ( r.total > 0 ) {
           this.courses.total = r.total;
           this.courses.array = r.array;
@@ -258,11 +257,12 @@ export default {
       }
       if(this.keywords.length > 0) {
         this.keywords.forEach(item => {
-          this.modelCategories[store.state.categoriesNamesCatgroup[item]] = item;
+          this.modelCategories[this.$store.state.mystore.categoriesNamesCatgroup[item]] = item;
         })
       }
-      let block = document.getElementById('filterBar');
-    //  block.style.display = '';
+      let block;
+      process.browser ? (block =  document.getElementById('filterBar')) : null ;
+      block.style.display = '';
     },
     handleNewSearchItem: function (e) { //add new cat to search
       e.preventDefault();
@@ -273,7 +273,7 @@ export default {
         this.keywords.push(keyword);
       }
       this.dialogTableVisible = false;
-    window.scroll(0,0)
+      this.scrollToElement('search-block');
     },
     handleDeleteSearchItem: function (e) { // delete cat from search
       let keyword = e.target.closest('div').firstChild.getAttribute('data-cat');
@@ -290,10 +290,10 @@ export default {
       if(this.keywords.length === 0) {
         this.$router.push(`/courses/`);
       }
-    window.scroll(0,0)
+      this.scrollToElement('search-block');
     },
     specialitySearchNow: function (key, cat) { // filter speciality group cats for view after search
-      let searchWords = this.findCategories(this.keywords, store.state.categories);
+      let searchWords = this.findCategories(this.keywords, this.$store.state.mystore.categories);
       if(['speciality','audience','skill_level'].indexOf(key) >= 0  && searchWords[key].length > 0) {
          return searchWords[key].indexOf(cat) >= 0;
       }
@@ -302,14 +302,12 @@ export default {
     goToPage: function (page) {
       this.page = page;
       this.searchCourses();
-      //this.$scrollToElement('search-block');
-      window.scrollTo(0, 0);
+      this.scrollToElement('search-block');
     },
     goToProvidersPage: function (page) {
       this.providersPage = page;
       this.searchCourses();
-    //window.scroll(0,0)
-    window.scrollTo(0, 0);
+      this.scrollToElement('search-block');
     },
     sortCourses: function () {
       this.searchCourses();
@@ -320,7 +318,7 @@ export default {
     tabListener: function() {
       this.page = 1;
       this.providersPage = 1;
-     this.searchCourses();
+      this.searchCourses();
     },
     sponsorShip: function() {
       this.resetSponsorShip();

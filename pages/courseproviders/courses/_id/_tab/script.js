@@ -119,7 +119,7 @@ export default {
         cancelButtonText: 'No'
       }).then(() => {
         this.$axios.$put("/rest/course/status", { id: this.info.id, value: value }).then(r => {
-          if (this.$error(r)) {
+          if (r) {
             this.get();
             this.getCreditBalance();
           }
@@ -130,7 +130,7 @@ export default {
     },
     doCopy() {
       this.$axios.$post("/rest/course/copy", { id: this.info.id }).then(r => {
-        if (this.$error(r)) {
+        if (r) {
           if (!r.id) return this.$ntf({});
           this.$router.push(`/courseproviders/courses/${r.id}/details/`);
           window.location.reload();
@@ -145,7 +145,7 @@ export default {
         cancelButtonText: 'No'
       }).then(() => {
         this.$axios.$delete("/rest/course?id=" + this.info.id).then(r => {
-          if (this.$error(r)) {
+          if ((r)) {
             setTimeout(() => {
               this.$router.push(`/courseproviders/courses/`);
             }, 2000)

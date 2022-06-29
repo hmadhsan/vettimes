@@ -2,7 +2,7 @@ export const state = ()=>(
   {
   auth: null,
   stars: [],
-  base: process.env.BASE_URL,
+  base: 'http://cpdlocal.vettimes.co.uk/',//process.env.BASE_URL,
   load: 0,
   enquireEmailDialog: false,
   courseEmailDialog: false,

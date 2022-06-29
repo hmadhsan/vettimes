@@ -19,7 +19,6 @@ export default {
         return this.$refs.upload.submit();
       }
       this.$axios.$post("media", this.$parent.dialog).then( r => {
-        console.log("POST========>",r)
         this.done(r);
       });
     },
@@ -36,7 +35,7 @@ export default {
     },
     done(data) {
       this.list = [];
-      if ( this.$error(data) ) {
+      if ( data ) {
         this.$parent.get();
         this.$parent.dialog = {};
         this.$parent.dialogOpen = false;

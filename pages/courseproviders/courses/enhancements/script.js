@@ -207,7 +207,7 @@ export default {
       this.$axios.$post('/rest/user/credits',
         { product_id: this.subscription_plan, quantity: 1, token: clientSecret, course_id: this.course_id, invoice: this.invoice })
         .then( r => {
-        if ( r.data ) {
+        if ( r ) {
           this.get(true);
           this.setStatus(1, false);
           this.sendPaymentInfo();
@@ -243,10 +243,10 @@ export default {
     setCourseStatus(value) {
       this.$axios.$put("/rest/course/status", { id: this.course_id, value: value, selected_product: this.subscription_plan })
       .then( r => {
-        if(r.data) {
+        if(r) {
           if( this.subscription_plan == '2' || this.subscription_plan == '8' ) this.sendEmailAboutJob();
           this.$router.push('/courseproviders/courses');
-          process.browser ? window.location.reload() : null;
+          // process.browser ? window.location.reload() : null;
         }
       }).catch(e => {
           console.log(e);

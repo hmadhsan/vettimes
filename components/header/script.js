@@ -258,7 +258,7 @@ export default {
         return;
       }      
      // this.$scrollToElement(section);
-      window.scroll(0,0)
+      process.browser ? window.scroll(0,0) : null;
     },
   },
   computed: {

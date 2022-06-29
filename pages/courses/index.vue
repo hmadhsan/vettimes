@@ -5,11 +5,12 @@
     <div class="content">
       <div class="row">
         <RemoteSearch
+          v-if="listLoad"
           @setKeywords="setKeywords"
           :keywords="keywords"
-          :catList="$store.state.searchList"
-          :categoriesObj="$store.state.categories"
-          :catsSlugsName="$store.state.categoriesSlugsName"
+          :catList="$store.state.mystore.searchList"
+          :categoriesObj="$store.state.mystore.categories"
+          :catsSlugsName="$store.state.mystore.categoriesSlugsName"
         ></RemoteSearch>
 
         <!-- add ons -->
@@ -22,7 +23,7 @@
               <h3 class="icon-before head-filter-mobile" data-icon="▶"><button @click="showFilterBar" class="el-button--text">Filter your results</button></h3>
               <h3 class="head-filter-desktop">Filter your results</h3>
               <div id="filterBar">
-                <div v-for="(cats, key) in $store.state.categories" :key="cats.id">
+                <div v-for="(cats, key) in $store.state.mystore.categories" :key="cats.id">
                   <h4 class="filter-title" v-if="courses.total > 0 && filterEmptyCats(cats, key).length > 0">{{ categoriesKeys[key] }}</h4>
                   <ul class="head-filter-desktop">
                     <li v-for="(cat, index) in filterEmptyCats(cats, key)" :key="cat.id">
@@ -85,7 +86,7 @@
                     <ul class="category-dialog__list">
                       <li
                         class="category-dialog__list-item"
-                        v-for="cat in filterPopupEmptyCats($store.state.categories[categoryDialog])"
+                        v-for="cat in filterPopupEmptyCats($store.state.mystore.categories[categoryDialog])"
                         :key="cat.id"
                       >
                         <nuxt-link
@@ -121,15 +122,15 @@
                   </el-popover>
                 </transition>
               </div>
-              <nuxt-link @click.native="tabListener" :to="'/courses'" class="tab" :class="[{activeTab : true}]">Courses <span>({{courses.total}})</span></nuxt-link>
-              <nuxt-link @click.native="tabListener" :to="'/course-providers'" class="tab" :class="[{activeTab : false}]">Course Providers <span>({{ providers.total }})</span></nuxt-link>
+              <nuxt-link @click.native="tabListener" :to="'/courses'" class="tab" :class="[{activeTab : !$attrs.providers}]">Courses <span>({{courses.total}})</span></nuxt-link>
+              <nuxt-link @click.native="tabListener" :to="'/course-providers'" class="tab" :class="[{activeTab : $attrs.providers}]">Course Providers <span>({{ providers.total }})</span></nuxt-link>
             </div>
             <h2 class="popover-form__title" style="padding: 0 10px 0; margin-top:20px;">Found {{ courses.total }}
             <span class="text-capitalize">{{ findCourses.concat(searchWords.speciality, searchWords.course_type).join(', ') }}</span>
              veterinary courses
             <span v-show="searchWords.location.length > 0">in <span class="text-capitalize">{{ searchWords.location.join(', ') }}</span></span></h2>
             <p style="padding: 0 10px 0; margin-top:20px;">{{ courses.seo.intro }}</p>
-            <div class="courses__inner" v-if="true">
+            <div class="courses__inner" v-if="!$attrs.providers">
               <div class="sort" v-if="courses.total > 1">
                 <span>Sort by:</span>
                 <el-select v-model="sortType" @change="sortCourses" class="courses-sort-type">
@@ -196,8 +197,7 @@
                </div>
               </div>
               <div class="pagination">
-             <!--  <a rel="alternate" type="application/rss+xml" :href="$store.state.base+`rss/courses?keyword=${keywords.join('|')}`" class="icon-before pagination__subscriber" data-icon="☲">Subscribe</a> -->  
-              <a rel="alternate" type="application/rss+xml" :href="$store.state.base+`rss/courses?keyword=${keywords.join('|')}`" class="icon-before pagination__subscriber" data-icon="☲">Subscribe</a>
+                <a rel="alternate" type="application/rss+xml" :href="$store.state.mystore.base+`rss/courses?keyword=${keywords.join('|')}`" class="icon-before pagination__subscriber" data-icon="☲">Subscribe</a>
                 <el-pagination
                     class="pagination__items"
                     v-if="courses.total > 20"
@@ -210,7 +210,7 @@
                 </el-pagination>
               </div>
             </div>
-            <div class="course__inner courses__inner_providers" v-if="false">
+            <div class="course__inner courses__inner_providers" v-if="$attrs.providers">
               <div v-if="!loader">
                 <Loader />
               </div>

@@ -1,9 +1,9 @@
 
 import Table from "./table";
 import Popup from "./popup";
-import mixins from "../../config/mixins";
-import ProvidersOnly from "../../components/providers-only";
-import Loader from "../../components/loader";
+import mixins from "../../../config/mixins";
+import ProvidersOnly from "../../../components/providers-only";
+import Loader from "../../../components/loader";
 
 export default {
   
@@ -136,7 +136,7 @@ export default {
         page: this.page,
         keywords: this.searchKeywords,
         status: this.providerStatus,
-        id: store.state.currentProviderId,
+        id: this.$store.state.mystore.currentProviderId,
         order_by: this.order_by,
         order: this.order
       }) );

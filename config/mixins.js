@@ -135,8 +135,8 @@ let helpers = {
           temp = searchWords[key].map(item => item.replace(/ /g, '+'));
         } else {
           temp = searchWords[key].map(item => {
-            if(store.state.categoriesNameSlugs[item]) {
-              return store.state.categoriesNameSlugs[item]
+            if(this.$store.state.mystore.categoriesNameSlugs[item]) {
+              return this.$store.state.mystore.categoriesNameSlugs[item]
             }
           });
         }
@@ -217,8 +217,8 @@ let helpers = {
       if(keywords.length > 0) {
         keywords.forEach(item => {
           if(item!=null) {
-            if(store.state.categoriesNamesCatgroup[item]) {
-              searchWords[store.state.categoriesNamesCatgroup[item]].push(item);
+            if(this.$store.state.mystore.categoriesNamesCatgroup[item]) {
+              searchWords[this.$store.state.mystore.categoriesNamesCatgroup[item]].push(item);
             } else {            
                 searchWords['keywords'].push(item);            
             }

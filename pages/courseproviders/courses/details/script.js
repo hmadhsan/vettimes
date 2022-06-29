@@ -68,8 +68,14 @@ export default {
     }
   },
   watch: {
-    'dataUpdateError': '$scrollToTop',
-    'dataUpdateSuccess': '$scrollToTop'
+    dataUpdateError(o,n){
+      this.scrollToTop()
+  },
+    dataUpdateSuccess(o,n){
+      console.log("WATCHING")
+      debugger;
+      this.scrollToTop()
+    }
   },
   mounted: function () {
     this.$nextTick(function () {
@@ -92,6 +98,9 @@ export default {
     }
   },
   methods: {
+    scrollToTop(){
+      process.browser ? window.scrollTo(0, 0) :null;
+    },
     get: function(credits = false) {      
       this.$axios.$get("/rest/course/info?id="+ this.$route.params.id + "&_path=/courseproviders/courses").then(r => {
         if (r) {          
@@ -178,7 +187,9 @@ export default {
     },
     submit(e) {
       
-      if ( true !== e ) e.preventDefault();
+      if ( true !== e ) {
+      e.preventDefault();
+      }
 
       // if(this.isEmptyObj(this.credits)) {
       //   return false;
@@ -197,14 +208,14 @@ export default {
           this.advertType = false;
         }
 
-        //console.log('put')
         this.$axios.$put("/rest/course", this.form).then( r => {
+          
           if (r) {
             if(r.status) {
               this.dataUpdateSuccess = 'The course details have been saved. To make your course live on the site, you must use the <strong>"Publish"</strong> button. A single credit will be taken from your balance. If you do not have any credits, please call us on <a href="callto:(0)1733 383534">(0)1733 383534</a> or email <a href="mailto:cpd@vettimes.co.uk">cpd@vettimes.co.uk</a> to purchase credits.'
             }
             if ( true === e ) {
-              // window.location.href = this.$router.currentRoute.fullPath.replace('/details', '/categorisation');
+              // process.browser ? window.location.href = this.$router.currentRoute.fullPath.replace('/details', '/categorisation') : null ;
               this.$parent.activeTab('details', 'categorisation'); this.$parent.activeTabCategorisation = true;
             } else {
               this.$parent.get();
