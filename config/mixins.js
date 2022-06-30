@@ -254,9 +254,8 @@ let helpers = {
       e.container.offsetParent.closest('.cm-form__field').classList.remove('hasFocus');
     },
     isStar: function(id) {
-      debugger
       if(this.$store.state.mystore.auth) {
-        return this.$store.state.mystore.stars.data.indexOf(id) >= 0;
+        return this.$store.state.mystore?.stars?.data?.indexOf(id) >= 0;
       } else {
         return false;
       }

@@ -165,7 +165,7 @@ export default {
     },
     get: function() {
       this.$axios.$get(`/rest/course/categories?count=false&_position=courses`).then( r => {
-        debugger;
+        
         let arr = [];
         let categories = {};
         let categoriesSlugsName = {};

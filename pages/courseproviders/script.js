@@ -53,7 +53,12 @@ export default {
       this.getCoursesHomeContent();      
     });
     if( (['#why-choose-us', '#packages'].indexOf( this.$route.hash ) >= 0 ) ) {
-      let section = this.$route.hash.replace('#', ''); window.scroll( section );
+
+    let section = this.$route.hash.replace('#', ''); 
+    process.browser ? document?.getElementById(section)?.scrollIntoView() : null;
+    
+      
+      // process.browser ? window.scroll( section ) : null;
     }
   },
   methods: {
@@ -86,4 +91,3 @@ export default {
     }
   }
 }
-

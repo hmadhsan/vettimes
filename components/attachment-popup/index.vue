@@ -24,9 +24,10 @@
         <el-upload
             name="file"
             ref="upload"
+            :with-credentials="true"
             :accept="$parent.accept[$parent.dialog.type]"
             :auto-upload="false"
-            :headers="{ 'X-CSRF-TOKEN': $CSRF }"
+            :headers="{ 'X-CSRF-TOKEN': this.$csrfToken() }"
             :action="$store.state.mystore.base+`rest/media`"
             :data="$parent.dialog"
             :limit="1"

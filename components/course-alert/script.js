@@ -33,9 +33,27 @@ export default {
     window.addEventListener('keyup', this.closePopupByKeyboard)
   },
   methods: {
+    ntf(obj){  
+      if (typeof obj === "string") obj = { type: "error", message: obj };
+      if (typeof obj !== "object") obj = { type: "error", message: unknownError };
+      if (!obj.type) obj.type = "error";
+      if (!obj.message) obj.message = unknownError;
+      if (!obj.duration) obj.duration = 5000;
+      ElementUI.Message({
+        duration: obj.duration,
+        message: obj.message,
+        showClose: true,
+        type: obj.type
+      });
+    },
+    toQuery(obj) {
+      return "?"+ Object.keys(obj)
+      .map(key => key + "=" + (obj[key] || ""))
+      .join("&")
+    },
     noThanks: function() {
-      this.$axios.$put("/rest/leads/no-thanks" + this.$toQuery(this.form)).then( r => {        
-        if(r.error !== undefined) return this.$ntf(r.error);
+      this.$axios.$put("/rest/leads/no-thanks" + this.toQuery(this.form)).then( r => {        
+        if(r.error !== undefined) return this.ntf(r.error);
         // if(r.data.status) window.location.href = store.state.url;
         this.closeCourseAlertPopup();
       });
@@ -72,8 +90,8 @@ export default {
       this.form.slug = this.$route.params.slug;
       this.form.value = this.$route.query.porder ? this.$route.query.porder.split('|') : '';
 
-      this.$axios.$put("/rest/leads/course-alert" + this.$toQuery(this.form)).then( r => {
-        if(r.error !== undefined) return this.$ntf(r.error);
+      this.$axios.$put("/rest/leads/course-alert" + this.toQuery(this.form)).then( r => {
+        if(r.error !== undefined) return this.ntf(r.error);
         window.location.href = store.state.url;
         this.closeCourseAlertPopup();
       });

@@ -15,6 +15,7 @@
     "@nuxtjs/auth-next": "^5.0.0-1648802546.c9880dc",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/proxy": "^2.1.0",
+    "@privyid/nuxt-csrf": "^1.0.0",
     "@stripe/stripe-js": "^1.32.0",
     "axios": "^0.18.1",
     "babel-loader": "^8.2.5",

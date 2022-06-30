@@ -21,7 +21,7 @@
             ref="upload"
             :accept="$parent.accept[$parent.dialogBox.type]"
             :auto-upload="false"
-            :headers="{ 'X-CSRF-TOKEN': $CSRF }"
+            :headers="{ 'X-CSRF-TOKEN': this.$csrfToken() }"
             :action="$store.state.mystore.base+`rest/media`"
             :data="$parent.dialogBox"
             :limit="1"

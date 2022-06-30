@@ -1670,3 +1670,6 @@ input.el-input__inner::placeholder {
         border-color: transparent;
         border-style: solid;
       }
+      li.header-menu__item:hover {
+        cursor: pointer;
+    }

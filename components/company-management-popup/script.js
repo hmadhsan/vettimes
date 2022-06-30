@@ -14,7 +14,7 @@ export default {
         return this.$refs.upload.submit();
       }
       this.$parent.dialogBox.allowAllRole = true;
-      this.http.post("media", this.$parent.dialogBox).then( r => {
+      this.$axios.$post("/rest/media", this.$parent.dialogBox).then( r => {
         this.done(r.data);
       });
     },

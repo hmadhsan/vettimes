@@ -49,7 +49,8 @@ let app = {
     '@nuxtjs/auth-next',
     'vue2-editor/nuxt',
     '@nuxtjs/proxy',
-    'vue-scrollto/nuxt'
+    'vue-scrollto/nuxt',
+    '@privyid/nuxt-csrf'
   ],
   axios: {
     // WARNING: proxy doesn't work with nuxt generate,
@@ -70,7 +71,8 @@ css: [
   plugins: [
     { src: '~/plugins/myplugin.js', mode: 'client' },
     { src: '~/plugins/vue2-editor.js', mode: 'client' },
-    { src:'~/plugins/element-ui.js', mode:'client'}
+    { src:'~/plugins/element-ui.js', mode:'client'},
+    // { src:'~/plugins/main.js', mode:'client'}
 
   ]
 };

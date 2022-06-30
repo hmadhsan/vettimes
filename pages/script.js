@@ -8,6 +8,7 @@ import FbAd from "./fb_ad"
 // import Axios from "axios";
 import { cpdBaseUrl } from "~/config/constants";
 // import router from "~/config/routes";
+import axios from 'axios'
 export default {
   
   mixins: [mixins.helpers],
@@ -17,6 +18,11 @@ export default {
     TopHeading,
     RightAd,
     FbAd
+  },
+  head() {
+    return {
+      title: "Vet Times CPD"
+    }
   },
   data() {
     return {
@@ -55,6 +61,7 @@ export default {
   }
   ,
   created() {
+    axios.defaults.withCredentials = true
     this.facebookInit()
     this.$nextTick(function () {
       if (this.$store.state.mystore.searchList || this.$store.state.mystore.categories || this.$store.state.mystore.categoriesSlugsName) {
@@ -242,7 +249,7 @@ export default {
     },
     
     checkAuth: function () {
-      debugger;
+      
       let auth = this.$store.state.mystore.auth;
       if(auth) {
         let a = !!auth.role && [1, 4].indexOf(auth.role) === -1
