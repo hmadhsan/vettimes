@@ -58,12 +58,12 @@ let helpers = {
         }
       } else {
         if(!!this.$route.params.keyword) {
-          if(store.state.categoriesSlugsName[this.$route.params.keyword]) {
+          if(this.$store.state.mystore.categoriesSlugsName[this.$route.params.keyword]) {
             paths.slugs.push(this.$route.params.keyword);
           }
         } else if(!!this.$route.params.pathMatch) {
           paths.slugs = this.$route.params.pathMatch.split('/').filter(item => {
-            if(store.state.categoriesSlugsName[item]) {
+            if(this.$store.state.mystore.categoriesSlugsName[item]) {
               return item;
             }
           });
@@ -102,8 +102,8 @@ let helpers = {
       let paths = this.getSlugsFromRoutes();
       if(paths.slugs.length > 0) {
         this.value = paths.slugs.map(item => {
-          if(store.state.categoriesSlugsName[item]) {
-            return store.state.categoriesSlugsName[item];
+          if(this.$store.state.mystore.categoriesSlugsName[item]) {
+            return this.$store.state.mystore.categoriesSlugsName[item];
           }
         });
         this.value = this.value.concat(paths.kw);

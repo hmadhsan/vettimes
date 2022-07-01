@@ -10,9 +10,9 @@
 
       <el-table-column prop="title" label="Title" sortable="custom">
         <template slot-scope="el">
-          <router-link :to="`/courseproviders/courses/${el.row.id}/details`" class="el-button--text">
+          <nuxt-link :to="`/courseproviders/courses/${el.row.id}/details`" class="el-button--text">
             {{ el.row.title }}
-          </router-link>
+          </nuxt-link>
           <div>Ref: {{ el.row.course_ref }}</div>
         </template>
       </el-table-column>

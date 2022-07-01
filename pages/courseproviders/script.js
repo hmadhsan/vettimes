@@ -1,5 +1,6 @@
 
 import { cpdBaseUrl } from "~/config/constants";
+import { error } from "~/config/globalFunctions";
 export default {
   
   data() {
@@ -78,7 +79,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios.$post(`/rest/email`, this.ruleForm).then( r => {
-            this.$error(r);
+            error(r);
           });
           this.dialogFormVisible = false;
         } else {

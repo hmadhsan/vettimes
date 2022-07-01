@@ -1,3 +1,4 @@
+import { error, scrollToTop } from "~/config/globalFunctions";
 import NF from "../404";
 
 export default {
@@ -45,7 +46,7 @@ export default {
     },
     get() {
       this.$axios.$get("/rest/article?id="+this.$route.params.id + "&_path=" + this.$route.path).then( r => {
-        if ( this.$error(r) ) {
+        if ( error(r) ) {
           this.page = r.data || false;
         }
       });
@@ -55,7 +56,7 @@ export default {
     },
   },
   created() {
-    this.$scrollToTop();
+    scrollToTop();
     this.getCategories();
   }
 }

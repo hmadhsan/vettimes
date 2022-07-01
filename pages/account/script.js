@@ -1,3 +1,5 @@
+import { error } from "~/config/globalFunctions";
+
 export default {
   data() {
     return {
@@ -22,17 +24,17 @@ export default {
   },
   methods: {
     get() {
-      this.http.get(`user?_path=${this.$route.path}`).then( r => {
-        if ( this.$error(r.data) ) {
-          this.userData = r.data.data;
+      this.$axios.$get(`/rest/user?_path=${this.$route.path}`).then( r => {
+        if ( error(r) ) {
+          this.userData = r.data;
         }
       });
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.http.put(`user?_path=${this.$route.path}`, this.userData).then( r => {
-            this.$error(r.data);
+          this.$axios.$put(`/rest/user?_path=${this.$route.path}`, this.userData).then( r => {
+            error(r);
           });
         } else {
           return false;

@@ -4,6 +4,7 @@ import mixins from "../../../../config/mixins";
 import MessageInfo from "../../../../components/message-info";
 import Payment from "./payment"
 //import { VueEditor } from "vue2-editor";
+import { error } from "~/config/globalFunctions";
 
 export default {
   mixins: [ mixins.helpers ],
@@ -72,8 +73,6 @@ export default {
       this.scrollToTop()
   },
     dataUpdateSuccess(o,n){
-      console.log("WATCHING")
-      
       this.scrollToTop()
     }
   },
@@ -103,7 +102,7 @@ export default {
     },
     get: function(credits = false) {      
       this.$axios.$get("/rest/course/info?id="+ this.$route.params.id + "&_path=/courseproviders/courses").then(r => {
-        if (r) {          
+        if (error(r)) {          
           if ( credits ) {
             this.credits = r.credits;
             return;
@@ -209,7 +208,7 @@ export default {
 
         this.$axios.$put("/rest/course", this.form).then( r => {
           
-          if (r) {
+          if (error(r)) {
             // if(r.status) {
             //   this.dataUpdateSuccess = 'The course details have been saved. To make your course live on the site, you must use the <strong>"Publish"</strong> button. A single credit will be taken from your balance. If you do not have any credits, please call us on <a href="callto:(0)1733 383534">(0)1733 383534</a> or email <a href="mailto:cpd@vettimes.co.uk">cpd@vettimes.co.uk</a> to purchase credits.'
             // }

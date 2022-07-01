@@ -4,6 +4,7 @@ import Popup from "./popup";
 import mixins from "../../../config/mixins";
 import ProvidersOnly from "../../../components/providers-only";
 import Loader from "../../../components/loader";
+import { error, isEmptyObj, ntf, toQuery } from "~/config/globalFunctions";
 
 export default {
   
@@ -37,7 +38,7 @@ export default {
   },
   mounted: function () {
     this.$nextTick(function () {
-      if(!this.isEmptyObj(this.$route.query)) {
+      if(!isEmptyObj(this.$route.query)) {
         this.page = parseInt(this.$route.query.page);
         this.searchKeywords = this.$route.query.keywords;
         this.providerStatus = this.$route.query.status;
@@ -48,31 +49,20 @@ export default {
     })
   },
   methods: {
-    toQuery(obj) {
-      return "?"+ Object.keys(obj)
-      .map(key => key + "=" + (obj[key] || ""))
-      .join("&")
-    },
-    isEmptyObj(obj) {
-      for (var key in obj) {
-        return false;
-      }
-      return true;
-    },
     get: function () {
       
       if(!this.$store.state.mystore.auth){
         // window.location.href = 'https://my.vettimes.co.uk/login?redirectTo=' + window.location.href;
       }
 
-      this.$axios.$get("/rest/courses/providercourses"+this.toQuery({
+      this.$axios.$get("/rest/courses/providercourses"+toQuery({
         page: this.page,
         keywords: this.searchKeywords,
         status: this.providerStatus,
         order_by: this.order_by,
         order: this.order
       }) + "&_path=" + this.$route.path).then( r => {        
-          if(r) {
+          if(error(r)) {
             this.data.array = r.array;
             this.data.total = r.total;
             this.leads = r.leads;
@@ -96,8 +86,8 @@ export default {
         cancelButtonText: 'No'
       }).then(() => {
         this.$axios.$put("/rest/course/status", { id: id, value: value }).then( r => {
-          // this.$error(r.data) 
-          // && 
+          error(r) 
+          && 
           this.get();
         })
       }).catch((e) => {
@@ -106,8 +96,8 @@ export default {
     },
     doCopy(id) {
       this.$axios.$post("/rest/course/copy", { id: id }).then( r => {
-        if ( r ) {
-          if ( !r.id ) return this.$ntf({});
+        if ( error(r) ) {
+          if ( !r.id ) return ntf({});
           this.$router.push(`/courseproviders/courses/${r.id}/details/`);
         }
       }).catch((e) => {
@@ -120,7 +110,7 @@ export default {
         cancelButtonText: 'No'
       }).then(() => {
         this.$axios.$delete(`course?id=${id}`).then( r => {
-          if(r) {
+          if(error(r)) {
             this.get();
           }
         }).catch((e) => {
@@ -132,7 +122,7 @@ export default {
       this.page = parseInt(page) || 1;
      // this.$scrollToElement('courses-table');
       process.browser ? window.scroll(0,0) : null;
-      this.$router.replace( this.toQuery({
+      this.$router.replace(toQuery({
         page: this.page,
         keywords: this.searchKeywords,
         status: this.providerStatus,

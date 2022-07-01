@@ -4,6 +4,7 @@ import MessageInfo from "../../../../components/message-info";
 import Payment from "./payment";
 import Loader from "../../../../components/loader";
 import {loadStripe} from '@stripe/stripe-js';
+import { error } from "~/config/globalFunctions";
 export default {
   mixins: [ mixins.helpers ],
   components: {
@@ -67,7 +68,7 @@ export default {
     get: function(credits = false) {   
       
       this.$axios.$get("/rest/course/info?id=" + this.course_id + "&_path=/courseproviders/courses").then(r => {          
-      if (r) {
+      if (error(r)) {
         
           if ( credits ) {
             this.credits = r.credits;
@@ -162,13 +163,13 @@ export default {
 
       if( this.cardholderName == '' ) {
         error['error'] = 'Card holder name is required';
-        // this.$error(error);
+        error(error);
       } else {        
         this.loading = true;        
          
         this.$axios.$post("/rest/user/payment-intent",
           { price: this.totalPrice, invoice: this.invoice, provider: this.provider, package: this.packageName }
-          ).then(r => {            
+          ).then(r => {         
           if (r) {
             
             var clientSecret = r.client_secret;
@@ -197,7 +198,7 @@ export default {
             console.log(e);
 
             error['error'] = 'Something went wrong please try again.';
-            this.$error(error);
+            error(error);
             this.loading = false;
         });
       }
@@ -207,12 +208,12 @@ export default {
       this.$axios.$post('/rest/user/credits',
         { product_id: this.subscription_plan, quantity: 1, token: clientSecret, course_id: this.course_id, invoice: this.invoice })
         .then( r => {
-        if ( r ) {
+        if ( error(r) ) {
           this.get(true);
           this.setStatus(1, false);
           this.sendPaymentInfo();
         } else {
-          error['error'] = 'Error: Something went wrong with user credits'; this.$error(error);
+          error['error'] = 'Error: Something went wrong with user credits'; error(error);
         }
       }).catch(e => {
         console.log(e);
@@ -243,7 +244,7 @@ export default {
     setCourseStatus(value) {
       this.$axios.$put("/rest/course/status", { id: this.course_id, value: value, selected_product: this.subscription_plan })
       .then( r => {
-        if(r) {
+        if(error(r)) {
           if( this.subscription_plan == '2' || this.subscription_plan == '8' ) this.sendEmailAboutJob();
           this.$router.push('/courseproviders/courses');
           // process.browser ? window.location.reload() : null;
@@ -255,7 +256,7 @@ export default {
     sendPaymentInfo: function() {
       this.$axios.$post('/rest/course/send-invoice', { form: this.form, provider: this.provider, packageName: this.packageName, invoice: this.invoice, packagePrice: this.packagePrice, vatPrice: this.vatPrice, paymentIntent: this.paymentIntent, cardHolder: this.cardholderName })
       .then( r => {
-        // this.$error(r.data);
+        error(r);
       }).catch(e => {
         console.log(e);
       });
@@ -267,7 +268,7 @@ export default {
         course_id:    this.course_id
       }
       ).then( r => {    
-        // this.$error(r.data);
+        error(r);
       }).catch(e => {
         console.log(e);
       });

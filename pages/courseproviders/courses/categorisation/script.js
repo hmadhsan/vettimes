@@ -1,3 +1,5 @@
+import { error } from "~/config/globalFunctions";
+
 export default {
   data() {
     return {
@@ -31,7 +33,7 @@ export default {
   methods: {
     get() {
       this.$axios.$get("/rest/course/category?id=" + this.id + "&_path=/courseproviders/courses").then(r => {
-        if (r) {
+        if (error(r)) {
           this.vars = r.vars;
           console.log('dddddddddddddddddddddd' , this.vars);
           this.form = Object.assign({
@@ -45,7 +47,7 @@ export default {
     update(next = false) {
       this.form.course_id = this.id;
       this.$axios.$post("/rest/course/category", this.form).then(r => {
-        if (r && true === next) {
+        if (error(r) && true === next) {
           // window.location.href = this.$router.currentRoute.fullPath.replace('/categorisation', '/venues');
           this.$parent.activeTab('categorisation', 'venues'); this.$parent.activeTabAdditionalDates = true;
         }

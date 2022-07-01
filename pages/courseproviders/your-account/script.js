@@ -23,7 +23,7 @@ export default {
   methods: {
     get() {
       this.$axios.$get(`/rest/user?_path=${this.$route.path}`).then( r => {
-        if ( r ) {
+        if ( error(r) ) {
           this.userData = r.data;
         }
       });
@@ -32,7 +32,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios.$put(`/rest/user?_path=${this.$route.path}`, this.userData).then( r => {
-            // this.$error(r.data);
+            error(r);
           });
         } else {
           return false;

@@ -43,10 +43,12 @@ export default {
   },
   methods: {
     get: function() {
+      
       this.$axios.$get(`/rest/course/categories?count=true&list=true`).then( r => {
         let arr = [];
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
+        
         if(r.status) {
           this.categoriesNumbers = r.count;
           for (let key in r.vars) {
@@ -73,6 +75,7 @@ export default {
     },
     getCategoriesNumber: function() {
       this.$axios.$get(`/rest/course/categories?count=true&list=false`).then( r => {
+        debugger
         if(r.status) {
           this.categoriesNumbers = r.count;
         }

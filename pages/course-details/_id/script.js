@@ -7,6 +7,7 @@ import Loader from "../../../components/loader"
 
 import RemoteSearch from "../../../components/remoteSearch";
 import MessageInfo from "../../../components/message-info";
+import { error } from "~/config/globalFunctions";
 
 export default {
   
@@ -80,7 +81,7 @@ export default {
         let arr = [];
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
-        if(r) {
+        if(error(r)) {
           for (let key in r.vars) {
             if(key !== 'cpd_hours') {
               r.vars[key].forEach(item => {
@@ -109,7 +110,7 @@ export default {
         query = `&preview=${this.$route.query.preview}`
       }
       this.$axios.$get(`/rest/course?id=${this.id}${query}&_path=${this.$route.path}`).then( r => {
-        if (r) {
+        if (error(r)) {
           this.course = r.data;
           this.form.course_id = this.course.id;
           this.web_form.course_id = this.course.id;
@@ -117,8 +118,8 @@ export default {
           this.view_form.course_id = this.course.id;
           this.$axios.$put(`/rest/leads?course_id=${this.view_form.course_id}&type=view`).then( r => {});
           this.noCourse = true;
-          if(r.data.video) {
-            this.video = r.data.video
+          if(r.video) {
+            this.video = r.video
           }
 
           if(this.course.status === 2) {
@@ -132,7 +133,7 @@ export default {
           this.checkEnquire();
         } else {
           this.course = false;
-          this.noCourse = r.data.error;
+          this.noCourse = r.error;
         }
         this.load = false;
       });
@@ -163,14 +164,14 @@ export default {
     },
     getArticle: function () {
       this.$axios.$get("/rest/articles?number=3").then( r => {
-        if(r) {
+        if(error(r)) {
           this.article = r.array;
         }
       })
     },
     getArticleBySpeciality: function () {
       this.$axios.$get(`/rest/articles/speciality?course_id=${this.id}&number=3`).then( r => {
-        if(r) {
+        if(error(r)) {
           this.article = r;
         }
       })

@@ -31,11 +31,11 @@
                 <p
                   v-if="course.provider"
                 >Provided by
-                  <router-link
+                  <nuxt-link
                     :to="`/provider-details/${course.provider.id}/${course.provider.slug}`"
                   >
                     {{ course.provider.name }}
-                  </router-link>
+                  </nuxt-link>
                 </p>
               </div>
               <div class="logo" v-if="course.provider.logo_data">
@@ -46,45 +46,45 @@
               <li v-if="course.tab_category">
                 <div v-if="course.tab_category.speciality && course.tab_category.speciality.length > 0">
                   <strong >Speciality</strong>
-                    <router-link
+                    <nuxt-link
                       :key="cat.id"
                       v-for="(cat,key) in course.tab_category.speciality"
                       :to="`/courses/${cat.toLowerCase().replace(/\s/g, '-')}`"
                     >
                       {{ cat }}<span v-if="key != Object.keys(course.tab_category.speciality).length-1">, </span>
-                    </router-link>
+                    </nuxt-link>
                 </div>
               </li>
               <li v-if="course.tab_category">
                 <div v-if="course.tab_category.location">
                   <strong>Location</strong>
-                  <router-link
+                  <nuxt-link
                     :to="`/courses/${course.tab_category.location.toLowerCase().replace(/\s/g, '-')}`"
                   >
                     {{ course.tab_category.location }}
-                  </router-link>
+                  </nuxt-link>
                 </div>
               </li>
               <li v-if="course.tab_category">
                 <div v-if="course.tab_category.course_type">
                   <strong>Course type</strong>
-                  <router-link
+                  <nuxt-link
                       :to="`/courses/${course.tab_category.course_type.toLowerCase().replace(/\s/g, '-')}`"
                   >
                     {{ course.tab_category.course_type }}
-                  </router-link>
+                  </nuxt-link>
                 </div>
               </li>
               <li v-if="course.tab_category">
                 <div v-if="course.tab_category.audience && course.tab_category.audience.length > 0">
                   <strong>Job Role/Target Audience</strong>
-                  <router-link
+                  <nuxt-link
                       v-for="(item,key) in course.tab_category.audience"
                       :key="item.id"
                       :to="`/courses/${item.toLowerCase().replace(/\s/g, '-')}`"
                   >
                     {{ item }}<span v-if="key != Object.keys(course.tab_category.audience).length-1">, </span>
-                  </router-link>
+                  </nuxt-link>
                 </div>
               </li>
               <li v-if="course.tab_category">
@@ -167,7 +167,7 @@
                     {{ course.delivery_method ? course.delivery_method : '-' }}
                   </td>
                   <td v-if="course.booking_url" class="text-r td-booking">
-                    <a href="#" v-if="$auth()" @click.stop.prevent="openCourseAlertPopup(course.booking_url)" >Enquire/Book</a>
+                    <a href="#" v-if="auth" @click.stop.prevent="openCourseAlertPopup(course.booking_url)" >Enquire/Book</a>
                     <a href="#" v-else @click.stop.prevent="openCourseEmailPopup(course.booking_url)" >Enquire/Book</a>
                   </td>
                 </tr>
@@ -182,7 +182,7 @@
                       </td>
                       <!-- @click.stop.prevent="toRedirect(date.booking_url, book_form)" -->
                       <td class="text-r td-booking">
-                        <a href="#" v-if="$auth()" @click.stop.prevent="openCourseAlertPopup(date.booking_url)" >Enquire/Book</a>
+                        <a href="#" v-if="auth" @click.stop.prevent="openCourseAlertPopup(date.booking_url)" >Enquire/Book</a>
                         <a href="#" v-else target="_blank" @click.stop.prevent="openCourseEmailPopup(date.booking_url)" >Enquire/Book</a>
                       </td>
                     </template>
@@ -241,7 +241,7 @@
                 </div>
                 <div class="content">
                   <h4 v-if="item.name">                    
-                    <router-link :to="`/cpd-plus/article/${item.articleNumber}/${item.slug}?${relatedArticleUtmSource}`" target="_blank"><b>{{ item.name }}</b></router-link>
+                    <nuxt-link :to="`/cpd-plus/article/${item.articleNumber}/${item.slug}?${relatedArticleUtmSource}`" target="_blank"><b>{{ item.name }}</b></nuxt-link>
                     <!-- <a :href="item.articleUrl" target="_blank"><b>{{ item.name }}</b></a> -->
                   </h4>
                   <p>{{item.subTitle}}</p>

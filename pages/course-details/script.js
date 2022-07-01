@@ -7,6 +7,7 @@ import Loader from "../../components/loader"
 
 import RemoteSearch from "../../components/remoteSearch";
 import MessageInfo from "../../components/message-info";
+import { error, scrollToTop, toQuery } from "~/config/globalFunctions"
 
 export default {
   
@@ -67,8 +68,13 @@ export default {
       }
       // this.getArticle();
       this.getArticleBySpeciality();
-      this.$scrollToTop();
+      scrollToTop();
     })
+  },
+  computed:{
+    auth(){
+      return this.$store.state.mystore.auth; 
+    }
   },
   watch: {
     'video': 'getEmbed'
@@ -79,7 +85,7 @@ export default {
         let arr = [];
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
-        if(r) {
+        if(error(r) ) {
           for (let key in r.vars) {
             if(key !== 'cpd_hours') {
               r.vars[key].forEach(item => {
@@ -93,11 +99,11 @@ export default {
             }
           }
           this.listLoad = true;
-          this.$store.commit('mystore/setCategories', r.data.vars);
+          this.$store.commit('mystore/setCategories', r.vars);
           this.$store.commit('mystore/setCategoriesSlugsName', categoriesSlugsName);
           this.$store.commit('mystore/setCategoriesNameSlugs', categoriesNameSlugs);
-          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r.data['categories_slugs']);
-          this.$store.commit('mystore/setCategoriesNamesCatgroup', r.data['categories_names']);
+          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r['categories_slugs']);
+          this.$store.commit('mystore/setCategoriesNamesCatgroup', r['categories_names']);
           this.$store.commit('mystore/setSearchList', arr);
         }
       });
@@ -109,14 +115,14 @@ export default {
       }
       this.$axios.$get(`/rest/course?id=${this.id}${query}&_path=${this.$route.path}`).then( r => {
         console.log('rrr', r)
-        if (r)  {
+        if (error(r))  {
 
           this.course = r;
           this.form.course_id = this.course.id;
           this.web_form.course_id = this.course.id;
           this.book_form.course_id = this.course.id;
           this.view_form.course_id = this.course.id;
-          this.$axios.$put("/rest/leads"+this.$toQuery(this.view_form)).then( r => {});
+          this.$axios.$put("/rest/leads"+toQuery(this.view_form)).then( r => {});
           this.noCourse = true;
           if(r.video) {
             this.video = r.video
@@ -133,7 +139,7 @@ export default {
           //this.checkEnquire();
         } else {
           this.course = false;
-          this.noCourse = r.data.error;
+          this.noCourse = r.error;
         }
         this.load = false;
       });
@@ -156,21 +162,21 @@ export default {
     showPhoneNumber: function (e) {
       if(!this.showPhone) {
         e.preventDefault();
-        this.$axios.$put("/rest/leads"+this.$toQuery(this.form)).then( r => {});
+        this.$axios.$put("/rest/leads"+toQuery(this.form)).then( r => {});
         e.target.style.display = 'none';
         this.showPhone = true;
       }
     },
     getArticle: function () {
       this.$axios.$get("/rest/articles?number=3").then( r => {
-        if(r) {
+        if( error(r) ) {
           this.article = r.array;
         }
       })
     },
     getArticleBySpeciality: function () {
       this.$axios.$get(`/rest/articles/speciality?course_id=${this.id}&number=3`).then( r => {
-        if(r) {
+        if(error(r)) {
           this.article = r;
         }
       })

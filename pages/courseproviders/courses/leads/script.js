@@ -1,3 +1,4 @@
+import { ntf, toQuery,error } from "~/config/globalFunctions";
 import mixins from "../../../../config/mixins"
 
 export default {
@@ -24,11 +25,6 @@ export default {
     this.get();
   },
   methods: {
-    toQuery(obj) {
-      return "?"+ Object.keys(obj)
-      .map(key => key + "=" + (obj[key] || ""))
-      .join("&")
-    },
     submit() {
       this.filter.page = 1;
       this.get();
@@ -39,10 +35,11 @@ export default {
     },
     get() {
       this.search = Object.assign({}, this.filter);
-      this.$axios.$get("/rest/leads-table"+this.toQuery(this.search) + "&_path=/courseproviders/courses").then( r => {
-        if (this.$error(r.data)) {
-          if ( r.data.total === undefined ) return this.$ntf();
-          this.data = r.data;
+      this.$axios.$get("/rest/leads-table"+toQuery(this.search) + "&_path=/courseproviders/courses").then( r => {
+        debugger
+        if (error(r)) {
+          if ( r.total === undefined ) return ntf();
+          this.data = r;
         }
       });
     },

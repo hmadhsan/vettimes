@@ -72,3 +72,20 @@ export function ntf (obj)  {
       return false;
     }
   }
+
+  export function scrollToTop () {
+    process.browser ? window.scrollTo(0, 0) : null;
+  };
+
+  export function toQuery (obj) {
+    return "?"+ Object.keys(obj)
+    .map(key => key + "=" + (obj[key] || ""))
+    .join("&")
+  };
+
+  export function isEmptyObj ( obj ) {
+    for (var key in obj) {
+      return false;
+    }
+    return true;
+  };

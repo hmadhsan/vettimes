@@ -1,3 +1,4 @@
+import { error } from "~/config/globalFunctions";
 
 
 export default {
@@ -41,7 +42,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios.$post("/rest/course", { title: this.form.title }).then( r => {
-            if (r) {
+            if (error(r)) {
               this.$router.push(`/courseproviders/courses/${r.id}/details/`);
             }
           })

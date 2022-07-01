@@ -7,6 +7,7 @@ import Loader from "../../components/loader"
 
 import RemoteSearch from "../../components/remoteSearch";
 import MessageInfo from "../../components/message-info";
+import { error, isEmptyObj, scrollToTop, toQuery } from "~/config/globalFunctions"
 
 export default {
   
@@ -60,14 +61,14 @@ export default {
   mounted: function () {
     this.$nextTick(function () {
       this.get();
-      if(this.isEmptyObj(this.$store.state.mystore.searchList) || this.isEmptyObj(this.$store.state.mystore.categories) || this.isEmptyObj(this.$store.state.mystore.categoriesSlugsName)) {
+      if(isEmptyObj(this.$store.state.mystore.searchList) || isEmptyObj(this.$store.state.mystore.categories) || isEmptyObj(this.$store.state.mystore.categoriesSlugsName)) {
         this.getCategories();
       } else {
         this.listLoad = true;
       }
       // this.getArticle();
       this.getArticleBySpeciality();
-      this.$scrollToTop();
+      scrollToTop();
     })
   },
   watch: {
@@ -75,14 +76,14 @@ export default {
   },
   methods: {
     getCategories: function() {
-      this.http.get(`course/categories?count=false&list=true`).then( r => {
+      this.$axios.$get(`/rest/course/categories?count=false&list=true`).then( r => {
         let arr = [];
         let categoriesSlugsName = {};
         let categoriesNameSlugs = {};
-        if(this.$error(r.data)) {
-          for (let key in r.data.vars) {
+        if(error(r)) {
+          for (let key in r.vars) {
             if(key !== 'cpd_hours') {
-              r.data.vars[key].forEach(item => {
+              r.vars[key].forEach(item => {
                 categoriesSlugsName[item.slug] = item.name;
                 categoriesNameSlugs[item.name] = item.slug;
                 arr.push({
@@ -93,11 +94,11 @@ export default {
             }
           }
           this.listLoad = true;
-          this.$store.commit('mystore/setCategories', r.data.vars);
+          this.$store.commit('mystore/setCategories', r.vars);
           this.$store.commit('mystore/setCategoriesSlugsName', categoriesSlugsName);
           this.$store.commit('mystore/setCategoriesNameSlugs', categoriesNameSlugs);
-          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r.data['categories_slugs']);
-          this.$store.commit('mystore/setCategoriesNamesCatgroup', r.data['categories_names']);
+          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r['categories_slugs']);
+          this.$store.commit('mystore/setCategoriesNamesCatgroup', r['categories_names']);
           this.$store.commit('mystore/setSearchList', arr);
         }
       });
@@ -107,17 +108,17 @@ export default {
       if(this.$route.query.preview) {
         query = `&preview=${this.$route.query.preview}`
       }
-      this.http.get(`course?id=${this.id}${query}&_path=${this.$route.path}`).then( r => {
-        if ( this.$error(r.data) ) {
-          this.course = r.data.data;
+      this.$axios.$get(`/rest/course?id=${this.id}${query}&_path=${this.$route.path}`).then( r => {
+        if ( error(r) ) {
+          this.course = r.data;
           this.form.course_id = this.course.id;
           this.web_form.course_id = this.course.id;
           this.book_form.course_id = this.course.id;
           this.view_form.course_id = this.course.id;
-          this.http.put("leads"+this.$toQuery(this.view_form)).then( r => {});
+          this.$axios.$put("/rest/leads"+toQuery(this.view_form)).then( r => {});
           this.noCourse = true;
-          if(r.data.data.video) {
-            this.video = r.data.data.video
+          if(r.data.video) {
+            this.video = r.data.video
           }
 
           if(this.course.status === 2) {
@@ -131,15 +132,15 @@ export default {
           this.checkEnquire();
         } else {
           this.course = false;
-          this.noCourse = r.data.error;
+          this.noCourse = r.error;
         }
         this.load = false;
       });
     },
     getEmbed: function () {
-      this.http.get(`course/embed?url=${this.video}`).then( r => {
-        if(r.data.url) {
-          this.videoUrl = r.data.url;
+      this.$axios.$get(`/rest/course/embed?url=${this.video}`).then( r => {
+        if(r.url) {
+          this.videoUrl = r.url;
         }
       });
     },
@@ -154,27 +155,27 @@ export default {
     showPhoneNumber: function (e) {
       if(!this.showPhone) {
         e.preventDefault();
-        this.http.put("leads"+this.$toQuery(this.form)).then( r => {});
+        this.http.put("leads"+toQuery(this.form)).then( r => {});
         e.target.style.display = 'none';
         this.showPhone = true;
       }
     },
     getArticle: function () {
-      this.http.get("articles?number=3").then( r => {
-        if(this.$error(r.data)) {
-          this.article = r.data.data.array;
+      this.$axios.$get("/rest/articles?number=3").then( r => {
+        if(error(r)) {
+          this.article = r.data.array;
         }
       })
     },
     getArticleBySpeciality: function () {
-      this.http.get(`articles/speciality?course_id=${this.id}&number=3`).then( r => {
-        if(this.$error(r.data)) {
-          this.article = r.data.data;
+      this.$axios.$get(`/rest/articles/speciality?course_id=${this.id}&number=3`).then( r => {
+        if(error(r)) {
+          this.article = r.data;
         }
       })
     },    
     toRedirect: function(url, form) {      
-      this.http.put("leads"+this.$toQuery(form)).then( r => {});
+      this.$axios.$put("/rest/leads"+toQuery(form)).then( r => {});
       let params = {
         url: this.checkUrl(url),
         title: '',

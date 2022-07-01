@@ -5,6 +5,7 @@ import mixins from "../../config/mixins";
 import CoursePreview from "../../components/course-preview";
 import Provider from "../../components/provider-preview";
 import EmailMeCourses from "../../components/email-me-courses";
+import { isEmptyObj } from "~/config/globalFunctions";
 
 
 export default {
@@ -80,7 +81,7 @@ export default {
   },
   mounted: function () {
     this.$nextTick(function () {
-      if(this.isEmptyObj(this.$store.state.mystore.searchList) || this.isEmptyObj(this.$store.state.mystore.categories) || this.isEmptyObj(this.$store.state.mystore.categoriesSlugsName)) {
+      if(isEmptyObj(this.$store.state.mystore.searchList) || isEmptyObj(this.$store.state.mystore.categories) || isEmptyObj(this.$store.state.mystore.categoriesSlugsName)) {
         this.get();
       } else {
         this.listLoad = true;
@@ -98,12 +99,6 @@ export default {
     
       process.browser ? window.scrollTo(0, coords.top + pageYOffset) :null;
     
-    },
-    isEmptyObj (obj) {
-      for (var key in obj) {
-        return false;
-      }
-      return true;
     },
     addNewKeyword: function(value) {
       this.keywords.push(value);

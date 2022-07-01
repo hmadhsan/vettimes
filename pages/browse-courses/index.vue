@@ -9,8 +9,8 @@
               v-if="listLoad"
               :keywords="keywords"
               :catList="$store.state.searchList"
-              :categoriesObj="$store.state.categories"
-              :catsSlugsName="$store.state.categoriesSlugsName"
+              :categoriesObj="$store.state.mystore.categories"
+              :catsSlugsName="$store.state.mystore.categoriesSlugsName"
               pagePosition="home"
           ></RemoteSearch>
         </div>
@@ -20,7 +20,7 @@
         <Loader v-if="!listLoad"></Loader>
         <div v-else class="inner cf">
           <div class="block"
-            v-for="(cats, key) in $store.state.categories" :key="cats.id"
+            v-for="(cats, key) in $store.state.mystore.categories" :key="cats.id"
           >
             <h3>Browse by {{ keys[key] }}</h3>
             <ul>

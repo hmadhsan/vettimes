@@ -282,7 +282,7 @@ export default {
       if( startPos >= 0 ) {
         this.keywords.splice(startPos, 1);
       }
-      startPos = this.searchWords[keywordGroup].indexOf(store.state.categoriesSlugsName[keyword]);
+      startPos = this.searchWords[keywordGroup].indexOf(this.$store.state.mystore.categoriesSlugsName[keyword]);
       if(startPos >= 0) {
         this.searchWords[keywordGroup].splice(startPos, 1);
       }

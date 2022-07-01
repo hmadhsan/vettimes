@@ -1,3 +1,4 @@
+import { error } from "~/config/globalFunctions";
 import Loader from "../../components/loader"
 
 export default {
@@ -18,11 +19,11 @@ export default {
   },
   methods: {
     getCategories: function() {
-      this.http.get(`course/categories?count=false&list=true`).then( r => {
-        if(r.data.status) {
-          for (let key in r.data.vars) {
+      this.$axios.$get(`/rest/course/categories?count=false&list=true`).then( r => {
+        if(r.status) {
+          for (let key in r.vars) {
             if(key === 'speciality') {
-              r.data.vars[key].forEach(item => {
+              r.vars[key].forEach(item => {
                 this.list.push({
                   'value': item.name,
                   'label': item.name
@@ -37,10 +38,10 @@ export default {
       if(this.search === null) {
         this.search = "";
       }
-      this.http.get("articles?keyword="+this.search + '&page=' + this.page + '&_path=' + this.$route.path).then( r => {
-        if(this.$error(r.data)) {
-          this.array = r.data.data.array;
-          this.total = r.data.data.total;
+      this.$axios.$get("/rest/articles?keyword="+this.search + '&page=' + this.page + '&_path=' + this.$route.path).then( r => {
+        if(error(r)) {
+          this.array = r.data.array;
+          this.total = r.data.total;
         }
         this.loadArticles = true;
       })
@@ -73,7 +74,8 @@ export default {
   },
   created() {
     this.getCategories();
-    let search = location.search.substr(1).split("&");
+    let search;
+    process.browser ? search = location.search.substr(1).split("&") : null ; 
     if ( search && search[0] ) {
       search.forEach(item => {
         let key = item.split("=");
