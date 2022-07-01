@@ -1,7 +1,8 @@
 import Header from "../components/header"
 import Footer from "../components/footer"
 import TopAd  from "./top_ad"
-
+// var AdButler = require('adbutler');
+// import AdButler from 'adbutler'
 export default {
   components: {
     Header,
@@ -16,6 +17,10 @@ export default {
       this.$store.commit("mystore/auth");
       this.access(this.$route);
     });
+
+  //   var adButler = new AdButler({
+  //     'apiKey': 'YOUR_API_KEY'
+  // })
   },
   methods:{
     access(to) {

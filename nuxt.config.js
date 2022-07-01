@@ -14,6 +14,12 @@ export default {
       { hider: 'description', name: 'description', content: 'Vet Times is the website for the veterinary profession' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    // script: [
+    //   {
+    //     type: 'text/javascript', 
+    //     src: "https://servedbyadbutler.com/app.js"
+    //   },
+    // ]
   },
 }
 

@@ -8,8 +8,8 @@ export default {
       extra: false
     }
   },
-  created ()  {
-    this.$axios.$get("/rest/page?slug=about-us&_path=/info/about-us").then( r => {
+  mounted() {
+    this.$axios.$get("/rest/page?slug="+this.$route.params.slug + "&_path=" + this.$route.path).then( r => {
       this.page = r.data || false;
     });
     if ( this.$route.params.slug === 'contact-us' ) {
@@ -24,7 +24,7 @@ export default {
   },
   beforeRouteUpdate (to, from, next) {
     next();
-    this.$axios.$get("/rest/page?slug=about-us&_path=/info/about-us").then( r => {
+    this.$axios.$get("/rest/page?slug="+this.$route.params.slug + "&_path=" + this.$route.path).then( r => {
       this.page = r.data || false;
     });
   }

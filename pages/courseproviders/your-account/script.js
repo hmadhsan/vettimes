@@ -1,3 +1,5 @@
+import { error } from "~/config/globalFunctions";
+
 export default {
   data() {
     return {
