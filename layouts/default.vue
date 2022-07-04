@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    
     <TopAd/>
     <Header />
 
@@ -8,8 +9,8 @@
       <Nuxt />
       </transition>
     </main>
-    <Home />
-<Footer /> 
+    <Footer /> 
+
 
   </div>
 </template>

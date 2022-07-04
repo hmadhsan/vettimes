@@ -126,7 +126,7 @@ export default {
         if ( this.$error(r) ) {
           if ( !r.id ) return this.$ntf({});
           this.$router.push(`/courseproviders/courses/${r.id}/details/`);
-          window.location.reload();
+          process.browser && window.location.reload();
         }
       }).catch((e) => {
         console.log(e);

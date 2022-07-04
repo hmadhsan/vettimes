@@ -20,7 +20,7 @@ let helpers = {
         type: 'mystore/changeEnquireEmailDialog',
         dialog: true
       });
-      document.body.style.overflow = 'hidden';
+      process.browser ? document.body.style.overflow = 'hidden' : null;
     },
     openCourseEmailPopup: function(bookUrl) {            
       this.$store.commit({
@@ -29,7 +29,7 @@ let helpers = {
         url: bookUrl,
         dialog: true
       });
-      document.body.style.overflow = 'hidden';      
+      process.browser ? document.body.style.overflow = 'hidden' : null;      
     },
     openCourseAlertPopup: function(bookUrl) {            
       this.$store.commit({
@@ -38,7 +38,7 @@ let helpers = {
         url: bookUrl,
         dialog: true
       });
-      document.body.style.overflow = 'hidden';      
+      process.browser ? document.body.style.overflow = 'hidden' : null;      
     },
     getSlugsFromRoutes: function () {
 
@@ -274,7 +274,7 @@ let helpers = {
       if ( this.data.total < 101 ) {
         this.http.post("export", data).then( r => {
           if ( this.$error(r.data) && r.data.name ) {            
-            window.open(this.$store.state.mystore.base +"rest/download?filename="+ r.data.name);
+            process.browser ? window.open(this.$store.state.mystore.base +"rest/download?filename="+ r.data.name) : null ;
           }
         });
         return;

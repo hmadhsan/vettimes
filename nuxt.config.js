@@ -12,8 +12,10 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hider: 'description', name: 'description', content: 'Vet Times is the website for the veterinary profession' },
+      { name: 'csrf_token', content: "{{ csrf_token() }}" },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    
     // script: [
     //   {
     //     type: 'text/javascript', 
@@ -78,8 +80,10 @@ css: [
     { src: '~/plugins/myplugin.js', mode: 'client' },
     { src: '~/plugins/vue2-editor.js', mode: 'client' },
     { src:'~/plugins/element-ui.js', mode:'client'},
-    // { src:'~/plugins/main.js', mode:'client'}
-
+    { src:'~/plugins/adbutler.js', mode:'client'},
+    { src:'~/plugins/prototypes.js', mode:'client'},
+    { src:'~/plugins/filters.js', mode:'client'},
+    { src:'~/plugins/http.js', mode:'client'}
   ]
 };
 

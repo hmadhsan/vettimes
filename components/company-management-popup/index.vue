@@ -16,14 +16,14 @@
     >
 
       <el-form-item label="File">
-        <el-upload
+       <el-upload
             name="file"
             ref="upload"
-            :accept="$parent.accept[$parent.dialogBox.type]"
+            :accept="$parent.accept[$parent.dialog.type]"
             :auto-upload="false"
             :headers="{ 'X-CSRF-TOKEN': this.$csrfToken() }"
-            :action="$store.state.mystore.base+`rest/media`"
-            :data="$parent.dialogBox"
+            :action="`http://cpdlocal.vettimes.co.uk:3000/`+`rest/media`"
+            :data="$parent.dialog"
             :limit="1"
             :file-list="list"
             :on-success="done"
@@ -31,7 +31,7 @@
             :on-remove="() => used = true"
             :on-change="() => used = false"
         >
-          <div class="el-upload__tip" slot="tip">Your file must be no larger than 1000Kb, and be one of: png, jpg, jpeg, gif.</div>
+          <div class="el-upload__tip" slot="tip">Your file must be no larger than 1000Kb, and be one of: doc, docx, pdf, pages, png, jpg, jpeg, gif.</div>
           <el-button type="secondary" size="small" v-if="used">Select</el-button>
         </el-upload>
       </el-form-item>

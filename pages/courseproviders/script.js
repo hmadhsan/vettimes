@@ -90,5 +90,10 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
+  },
+  computed:{
+    role(){
+      return this.$store.state.mystore.auth?.role;
+    }
   }
 }

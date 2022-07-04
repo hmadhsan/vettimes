@@ -13,7 +13,7 @@
 
       <div class="sign-in top__item  mobile-hide">
         <el-dropdown trigger="click">
-          <a href="#" title="User Menu" data-icon="☺" class="icon-before el-dropdown-link">{{truncate($store.state.mystore.auth.email)}}<i class="el-icon-arrow-down el-icon--right"></i></a>
+          <a href="#" title="User Menu" data-icon="☺" class="icon-before el-dropdown-link">{{$truncate($store.state.mystore.auth.email,19)}}<i class="el-icon-arrow-down el-icon--right"></i></a>
           <el-dropdown-menu slot="dropdown" class="user-dropdown">
             <el-dropdown-item>
               <nuxt-link
@@ -64,9 +64,9 @@
       }
     },
     methods:{
-    truncate(text, max) {
-        return (typeof text === 'string' && text.length > max ? text.substring(0,max)+'...' : text);
-    }
+    // truncate(text, max) {
+    //     return (typeof text === 'string' && text.length > max ? text.substring(0,max)+'...' : text);
+    // }
     }
   }
 </script>

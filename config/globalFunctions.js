@@ -89,3 +89,84 @@ export function ntf (obj)  {
     }
     return true;
   };
+
+
+  export function load (num = -1) {
+    this.$store.commit("mystore/load", num === 1 ? 1 : -1);
+  };
+
+  export function auth ()  {
+    return this.$store.state.mystore.auth;
+  };
+  
+  export function rank ()  {
+    return this.$store.state.mystore.auth ? this.$store.state.mystore.auth.rank : -1;
+  };
+
+  export function access (to) {
+    let auth = this.$store.state.mystore.auth;
+    if (auth === null) return false;
+  
+    const names = ['Your Courses', 'Edit Alert', 'Privacy Dashboard'];
+    if(!!to.meta.auth) {
+      if(to.meta.auth.indexOf(auth.role) === -1 && names.indexOf(to.name) >= 0 && process.browser) {
+        return location.href = 'https://my.vettimes.co.uk/login?redirectTo='+window.location.href;
+      }
+    }
+    process.browser ? document.title = to.name : null;
+    return true;
+  };
+
+  export function providers(key) {
+    if ( !key || key.length < 2 ) return this.$store.state.mystore.providers = [];
+    this.$axios.$get('/rest/providers/live?keyword='+key).then( r => {
+      this.$store.commit('mystore/providers', r.status ? r.array : {});
+    });
+  };
+
+  export function scrollToElement(id){
+    let elem;
+    process.browser ? elem = document.getElementById(id) : null;
+    let coords = elem.getBoundingClientRect();
+    process.browser ? window.scrollTo(0, coords.top + pageYOffset) : null;
+  };
+  
+  export function unique(arr) {
+    return arr.filter( (value, index, self) => {
+      return self.indexOf(value) === index;
+    });
+  };
+
+
+
+
+  /** Open Media popup */
+  export function mediaOpen  (form, key, type)  {
+  this.$store.commit("mystore/media", {
+    form: form, // Form of page, witch will update
+    key: key,   // Key in form
+    type: type  // Media type: 0, 1, 2
+  });
+};
+
+/** Clear Media field */
+  export function mediaClear (form, key)  {
+  form[key] = null;
+  form[key+"_data"] = null;
+};
+
+/** Get Lead name */
+export const leads = {
+  "-1": "All",
+  0: "View",
+  1: "Book",
+  2: "Email",
+  3: "Phone",
+  4: "Web",
+  5: "CBE",
+  6: "Alert"
+};
+
+export function truncate (text, max) {
+  return (typeof text === 'string' && text.length > max ? text.substring(0,max)+'...' : text);
+};

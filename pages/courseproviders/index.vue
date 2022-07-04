@@ -9,9 +9,9 @@
           <!--<p><button class="button button_larger button_callback" @click="dialogFormVisible = true">Request a callback</button></p>-->
 
           <nuxt-link to="/courseproviders/courses/new" class="button button_larger button_callback"
-          v-if="$store.state.mystore.auth && [2,3].indexOf($store.state.mystore.auth.role) > -1">Upload a Course Now</nuxt-link>
+          v-if="$store.state.mystore.auth && [2,3].indexOf(role) > -1">Upload a Course Now</nuxt-link>
 
-          <div class="btn-group" v-if="!([2,3].indexOf($store.state.mystore.auth.role) > -1)">
+          <div class="btn-group" v-if="!([2,3].indexOf(role) > -1)">
             <!-- <a :href="loginTo+`?redirectTo=${cpdBaseUrl}`" class="banner-btn">Sign in</a>
             <a :href="registerTo+`?redirectTo=${redirectTo}`" class="banner-btn">Register</a> -->
             <a href="javascript:void(0);" v-scroll-to="'#why-choose-us'" class="banner-btn">Find out

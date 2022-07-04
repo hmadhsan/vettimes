@@ -1,6 +1,12 @@
+
+import axios from 'axios' 
+import { error, load, ntf } from '~/config/globalFunctions';
+import { cpdBaseUrl } from '~/config/constants';
 export default {
   data() {
     return {
+      cpdBaseUrl,
+      http:null,
       used: true,
       list: [],
       rules: {
@@ -18,9 +24,34 @@ export default {
         }, 1000);
         return this.$refs.upload.submit();
       }
-      this.$axios.$post("media", this.$parent.dialog).then( r => {
-        this.done(r);
+
+       this.http = axios.create({
+        baseURL: `${cpdBaseUrl}/` + "rest/",
+        headers: { 'X-CSRF-TOKEN': this.$csrfToken() },
+        transformRequest: (data, headers) => {
+          load(1);
+          return axios.defaults.transformRequest[0](data, headers);
+        },
+        transformResponse: (data, headers) => {
+          load();
+          if(!!headers.title && headers.title !== '' && !!headers.path) {
+            // document.title = headers.title;
+            setTimeout(() =>{
+              process.browser ? document.title = headers.title : null;
+            }, 100);
+          }
+          try {
+            return JSON.parse(data);
+          } catch (e) {
+            error({});
+          }
+        }
       });
+     
+    this.http.post("media", this.$parent.dialog).then( r => {
+      this.done(r);
+    });
+
     },
     cancel() {
       this.list = [];
@@ -31,7 +62,7 @@ export default {
     error() {
       this.list = [];
       this.used = true;
-      this.$ntf();
+      ntf()
     },
     done(data) {
       this.list = [];

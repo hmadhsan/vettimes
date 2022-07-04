@@ -108,8 +108,6 @@ export default {
       window.fbAsyncInit = function () {
      
         FB.init({ appId: '558179724973146', cookie: true, xfbml: true, oauth: true });
-    
-        // *** here is my code ***
         if (typeof facebookInit == 'function') {
             facebookInit();
         }

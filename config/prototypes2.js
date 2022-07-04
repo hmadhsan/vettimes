@@ -1,19 +1,23 @@
 import Vue from "vue";
 
-import router from "./routes";
 import ElementUI from "../../../front-admin/src/config/element-ui";
 
 let unknownError = "Something went wrong.";
 
-Vue.prototype.$auth = () => {
-  return store.state.auth;
-};
+export default (context, inject) => {
+const auth = () => {
+  return this.$store.state.mystore.auth;
+}
+inject('auth', auth)
+context.$auth = auth
 
-Vue.prototype.$rank = () => {
-  return store.state.auth ? store.state.auth.rank : -1;
-};
+const rank = () => {
+  return this.$store.state.mystore.auth ? this.$store.state.mystore.auth.rank : -1;
+}
+inject('rank', rank)
+context.$rank = rank
 
-Vue.prototype.$CSRF = document.querySelector('meta[name="csrf_token"]').content;
+// Vue.prototype.$CSRF = document.querySelector('meta[name="csrf_token"]').content;
 
 /**
  * Global loader popup for ajax request
@@ -21,17 +25,19 @@ Vue.prototype.$CSRF = document.querySelector('meta[name="csrf_token"]').content;
  * @param num {number}
  */
 
-Vue.prototype.$load = (num = -1) => {
+const load = (num = -1) => {
   this.$store.commit("mystore/load", num === 1 ? 1 : -1);
-};
+}
+inject('load', load)
+context.$load = load
 
 /**
  * Route permission validation
  *
  * @return boolean
  */
-Vue.prototype.$access = to => {
-  let auth = store.state.auth;
+const access = to => {
+  let auth = this.$store.state.mystore.auth;
   if (auth === null) return false;
 
   const names = ['Your Courses', 'Edit Alert', 'Privacy Dashboard'];
@@ -42,9 +48,11 @@ Vue.prototype.$access = to => {
   }
   document.title = to.name;
   return true;
-};
+}
+inject('access', access)
+context.$access = access
 
-Vue.prototype.$ntf = obj => {  
+const ntf = obj => {  
   if (typeof obj === "string") obj = { type: "error", message: obj };
   if (typeof obj !== "object") obj = { type: "error", message: unknownError };
   if (!obj.type) obj.type = "error";
@@ -56,7 +64,9 @@ Vue.prototype.$ntf = obj => {
     showClose: true,
     type: obj.type
   });
-};
+}
+inject('ntf', ntf)
+context.$ntf = ntf
 
 /**
  * Checking response data for error.
@@ -68,9 +78,9 @@ Vue.prototype.$ntf = obj => {
  *
  * @return {boolean}
  */
-Vue.prototype.$error = (data, message = false, duration = 5000) => {    
+const error = (data, message = false, duration = 5000) => {    
   if (data.status && data.message) {
-    Vue.prototype.$ntf({
+    ntf({
       message: data.message,
       type: "success",
       duration: duration
@@ -100,67 +110,87 @@ Vue.prototype.$error = (data, message = false, duration = 5000) => {
     res = true;
   }
   
-  if(duration === 0) {Vue.prototype.$ntf({ message: message, type: "error", duration: duration }); return res;}
-  if (res && message) Vue.prototype.$ntf({ message: message, type: "success", duration });
-  if (!res) Vue.prototype.$ntf(message);
+  if(duration === 0) {ntf({ message: message, type: "error", duration: duration }); return res;}
+  if (res && message) ntf({ message: message, type: "success", duration });
+  if (!res) ntf(message);
 
   return res;
-};
+}
+inject('error', error)
+context.$error = error
+
 
 /** Get Live Providers array from API */
-Vue.prototype.$providers = key => {
-  if ( !key || key.length < 2 ) return store.state.providers = [];
-  Vue.prototype.http.get('providers/live?keyword='+key).then( r => {
+const providers = key => {
+  
+  if ( !key || key.length < 2 ) return this.$store.state.mystore.providers = [];
+  this.http.get('providers/live?keyword='+key).then( r => {
     this.$store.commit('mystore/providers', r.data.status ? r.data.array : {});
   });
-};
+}
+inject('providers', providers)
+context.$providers = providers
 
-Vue.prototype.isEmptyObj = obj => {
+const isEmptyObj = obj => {
   for (var key in obj) {
     return false;
   }
   return true;
 };
+inject('isEmptyObj', isEmptyObj)
+context.$isEmptyObj = isEmptyObj
 
-Vue.prototype.$toQuery = obj => {
+const toQuery = obj => {
   return "?"+ Object.keys(obj)
   .map(key => key + "=" + (obj[key] || ""))
   .join("&")
 };
+inject('toQuery', toQuery)
+context.$toQuery = toQuery
 
-Vue.prototype.$scrollToTop = () => {
+const scrollToTop = () => {
   window.scrollTo(0, 0);
 };
+inject('scrollToTop', scrollToTop)
+context.$scrollToTop = scrollToTop
 
-Vue.prototype.$scrollToElement = (id) => {
+const scrollToElement = (id) => {
   let elem = document.getElementById(id);
   let coords = elem.getBoundingClientRect();
   window.scrollTo(0, coords.top + pageYOffset);
 };
+inject('scrollToElement', scrollToElement)
+context.$scrollToElement = scrollToElement
 
-Vue.prototype.$unique = function(arr) {
+const unique = function(arr) {
   return arr.filter( (value, index, self) => {
     return self.indexOf(value) === index;
   });
 };
+inject('unique', unique)
+context.$unique = unique
 
 /** Open Media popup */
-Vue.prototype.$mediaOpen = (form, key, type) => {
+const mediaOpen = (form, key, type) => {
   this.$store.commit("mystore/media", {
     form: form, // Form of page, witch will update
     key: key,   // Key in form
     type: type  // Media type: 0, 1, 2
   });
 };
+inject('mediaOpen', mediaOpen)
+context.$mediaOpen = mediaOpen
 
 /** Clear Media field */
-Vue.prototype.$mediaClear = (form, key) => {
+const mediaClear = (form, key) => {
   form[key] = null;
   form[key+"_data"] = null;
 };
+inject('mediaClear', mediaClear)
+context.$mediaClear = mediaClear
 
 /** Get Lead name */
-Vue.prototype.$leads = {
+const leads = {
   "-1": "All",
   0: "View",
   1: "Book",
@@ -170,7 +200,13 @@ Vue.prototype.$leads = {
   5: "CBE",
   6: "Alert"
 };
+inject('leads', leads)
+context.$leads = leads
 
-Vue.prototype.truncate = function(text, max) {
+const truncate = function(text, max) {
   return (typeof text === 'string' && text.length > max ? text.substring(0,max)+'...' : text);
 };
+inject('truncate', truncate)
+context.$truncate = truncate
+
+}

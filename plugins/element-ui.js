@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import ElementUI  from 'element-ui'
 import {MessageBox, Message} from 'element-ui'
+// import "../config/filters";
+// import "../config/prototypes";
+// import "../config/http";
 
 Vue.use(ElementUI);
 

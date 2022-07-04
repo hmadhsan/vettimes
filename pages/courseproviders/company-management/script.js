@@ -5,6 +5,7 @@ import mixins from "../../../config/mixins";
 import ProvidersOnly from "../../../components/providers-only"
 import UserManagement from "../../user-management"
 import Media from "../../../components/company-management-popup";
+import { error } from "~/config/globalFunctions";
 //import { VueEditor } from "vue2-editor";
 
 export default {
@@ -96,18 +97,18 @@ export default {
     }, */
     get: function() {
       this.$axios.$get("/rest/provider?action=edit&_path=" + this.$route.path).then( r => {        
-        if ( r.data ) {
-          this.content.name.content = r.data.data.name;
-          this.content.description.content = r.data.data.description;
-          this.content.overview.content = r.data.data.overview;
+        if (  error(r) ) {
+          this.content.name.content = r.data.name;
+          this.content.description.content = r.data.description;
+          this.content.overview.content = r.data.overview;
           // this.content.cpd_certify.show = (this.$auth().role != 2) ? true : false;
-          this.content.course_enquires.contact_name.content = r.data.data.contact;
-          this.content.course_enquires.email.content = r.data.data.email;
-          this.content.course_enquires.website.content = r.data.data.site;
-          this.content.course_enquires.phone.content = r.data.data.phone;
-          this.content.provider_id = r.data.data.id;
-          this.content.logo_data = r.data.data.logo_data,
-          this.content.logo = r.data.data.logo
+          this.content.course_enquires.contact_name.content = r.data.contact;
+          this.content.course_enquires.email.content = r.data.email;
+          this.content.course_enquires.website.content = r.data.site;
+          this.content.course_enquires.phone.content = r.data.phone;
+          this.content.provider_id = r.data.id;
+          this.content.logo_data = r.data.logo_data,
+          this.content.logo = r.data.logo
         } else {
           this.notAuth = true;
         }
@@ -127,14 +128,14 @@ export default {
         logo: (this.content.logo_data) ? this.content.logo_data.id : null
       })
       .then( (r) => {
-        if(r.data.message.email) {          
-          this.$error(r.data, false, 0);
+        if(r.message.email) {          
+          error(r, false, 0);
           return;
         }
 
-        if( this.$error(r.data) ) {          
+        if(error(r)) {          
           this.$router.push('/courseproviders/courses/new');
-          window.location.reload();
+          // process.browser ? window.location.reload() : null ;
         }    
       });
     },
@@ -155,7 +156,7 @@ export default {
         cancelButtonText: 'No'
       }).then(() => {
         this.$axios.$delete("/rest/provider/remove/logo").then( r => {
-          if ( this.$error(r.data) ) {
+          if ( error(r) ) {
             this.get();
             this.dialogOpen = false;
           }

@@ -150,7 +150,7 @@ export default {
   },
   methods: {
     getProviderName: function() {
-      let auth = this.$store.state.mystore.auth;
+      let auth = this.$store?.state?.mystore?.auth;
       if(!auth) {
         return false;
       }
@@ -159,8 +159,8 @@ export default {
 
       if(roles.indexOf(auth.role) >= 0 ) {
         this.$axios.$get("/rest/provider/name").then( r => {
-          if(this.$error(r.data)) {
-            this.provider = r.data.data;
+          if((r)) {
+            this.provider = r.data;
           }
         }).catch((e) => {
           console.log(e);

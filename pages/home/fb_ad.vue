@@ -33,7 +33,7 @@ export default {
   methods: {
     fbParse: function() {
       setTimeout(() => {
-        process.browser ? window.FB.XFBML.parse() : null;
+        process.browser ? window?.FB?.XFBML?.parse() : null;
       }, 0);
     }
   }

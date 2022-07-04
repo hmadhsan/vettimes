@@ -36,7 +36,7 @@ export default {
     get() {
       this.search = Object.assign({}, this.filter);
       this.$axios.$get("/rest/leads-table"+toQuery(this.search) + "&_path=/courseproviders/courses").then( r => {
-        debugger
+        
         if (error(r)) {
           if ( r.total === undefined ) return ntf();
           this.data = r;
