@@ -222,4 +222,6 @@ const truncate = function(text, max) {
 inject('truncate', truncate)
 context.truncate = truncate
 
+console.log("CONTEXT=====>",context)
+
 }

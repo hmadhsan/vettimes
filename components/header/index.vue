@@ -13,7 +13,7 @@
             >
                 <i class="burger" aria-hidden="true"></i>
             </a>
-              <img class="mini-logo guest mobile-show" src="">
+              <img class="mini-logo guest mobile-show" src="../../img/vet-times-cpd_logo.svg">
             <a
                 href="#secondary-nav"
                 title="User menu"

@@ -16,7 +16,7 @@
     </div>
 
     <div class="provider-menu">
-      <img class="mini-logo guest mobile-hide" src="">
+      <img class="mini-logo guest mobile-hide" src="../../img/vet-times-cpd_logo.svg">
 
       <nuxt-link :to="'/courseproviders/company-management'" class="sign-in top__item icon-before provider-admin mobile-hide" data-icon="✱" v-if="$store.state.mystore.auth.role === 2">
         <span title="Provider">{{ $parent.provider.name }}</span>

@@ -9,7 +9,7 @@
 
 
     <div class="user-menu">
-      <img class="mini-logo guest mobile-hide" src="">
+      <img class="mini-logo guest mobile-hide" src="../../img/vet-times-cpd_logo.svg">
 
       <div class="sign-in top__item  mobile-hide">
         <el-dropdown trigger="click">

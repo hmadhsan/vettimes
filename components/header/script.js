@@ -3,6 +3,7 @@ import IsLogout from "./is-logout"
 import IsLogin from "./is-login"
 import ProviderLogin from "./provider-login"
 import { cpdBaseUrl } from "~/config/constants"
+import { error } from "~/config/globalFunctions"
 export default {
   components: {
     IsLogout,
@@ -150,7 +151,7 @@ export default {
   },
   methods: {
     getProviderName: function() {
-      let auth = this.$store?.state?.mystore?.auth;
+      let auth = this.$store.state.mystore.auth;
       if(!auth) {
         return false;
       }
@@ -159,7 +160,7 @@ export default {
 
       if(roles.indexOf(auth.role) >= 0 ) {
         this.$axios.$get("/rest/provider/name").then( r => {
-          if((r)) {
+          if((error(r))) {
             this.provider = r.data;
           }
         }).catch((e) => {
@@ -182,7 +183,7 @@ export default {
         this.$axios.$post("/rest/usercourses", {  action: 'getCourses' }).then( r => {
           this.$store.commit({
             type: 'mystore/changeStars',
-            stars: r.data
+            stars: r
           });
         }).catch((e) => {
           console.log(e);

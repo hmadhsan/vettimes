@@ -47,8 +47,24 @@ export default {
       cpdPlusUrl: 'https://cpd.vettimes.co.uk/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch'
     }
   },
+  beforeCreate(){
+    this.$axios.get("/rest/auth").then(res => {
+      this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
+      // this.access(this.$route);
+    }).catch( () => {
+      this.$store.commit("mystore/auth");
+      // this.access(this.$route);
+    });
+  },
   mounted(){
 
+    
+
+    
+  }
+  ,
+  created() {
+    // debugger
     // this.$axios.get("/rest/auth").then(res => {
     //   this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
     //   this.access(this.$route);
@@ -57,10 +73,7 @@ export default {
     //   this.access(this.$route);
     // });
 
-    
-  }
-  ,
-  created() {
+
     axios.defaults.withCredentials = true
     this.facebookInit()
     this.$nextTick(function () {

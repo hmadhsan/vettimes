@@ -9,7 +9,7 @@ export default {
     Footer,
     TopAd
   },
-  mounted(){
+  created(){
     this.$axios.get("/rest/auth").then(res => {
       this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
       this.access(this.$route);
@@ -18,9 +18,6 @@ export default {
       this.access(this.$route);
     });
 
-  //   var adButler = new AdButler({
-  //     'apiKey': 'YOUR_API_KEY'
-  // })
   },
   methods:{
     access(to) {
@@ -33,7 +30,7 @@ export default {
           return location.href = 'https://my.vettimes.co.uk/login?redirectTo='+window.location.href;
         }
       }
-      document.title = to.name;
+      process.browser ? document.title = to.name : null ;
       return true;
     },
   }
