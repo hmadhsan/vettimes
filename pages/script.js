@@ -40,39 +40,23 @@ export default {
       articles: [],
       uploadCourseUrl: (this.$store.state.mystore.auth) ?
         '/courseproviders/courses/new' :
-        (this.$store.auth) ? '/courseproviders/company-management' :
+        (this.$store.state.mystore.auth) ? '/courseproviders/company-management' :
         'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}` + '&fromCPD=true',
       registerHere: 'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}`,
       location: `${cpdBaseUrl}`,
       cpdPlusUrl: 'https://cpd.vettimes.co.uk/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch'
     }
   },
-  beforeCreate(){
+  mounted(){
     this.$axios.get("/rest/auth").then(res => {
       this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
-      // this.access(this.$route);
+      this.access(this.$route);
     }).catch( () => {
       this.$store.commit("mystore/auth");
-      // this.access(this.$route);
+      this.access(this.$route);
     });
   },
-  mounted(){
-
-    
-
-    
-  }
-  ,
   created() {
-    // debugger
-    // this.$axios.get("/rest/auth").then(res => {
-    //   this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
-    //   this.access(this.$route);
-    // }).catch( () => {
-    //   this.$store.commit("mystore/auth");
-    //   this.access(this.$route);
-    // });
-
 
     axios.defaults.withCredentials = true
     this.facebookInit()

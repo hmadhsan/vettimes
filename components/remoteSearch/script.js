@@ -78,8 +78,8 @@ export default {
       };
       this.value.forEach(item => {
         if(item!=null){
-          if(store.state.categoriesSlugsCatgroup[item]) {
-            searchWords[store.state.categoriesSlugsCatgroup[item]].push(item);
+          if(this.$store.state.mystore.categoriesSlugsCatgroup[item]) {
+            searchWords[this.$store.state.mystore.categoriesSlugsCatgroup[item]].push(item);
           } else {
             searchWords['keywords'].push(item);
           }

@@ -14,9 +14,9 @@
               <RemoteSearch 
                 v-if="listLoad" 
                 :keywords="keywords" 
-                :catList="$store.state.searchList"
-                :categoriesObj="$store.state.categories" 
-                :catsSlugsName="$store.state.categoriesSlugsName"
+                :catList="$store.state.mystore.searchList"
+                :categoriesObj="$store.state.mystore.categories" 
+                :catsSlugsName="$store.state.mystore.categoriesSlugsName"
                 pagePosition="home">
               </RemoteSearch>
             </transition>

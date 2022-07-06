@@ -127,20 +127,7 @@ export default {
           url: 'https://www.vettimes.co.uk/'
         }
       ],
-      providerMenuItems: [
-        {
-          title: 'Upload course',
-          // url: this.$auth() ? '/courseproviders/courses/new' : contactUs,
-          url: 
-           // ( store.state.auth && store.state.auth.role === 2 )
-          //  ? 
-            '/courseproviders/courses/new'
-          //  : ( store.state.auth ) ? '/courseproviders/company-management' 
-          //  : `https://my.vettimes.co.uk/register?redirectTo=${cpdBaseUrl}`+'&fromCPD=true',
-          //role: 'provider',
-          //auth: [-1,1,2,3,4]
-        }
-      ],
+      //////HERE IT WAS
     }
   },
   created: function () {
@@ -263,6 +250,22 @@ export default {
     },
   },
   computed: {
+    providerMenuItems(){ 
+      return[
+      {
+        title: 'Upload course',
+        // url: this.$auth() ? '/courseproviders/courses/new' : contactUs,
+        url: 
+         ( this.$store.state.mystore.auth && this.$store.state.mystore.auth.role === 2 )
+         ? 
+          '/courseproviders/courses/new'
+         : ( this.$store.state.mystore.auth ) ? '/courseproviders/company-management' 
+         : `https://my.vettimes.co.uk/register?redirectTo=${cpdBaseUrl}`+'&fromCPD=true',
+        role: 'provider',
+        auth: [-1,1,2,3,4]
+      }
+    ]
+  },
     filteredMenuList: function() {
       let route = this.$route.path;
       let auth = this.$store.state.mystore.auth;
