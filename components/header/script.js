@@ -130,14 +130,26 @@ export default {
       //////HERE IT WAS
     }
   },
-  created: function () {
-   // window.addEventListener('click', this.closeActiveMenu);
+  mounted() {
+    debugger
+    this.$nuxt.$emit('test', 'blah');
+    //settimeout here
+    setTimeout(()=>{
     this.getCourses();
     this.getProviderName();
     this.getCreditBalance();
+    },700)
+    
+  },
+  created: function () {
+   // window.addEventListener('click', this.closeActiveMenu);
+    // this.getCourses();
+    // this.getProviderName();
+    // this.getCreditBalance();
   },
   methods: {
     getProviderName: function() {
+      debugger
       let auth = this.$store.state.mystore.auth;
       if(!auth) {
         return false;
@@ -156,7 +168,7 @@ export default {
       }
     },
     getCourses: function () {
-    
+    debugger
       let auth = this.$store.state.mystore.auth;
 
 
@@ -178,6 +190,7 @@ export default {
       }
     },
     getCreditBalance: function() {
+      debugger
       let auth = this.$store.state.mystore.auth;
       if(!auth) {
         return false;
