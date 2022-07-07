@@ -75,7 +75,7 @@ export default {
     },
     getCategoriesNumber: function() {
       this.$axios.$get(`/rest/course/categories?count=true&list=false`).then( r => {
-        debugger
+        
         if(r.status) {
           this.categoriesNumbers = r.count;
         }

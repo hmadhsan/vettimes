@@ -131,7 +131,7 @@ export default {
     }
   },
   mounted() {
-    debugger
+    
     this.$nuxt.$emit('test', 'blah');
     //settimeout here
     setTimeout(()=>{
@@ -149,7 +149,7 @@ export default {
   },
   methods: {
     getProviderName: function() {
-      debugger
+      
       let auth = this.$store.state.mystore.auth;
       if(!auth) {
         return false;
@@ -168,7 +168,7 @@ export default {
       }
     },
     getCourses: function () {
-    debugger
+    
       let auth = this.$store.state.mystore.auth;
 
 
@@ -190,7 +190,7 @@ export default {
       }
     },
     getCreditBalance: function() {
-      debugger
+      
       let auth = this.$store.state.mystore.auth;
       if(!auth) {
         return false;

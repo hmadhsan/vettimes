@@ -211,7 +211,7 @@ export default {
       }
     },
     deleteCourse: function(course_id) {
-      debugger
+      
       if(this.$store.state.mystore.auth) {
         this.$axios.$post('/rest/usercourses', {  action: 'deleteCourse' ,course_id: course_id }).then( r => {
           this.$store.commit({

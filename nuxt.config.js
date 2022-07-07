@@ -89,27 +89,27 @@ css: [
 };
 
 
-if (process.env.NODE_ENV === "production") {
-  app.configureWebpack = {
-    optimization: {
-      splitChunks: false
-    },
-    output: {
-      filename: "app.js"
-    },
-    plugins: [
-      new TerserPlugin({
-        parallel: true,
-        terserOptions: { output: { comments: false } }
-      }),
-      new webpack.BannerPlugin(credential)
-    ]
-  };
-  // app.css = {
-  //   extract: { filename: "app.css" }
-  // };
-  app.indexPath = path.resolve(__dirname, "../resources/views/app.blade.php");
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.configureWebpack = {
+//     optimization: {
+//       splitChunks: false
+//     },
+//     output: {
+//       filename: "app.js"
+//     },
+//     plugins: [
+//       new TerserPlugin({
+//         parallel: true,
+//         terserOptions: { output: { comments: false } }
+//       }),
+//       new webpack.BannerPlugin(credential)
+//     ]
+//   };
+//   // app.css = {
+//   //   extract: { filename: "app.css" }
+//   // };
+//   app.indexPath = path.resolve(__dirname, "../resources/views/app.blade.php");
+// }
 
 
 
