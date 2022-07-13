@@ -231,11 +231,12 @@ export default {
           action: action,
           course_id: course_id
         }).then(r => {
+          debugger
           this.$store.commit({
             type: 'mystore/changeStars',
             stars: r
           });
-          this.$error(r);
+         this.$error(r);
         }).catch((e) => {
           console.log(e);
         });

@@ -26,7 +26,7 @@
         <div class="bottom">
             <div class="row">
                 <div class="image">
-                    <!-- <img src="../../img/IPA-innovation.png"> -->
+                    <img src="../../img/IPA-innovation.png">
                 </div>
                 <ul class="cf" v-if="$route.path.indexOf('courseproviders') === -1">
                     <li v-for="item in footerBotMenuItems" :key="item.id">

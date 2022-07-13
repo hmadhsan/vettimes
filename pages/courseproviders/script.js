@@ -13,12 +13,8 @@ export default {
       registerHere:
         ( this.$store.state.mystore.auth ) 
         ? '/courseproviders/company-management'
-        : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
-      buyTo: 
-        (this.$store.state.mystore.auth && this.$store.state.mystore.auth === 2 )
-        ? '/courseproviders/courses/new'
-        : ( this.$store.state.mystore.auth ) ? '/courseproviders/company-management' 
-        : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
+        : 'https://my.vettimes.co.uk/register?redirectTo=' + cpdBaseUrl + '&fromCPD=true',
+      
       dialogFormVisible: false,
       page: [],
       ruleForm: {
@@ -94,6 +90,12 @@ export default {
   computed:{
     role(){
       return this.$store.state.mystore.auth?.role;
-    }
-  }
+    },
+    buyTo(){ 
+       return (this.$store.state.mystore.auth && this.$store.state.mystore.auth.role === 2 )
+        ? '/courseproviders/courses/new'
+        : ( this.$store.state.mystore.auth ) ? '/courseproviders/company-management' 
+        : 'https://my.vettimes.co.uk/register?redirectTo=' + cpdBaseUrl + '&fromCPD=true'
+      }
+      }
 }

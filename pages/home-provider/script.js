@@ -1,3 +1,4 @@
+import { cpdBaseUrl } from "~/config/constants";
 export default {
   data() {
     return {   
@@ -7,12 +8,12 @@ export default {
       registerHere:
         ( store.auth ) 
         ? '/courseproviders/company-management'
-        : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
+        : 'https://my.vettimes.co.uk/register?redirectTo=' + cpdBaseUrl + '&fromCPD=true',
       buyTo: 
-        (this.$store.state.mystore.auth && this.$store.state.mystore.auth === 2 )
+        (this.$store.state.mystore.auth && this.$store.state.mystore.auth.role === 2 )
         ? '/courseproviders/courses/new'
         : ( this.$store.state.mystore.auth ) ? '/courseproviders/company-management' 
-        : 'https://my.vettimes.co.uk/register?redirectTo=' + process.env.LOCAL_HOST + '&fromCPD=true',
+        : 'https://my.vettimes.co.uk/register?redirectTo=' + cpdBaseUrl + '&fromCPD=true',
       dialogFormVisible: false,
       page: [],
       ruleForm: {

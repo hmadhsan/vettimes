@@ -6,6 +6,7 @@
         <div class="row">
           <h1 class="title">Advertise your <br /> course with us...</h1>
           <h2>and reach every sector of <br /> the veterinary profession</h2>
+          
           <!--<p><button class="button button_larger button_callback" @click="dialogFormVisible = true">Request a callback</button></p>-->
 
           <nuxt-link to="/courseproviders/courses/new" class="button button_larger button_callback"
