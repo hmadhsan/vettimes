@@ -15,6 +15,11 @@ export default {
     Popup,
     ProvidersOnly
   },
+  head() {
+    return {
+      title: "Providers Courses"
+    }
+  },
   data() {
     return {
       searchKeywords: '',

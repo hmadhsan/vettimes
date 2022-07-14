@@ -20,6 +20,7 @@ export default {
     }
   },
   mounted(){
+   
     // this.$axios.get("/rest/auth").then(res => {
     //   this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
     //   this.access(this.$route);

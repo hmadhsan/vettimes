@@ -6,13 +6,13 @@ let unknownError = "Something went wrong.";
 
 export default (context, inject) => {
 const auth = () => {
-  return this.$store.state.mystore.auth;
+  return context.store.state.mystore.auth;
 }
 inject('auth', auth)
 context.$auth = auth
 
 const rank = () => {
-  return this.$store.state.mystore.auth ? this.$store.state.mystore.auth.rank : -1;
+  return context.store.state.mystore.auth ? context.store.state.mystore.auth.rank : -1;
 }
 inject('rank', rank)
 context.$rank = rank
@@ -27,7 +27,7 @@ context.$rank = rank
 
 const load = (num = -1) => {
   console.log("here")
-  this.$store.commit("mystore/load", num === 1 ? 1 : -1);
+  context.store.commit("mystore/load", num === 1 ? 1 : -1);
 }
 inject('load', load)
 context.$load = load
@@ -38,8 +38,10 @@ context.$load = load
  * @return boolean
  */
 const access = to => {
+  
   console.log("here")
-  let auth = this.$store.state.mystore.auth;
+  console.log(context)
+  let auth = context.store.state.mystore.auth;
   if (auth === null) return false;
 
   const names = ['Your Courses', 'Edit Alert', 'Privacy Dashboard'];
@@ -128,9 +130,9 @@ context.$error = error
 const providers = key => {
   console.log("here")
   
-  if ( !key || key.length < 2 ) return this.$store.state.mystore.providers = [];
-  this.http.get('providers/live?keyword='+key).then( r => {
-    this.$store.commit('mystore/providers', r.data.status ? r.data.array : {});
+  if ( !key || key.length < 2 ) return context.store.state.mystore.providers = [];
+  context.$axios.get('/rest/providers/live?keyword='+key).then( r => {
+    context.store.commit('mystore/providers', r.status ? r.array : {});
   });
 }
 inject('providers', providers)
@@ -183,7 +185,7 @@ context.$unique = unique
 /** Open Media popup */
 const mediaOpen = (form, key, type) => {
   console.log("here")
-  this.$store.commit("mystore/media", {
+  context.store.commit("mystore/media", {
     form: form, // Form of page, witch will update
     key: key,   // Key in form
     type: type  // Media type: 0, 1, 2

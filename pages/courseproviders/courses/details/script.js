@@ -14,6 +14,11 @@ export default {
     MessageInfo,
     Payment
   },
+  // head() {
+  //   return {
+  //     title: "Course Advertise"
+  //   }
+  // },
   data() {    
 
     var vm = this;
@@ -69,12 +74,8 @@ export default {
     }
   },
   watch: {
-    dataUpdateError(o,n){
-      this.scrollToTop()
-  },
-    dataUpdateSuccess(o,n){
-      this.scrollToTop()
-    }
+    'dataUpdateError': '$scrollToTop',
+    'dataUpdateSuccess': '$scrollToTop'
   },
   mounted: function () {
     this.$nextTick(function () {
@@ -97,9 +98,6 @@ export default {
     }
   },
   methods: {
-    scrollToTop(){
-      process.browser ? window.scrollTo(0, 0) :null;
-    },
     get: function(credits = false) {      
       this.$axios.$get("/rest/course/info?id="+ this.$route.params.id + "&_path=/courseproviders/courses").then(r => {
         if (error(r)) {          
@@ -217,6 +215,7 @@ export default {
               // process.browser ? window.location.href = this.$router.currentRoute.fullPath.replace('/details', '/categorisation') : null ;
               
               this.$parent.activeTab('details', 'categorisation'); this.$parent.activeTabCategorisation = true;
+              process.browser ? window.scrollTo(0,0) : null
             } else {
               this.$parent.get();
             }

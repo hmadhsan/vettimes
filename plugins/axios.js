@@ -3,16 +3,18 @@ import axios from "axios";
 axios.interceptors.response.use(response => response, () => {});
 
 export default function ({ $axios, redirect, app }, inject) {
+  
     // Create a custom axios instance
     const axios = $axios.create({
         baseURL: cpdBaseUrl+"/",
-        // headers: { 'X-CSRF-TOKEN': this.$csrfToken() },
+        headers: { 'X-CSRF-TOKEN': app.$csrfToken() },
         // transformRequest: (data, headers) => {
         // //   this.$load(1);
         //   return axios.defaults.transformRequest[0](data, headers);
         // },
         transformResponse: (data, headers) => {
-        //   this.$load();
+          app.$load();
+        
           if(!!headers.title && headers.title !== '' && !!headers.path) {
             // document.title = headers.title;
             setTimeout(() =>{
@@ -22,7 +24,7 @@ export default function ({ $axios, redirect, app }, inject) {
           try {
             return JSON.parse(data);
           } catch (e) {
-            this.error({});
+            app.$error({});
           }
         }
       });

@@ -48,13 +48,13 @@ export default {
     }
   },
   mounted(){
-    this.$axios.get("/rest/auth").then(res => {
-      this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
-      this.access(this.$route);
-    }).catch( () => {
-      this.$store.commit("mystore/auth");
-      this.access(this.$route);
-    });
+    // this.$axios.get("/rest/auth").then(res => {
+    //   this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
+    //   this.access(this.$route);
+    // }).catch( () => {
+    //   this.$store.commit("mystore/auth");
+    //   this.access(this.$route);
+    // });
   },
   created() {
 
@@ -129,7 +129,7 @@ export default {
           return location.href = 'https://my.vettimes.co.uk/login?redirectTo='+window.location.href;
         }
       }
-      document.title = to.name;
+      process.browser ? document.title = to.name : null;
       return true;
     },
     getContentPosition: async function () {
@@ -231,7 +231,7 @@ export default {
           action: action,
           course_id: course_id
         }).then(r => {
-          debugger
+          
           this.$store.commit({
             type: 'mystore/changeStars',
             stars: r

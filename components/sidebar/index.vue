@@ -9,13 +9,13 @@
         :key="item"
         :class="getClass(item)"
       >
-        <router-link
+        <nuxt-link
           class="list-nav__link"
           :to="`/courseproviders/courses/${$parent.info.id}/${index}`"
           @click.native="change(item)"
         >
           {{ item }}
-        </router-link>
+        </nuxt-link>
       </li>
     </ul>
 

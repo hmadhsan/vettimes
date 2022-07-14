@@ -11,16 +11,16 @@ export default {
   },
   created(){
 
-    this.$nuxt.$on('test', data => {
-      console.log(data+' emitted')
-      this.$axios.get("/rest/auth").then(res => {
-        this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
-        this.access(this.$route);
-      }).catch( () => {
-        this.$store.commit("mystore/auth");
-        this.access(this.$route);
-      });
-      })
+    // this.$nuxt.$on('test', data => {
+    //   console.log(data+' emitted')
+    //   this.$axios.get("/rest/auth").then(res => {
+    //     this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
+    //     this.access(this.$route);
+    //   }).catch( () => {
+    //     this.$store.commit("mystore/auth");
+    //     this.access(this.$route);
+    //   });
+    //   })
 
 
 

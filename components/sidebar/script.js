@@ -10,6 +10,7 @@ export default {
       return tabs;
     },
     change(item) {
+      
       if ( typeof this.$parent.setActive === "function" ) {
         this.$parent.setActive(item);        
       }

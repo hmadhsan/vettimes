@@ -84,7 +84,8 @@ css: [
     { src:'~/plugins/prototypes.js', mode:'client'},
     { src:'~/plugins/filters.js', mode:'client'},
     { src:'~/plugins/http.js', mode:'client'},
-    { src:'~/plugins/axios.js', mode:'client'}
+    { src:'~/plugins/axios.js', mode:'client'},
+    { src: '~plugins/auth.js', ssr: false, mode:'client'  }
   ]
 };
 

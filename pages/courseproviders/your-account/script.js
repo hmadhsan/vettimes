@@ -1,6 +1,11 @@
 import { error } from "~/config/globalFunctions";
 
 export default {
+  head() {
+    return {
+      title: "Your Account"
+    }
+  },
   data() {
     return {
       userData: {

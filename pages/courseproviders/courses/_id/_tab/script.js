@@ -18,6 +18,11 @@ export default {
     Categorisation,
     Leads
   },
+  head() {
+    return {
+      title: "Course Advertise"
+    }
+  },
   data() {
     
     return {
@@ -188,7 +193,8 @@ export default {
       }
     },
     activeTab(old_item, item) {
-      this.$router.push(this.$router.currentRoute.fullPath.replace('/' + old_item, '/' + item));
+      // window.$nuxt.$router.push(window.$nuxt.$router.currentRoute.fullPath.replace('/' + old_item, '/' + item)) 
+      // this.$router.push(this.$router.currentRoute.fullPath.replace('/' + old_item, '/' + item));
       item = (item == 'venues') ? 'Additional Dates' : item;
       this.setActive(item);
     },
