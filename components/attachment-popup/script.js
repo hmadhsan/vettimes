@@ -16,6 +16,11 @@ export default {
       }
     }
   },
+  computed:{
+    cpdUrl(){
+      return `${cpdBaseUrl}/`+`rest/media`
+    }
+  },
   methods: {
     submit() {
       if ( !this.used ) {

@@ -1,8 +1,9 @@
+import { BASE_URL } from "~/config/constants";
 export const state = ()=>(
   {
   auth: null,
   stars: [],
-  base: 'http://cpdlocal.vettimes.co.uk/',//process.env.BASE_URL,
+  base: BASE_URL,//process.env.BASE_URL,
   load: 0,
   enquireEmailDialog: false,
   courseEmailDialog: false,
