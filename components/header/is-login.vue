@@ -38,8 +38,8 @@
 
       <div class="create-acc top__item  mobile-hide">
         <nuxt-link to="/your-courses">
-          <span aria-hidden="true" class="icon-after" data-icon="★" title="Your shortlist">{{ this.$store.state.mystore.stars.length }}</span>
-          <span class="hidden">Your shortlist (<span>{{ this.$store.state.mystore.stars.length }}</span>)</span>
+          <span aria-hidden="true" class="icon-after" data-icon="★" title="Your shortlist">{{ $store.state.mystore.stars.data ? $store.state.mystore.stars.data.length  : ''}}</span>
+          <span class="hidden">Your shortlist (<span>{{ $store.state.mystore.stars.data ?  $store.state.mystore.stars.data.length : '' }}</span>)</span>
         </nuxt-link>
 
       </div>

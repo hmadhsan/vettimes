@@ -130,22 +130,16 @@ export default {
       //////HERE IT WAS
     }
   },
-  mounted() {
-    
-    this.$nuxt.$emit('test', 'blah');
-    //settimeout here
-    setTimeout(()=>{
-    this.getCourses();
-    this.getProviderName();
-    this.getCreditBalance();
-    },700)
-    
-  },
   created: function () {
-   // window.addEventListener('click', this.closeActiveMenu);
-    // this.getCourses();
-    // this.getProviderName();
-    // this.getCreditBalance();
+  process.browser ? window.addEventListener('click', this.closeActiveMenu) : null;
+  
+  },
+  watch: {
+    '$store.state.mystore.auth': function() {
+      if(this.$store.state.mystore.auth){
+        this.getProviderName()
+      }
+    }
   },
   methods: {
     getProviderName: function() {
@@ -160,6 +154,7 @@ export default {
       if(roles.indexOf(auth.role) >= 0 ) {
         this.$axios.$get("/rest/provider/name").then( r => {
           if((error(r))) {
+            
             this.provider = r.data;
           }
         }).catch((e) => {
@@ -167,45 +162,7 @@ export default {
         });
       }
     },
-    getCourses: function () {
     
-      let auth = this.$store.state.mystore.auth;
-
-
-      if(!auth) {
-        return false;
-      }
-
-      let roles = [1,4];
-
-      if(roles.indexOf(auth.role) >= 0 ) {
-        this.$axios.$post("/rest/usercourses", {  action: 'getCourses' }).then( r => {
-          this.$store.commit({
-            type: 'mystore/changeStars',
-            stars: r
-          });
-        }).catch((e) => {
-          console.log(e);
-        });
-      }
-    },
-    getCreditBalance: function() {
-      
-      let auth = this.$store.state.mystore.auth;
-      if(!auth) {
-        return false;
-      }
-
-      let roles = [2,3];
-
-      if(roles.indexOf(auth.role) >= 0 ) {
-        this.$axios.$get("/rest/credits").then( r => {
-          this.$store.commit('mystore/setCredits', r.data);
-        }).catch((e) => {
-          console.log(e);
-        });
-      }
-    },
     mainMenuHandler: function (e) {
       e.preventDefault();
 

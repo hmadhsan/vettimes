@@ -11,25 +11,7 @@ export default {
   },
   created(){
 
-    // this.$nuxt.$on('test', data => {
-    //   console.log(data+' emitted')
-    //   this.$axios.get("/rest/auth").then(res => {
-    //     this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
-    //     this.access(this.$route);
-    //   }).catch( () => {
-    //     this.$store.commit("mystore/auth");
-    //     this.access(this.$route);
-    //   });
-    //   })
 
-
-
-    
-
-  },
-  beforeDestroy() {
-    // $off method will turn off the event listner
-    this.$nuxt.$off('test');
   },
   methods:{
     access(to) {
