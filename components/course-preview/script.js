@@ -17,13 +17,13 @@ export default {
         if(!type) {
           action = 'deleteCourse';
         }
-
-        this.http.post('usercourses', {  action: action ,course_id: course_id }).then( r => {
+        debugger
+        this.$axios.$post('/rest/usercourses', {  action: action ,course_id: course_id }).then( r => {
           this.$store.commit({
             type: 'mystore/changeStars',
-            stars: r.data.data
+            stars: r
           });
-          this.$error(r.data);
+          this.$error(r);
         }).catch((e) => {
           console.log(e);
         });

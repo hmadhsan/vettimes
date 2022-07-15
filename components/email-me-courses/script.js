@@ -26,7 +26,7 @@ export default {
               }
             ]
           },
-          "termConditionsLink": "https://cpd.vettimes.co.uk/info/terms/"
+          
         },
         form: {
           email: '',
@@ -55,5 +55,10 @@ export default {
         this.userAlerts();
         this.$parent.$parent.popoverVisible = false;
       }
+    },
+    computed: {
+      termConditionsLink(){
+      return `${cpdBaseUrl}/info/terms/`
     }
+    },
 }

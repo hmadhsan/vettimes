@@ -38,12 +38,12 @@ export default {
             }
           ]
         },
-        "termConditionsLink": "https://cpd.vettimes.co.uk/info/terms/"
       }
     }
   },
   computed: {
-
+    termConditionsLink(){
+    return `${cpdBaseUrl}/info/terms/`
   },
   created: function () {
     window.addEventListener('keyup', this.closePopupByKeyboard)
@@ -68,10 +68,11 @@ export default {
     },
     submitForm: function (e) {
       e.preventDefault();
-      this.http.put("leads"+this.$toQuery(this.form)).then( r => {
-        if(r.data.error !== undefined) return this.$ntf(r.data.error);
+      this.$axios.$put("/rest/leads"+this.$toQuery(this.form)).then( r => {
+        if(r.error !== undefined) return this.$ntf(r.error);
         this.closeEnquireEmailPopup();
       });
     }
   }
+}
 }

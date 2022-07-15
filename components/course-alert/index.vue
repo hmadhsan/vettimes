@@ -27,9 +27,9 @@
                                 <p>
                                     All emails will contain a link in the footer to enable you to unsubscribe at any time.
                                     <br/>
-                                    By registering you agree to our <a href="https://cpd.vettimes.co.uk/info/terms/"
+                                    By registering you agree to our <a :href="infoTermsLink"
                                         target="_blank">terms and conditions</a> and <a
-                                        href="https://cpd.vettimes.co.uk/" target="_blank">privacy policy.</a>
+                                        :href="cpdBaseUrl" target="_blank">privacy policy.</a>
                                     Your details may be passed on to the course provider to contact you
                                 </p>
                             </div>

@@ -73,7 +73,7 @@ export default {
         },*/
         {
           title: 'CPD+',
-          url: 'https://cpd.vettimes.co.uk/cpd-plus',
+          url: `${cpdBaseUrl}/cpd-plus`,
           role: 'all',
           auth: [1,2,3,4]
         }

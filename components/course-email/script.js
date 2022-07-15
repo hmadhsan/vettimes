@@ -1,6 +1,6 @@
 import CourseEmail from "./index";
 import mixins from "../../config/mixins";
-
+import { cpdBaseUrl } from "~/config/constants";
 
 export default {
 
@@ -9,6 +9,7 @@ export default {
   mixins: [ mixins.helpers ],
   data() {
     return {
+      cpdBaseUrl,
       loadData: true,
       form: {
         course_id: this.$props.course_id,
@@ -25,7 +26,9 @@ export default {
     }
   },
   computed: {
-
+    infoTermsLink(){
+      return `${cpdBaseUrl}/info/terms/`
+    }
   },
   created: function () {
     window.addEventListener('keyup', this.closePopupByKeyboard)

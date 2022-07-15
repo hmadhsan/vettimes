@@ -42,7 +42,7 @@ console.log('first')
       registerHere:
         'https://my.vettimes.co.uk/register?redirectTo=' + cpdBaseUrl,
       location: cpdBaseUrl,
-      cpdPlusUrl: 'https://cpd.vettimes.co.uk/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch'
+      cpdPlusUrl: `${cpdBaseUrl}/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch`
     }
   },
 

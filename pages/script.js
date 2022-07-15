@@ -7,6 +7,7 @@ import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
 // import Axios from "axios";
 import { cpdBaseUrl } from "~/config/constants";
+import { BASE_URL } from "~/config/constants";
 // import router from "~/config/routes";
 import axios from 'axios'
 export default {
@@ -26,6 +27,7 @@ export default {
   },
   data() {
     return {
+      BASE_URL,
       cpdBaseUrl,
       listLoad: false,
       keywords: [],
@@ -44,7 +46,7 @@ export default {
         'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}` + '&fromCPD=true',
       registerHere: 'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}`,
       location: `${cpdBaseUrl}`,
-      cpdPlusUrl: 'https://cpd.vettimes.co.uk/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch'
+      cpdPlusUrl: `${cpdBaseUrl}/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch`
     }
   },
   mounted(){

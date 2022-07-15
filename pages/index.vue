@@ -242,7 +242,7 @@
                     
                               <div class="card maroon-card">
                                   <a :href="`/cpd-plus/${hub.menu_category}/`">
-                                      <img class="card-img-top" :src="`https://cpd.vettimes.co.uk/media/${hub.menu_image}`">
+                                      <img class="card-img-top" :src="`${BASE_URL}media/${hub.menu_image}`">
                                    
                                         <div class="card-body">
                                           <h3 class="card-title">{{ hub.menu_name }}:</h3>

@@ -7,12 +7,13 @@ export default {
     }
   },
   created: function() {
+    debugger
     if(!!this.url) {
       setTimeout(() => {
-        location.href = this.url;
+        process.browser ? location.href = this.url : null;
       }, 3000);
     } else {
-      window.history.back();
+      process.browser ? window.history.back() : null;
     }
   }
 }

@@ -1,6 +1,6 @@
 import CourseAlert from "./index";
 import mixins from "../../config/mixins";
-
+import { cpdBaseUrl } from "~/config/constants";
 
 export default {
   
@@ -9,6 +9,7 @@ export default {
   mixins: [ mixins.helpers ],
   data() {
     return {
+      cpdBaseUrl,
       loadData: true,
       form: {
         course_id: this.$parent.form.course_id,
@@ -27,7 +28,9 @@ export default {
     }
   },
   computed: {
-
+    infoTermsLink(){
+    return `${cpdBaseUrl}/info/terms/`
+  }
   },
   created: function () {
     window.addEventListener('keyup', this.closePopupByKeyboard)
@@ -92,7 +95,7 @@ export default {
 
       this.$axios.$put("/rest/leads/course-alert" + this.toQuery(this.form)).then( r => {
         if(r.error !== undefined) return this.ntf(r.error);
-        window.location.href = store.state.url;
+        process.browser ? window.location.href = this.$store.state.mystore.url : null;
         this.closeCourseAlertPopup();
       });
     }
