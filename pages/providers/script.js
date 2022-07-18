@@ -23,6 +23,13 @@ export default {
       loading: false
     }
   },
+  async fetch(){
+    await this.$axios.$get(`/rest/providers?q=`).then( r => {
+        this.noData = false;
+        this.providers = r;
+        this.loadingProviders = false;
+    });
+  },
   watch: {
     'value': 'get'
   },

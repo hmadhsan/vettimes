@@ -76,7 +76,43 @@ export default {
     }
   },
   watch: {
-    'keywords': 'searchCourses'
+    'keywords': 'searchCourses',
+  },
+  async fetch(){
+    console.log('82')
+    await this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
+      typeSearch: this.keywords.length,
+      page: this.page,
+      speciality: this.searchWords['speciality'].join('|'),
+      audience: this.searchWords['audience'].join('|'),
+      course_type: this.searchWords['course_type'].join('|'),
+      location: this.searchWords['location'].join('|'),
+      price: this.searchWords['price'].join('|'),
+      skill_level: this.searchWords['skill_level'].join('|'),
+      kw: this.searchWords['keywords'].join('|'),
+      sortBy: this.sortType,
+      pid: this.pid,
+      isProviders: this.$attrs.providers,
+      providersPage: this.providersPage
+    })
+    .then( r => {
+      if ( r.total > 0 ) {
+        this.courses.total = r.total;
+        this.courses.array = r.array;
+        this.courses.seo = r.seoData;
+        this.categoriesNumbers = r.filter;
+        this.providers.total = r.providers_total;
+        this.providers.array = r.providers.array;
+      } else {
+        this.courses.total = 0;
+        this.courses.array = [];
+        this.categoriesNumbers = [];
+        this.providers.total = 0;
+        this.providers.array = [];
+      }
+      this.searchCoursesLoad = false;
+      this.loader = true;
+    });
   },
   mounted: function () {
     this.$nextTick(function () {
@@ -195,7 +231,8 @@ export default {
         }
       });
     },
-    searchCourses: function () {
+    searchCourses: async function () {
+      console.log('199')
       this.loader = false;
       this.clickToCourse = false;
       
@@ -286,6 +323,7 @@ export default {
       if(startPos >= 0) {
         this.searchWords[keywordGroup].splice(startPos, 1);
       }
+      console.log('289')
       this.searchCourses();
       if(this.keywords.length === 0) {
         this.$router.push(`/courses/`);
@@ -301,15 +339,18 @@ export default {
     },
     goToPage: function (page) {
       this.page = page;
-      this.searchCourses();
+      console.log('305')
+      this.searchCourses();//Q
       this.scrollToElement('search-block');
     },
     goToProvidersPage: function (page) {
       this.providersPage = page;
+      console.log('311')
       this.searchCourses();
       this.scrollToElement('search-block');
     },
     sortCourses: function () {
+      console.log('316')
       this.searchCourses();
     },
     selectedOption: function(type) {
@@ -318,6 +359,7 @@ export default {
     tabListener: function() {
       this.page = 1;
       this.providersPage = 1;
+      console.log('325')
       this.searchCourses();
     },
     sponsorShip: function() {

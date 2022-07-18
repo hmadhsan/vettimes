@@ -11,7 +11,7 @@ import { BASE_URL } from "~/config/constants";
 // import router from "~/config/routes";
 import axios from 'axios'
 export default {
-  
+  fetchOnServer:true,
   mixins: [mixins.helpers],
   components: {
     RemoteSearch,
@@ -50,31 +50,26 @@ export default {
     }
   },
   mounted(){
-    // this.$axios.get("/rest/auth").then(res => {
-    //   this.$store.commit( "mystore/auth", ( !res.data || !res.data || !res.data.id ) ? false : res.data );
-    //   this.access(this.$route);
-    // }).catch( () => {
-    //   this.$store.commit("mystore/auth");
-    //   this.access(this.$route);
-    // });
+    if(process.browser){
+
+      if (this.$store.state.mystore.searchList || this.$store.state.mystore.categories || this.$store.state.mystore.categoriesSlugsName) {
+           this.get();
+       } else {
+         this.getCategoriesNumber();
+         this.listLoad = true; 
+       }
+      }
+  },
+  async fetch() {
+   
+    await Promise.all([this.getCoursesHomeContent(),this.getRss(),this.getCpdHubs(),this.getArticles()])
+    
   },
   created() {
-
     axios.defaults.withCredentials = true
     this.facebookInit()
-    this.$nextTick(function () {
-      if (this.$store.state.mystore.searchList || this.$store.state.mystore.categories || this.$store.state.mystore.categoriesSlugsName) {
-        this.get();
-      } else {
-        this.getCategoriesNumber();
-        this.listLoad = true; 
-      }
-      this.getCoursesHomeContent();
-      this.getRss();
-      this.getCpdHubs();
-      this.getArticles();
-    })
   },
+
   computed: {
     goToLink: async function () {
       if (this.category) await this.$router.push(this.category)
@@ -140,6 +135,7 @@ export default {
       });
     },
     get: async function () {
+      
     //  this.coursesTotal = 32;
        await this.$axios.$get(`/rest/course/categories?count=true&list=true&courses=count&_path=/`).then((r) => {   
         
@@ -162,12 +158,9 @@ export default {
           }
           this.listLoad = true;
           this.coursesTotal = r.courses_total;
-          this.$store.commit('mystore/setCategories', r.vars);
-          this.$store.commit('mystore/setCategoriesSlugsName', categoriesSlugsName);
-          this.$store.commit('mystore/setCategoriesNameSlugs', categoriesNameSlugs);
-          this.$store.commit('mystore/setCategoriesSlugsCatgroup', r['categories_slugs']);
-          this.$store.commit('mystore/setCategoriesNamesCatgroup', r['categories_names']);
-          this.$store.commit('mystore/setSearchList', arr);
+          
+          this.$store.dispatch('mystore/doIt',r,arr,categoriesSlugsName,categoriesNameSlugs)
+
         }
       })
 

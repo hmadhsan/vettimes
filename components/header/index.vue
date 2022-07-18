@@ -86,7 +86,7 @@
                 <ul id="header-second-menu" v-if="this.$route.path.indexOf('courseproviders') >= 0 ">
                     <li class="header-menu__item" v-for="item in providerMenuItems" :key="item.id">
                     
-                      <nuxt-link class="upload-course-btn" :to="item.url"><span>{{ item.title }}</span></nuxt-link>
+                      <a class="upload-course-btn" :href="item.url"><span>{{ item.title }}</span></a>
                     </li>
                     <div class="desktop-hide header-menu__item">
                         <nuxt-link v-if="$route.path.indexOf('courseproviders') === -1" to="/courseproviders" class="course">Are you a CPD provider?</nuxt-link>

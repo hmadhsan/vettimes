@@ -8,6 +8,11 @@ export default {
       extra: false
     }
   },
+  async fetch(){
+    await this.$axios.$get("/rest/page?slug="+this.$route.params.slug + "&_path=" + this.$route.path).then( r => {
+      this.page = r.data || false;
+    });
+  },
   mounted() {
     this.$axios.$get("/rest/page?slug="+this.$route.params.slug + "&_path=" + this.$route.path).then( r => {
       this.page = r.data || false;

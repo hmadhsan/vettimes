@@ -7,7 +7,7 @@ export default {
   props: ['course', 'logo', 'porder', 'type'],
   data() {
     return {
-      location: window.location.href
+      location: process.browser ? window.location.href : null
     }
   },
   methods: {

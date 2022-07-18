@@ -79,6 +79,41 @@ export default {
   watch: {
     'keywords': 'searchCourses'
   },
+  async fetch(){
+    await this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
+      typeSearch: this.keywords.length,
+      page: this.page,
+      speciality: this.searchWords['speciality'].join('|'),
+      audience: this.searchWords['audience'].join('|'),
+      course_type: this.searchWords['course_type'].join('|'),
+      location: this.searchWords['location'].join('|'),
+      price: this.searchWords['price'].join('|'),
+      skill_level: this.searchWords['skill_level'].join('|'),
+      kw: this.searchWords['keywords'].join('|'),
+      sortBy: this.sortType,
+      pid: this.pid,
+      isProviders: !this.$attrs.providers,
+      providersPage: this.providersPage
+    })
+    .then( r => {
+      if ( r.total > 0 ) {
+        this.courses.total = r.total;
+        this.courses.array = r.array;
+        this.courses.seo = r.seoData;
+        this.categoriesNumbers = r.filter;
+        this.providers.total = r.providers_total;
+        this.providers.array = r.providers.array;
+      } else {
+        this.courses.total = 0;
+        this.courses.array = [];
+        this.categoriesNumbers = [];
+        this.providers.total = 0;
+        this.providers.array = [];
+      }
+      this.searchCoursesLoad = false;
+      this.loader = true;
+    });
+  },
   mounted: function () {
     this.$nextTick(function () {
       if(isEmptyObj(this.$store.state.mystore.searchList) || isEmptyObj(this.$store.state.mystore.categories) || isEmptyObj(this.$store.state.mystore.categoriesSlugsName)) {
