@@ -58,6 +58,41 @@ export default {
       relatedArticleUtmSource: 'utm_source=CPD%20listings&utm_medium=Widget&utm_campaign=CPDlaunch'
     }
   },
+  async fetch(){
+    let query = '';
+      if(this.$route.query.preview) {
+        query = `&preview=${this.$route.query.preview}`
+      }
+      await this.$axios.$get(`/rest/course?id=${this.id}${query}&_path=${this.$route.path}`).then( r => {
+        if (error(r)) {
+          this.course = r.data;
+          this.form.course_id = this.course.id;
+          this.web_form.course_id = this.course.id;
+          this.book_form.course_id = this.course.id;
+          this.view_form.course_id = this.course.id;
+          this.$axios.$put(`/rest/leads?course_id=${this.view_form.course_id}&type=view`).then( r => {});
+          this.noCourse = true;
+          if(r.video) {
+            this.video = r.video
+          }
+
+          if(this.course.status === 2) {
+            this.dataUpdateSuccess = 'Preview only, this course is not active';
+          }
+
+          if(this.course.slug.indexOf(this.slug) < 0) {
+            this.$router.push(`/course-details/${this.id}/${this.course.slug}`);
+          }
+
+          this.checkEnquire();
+        } else {
+          this.course = false;
+          this.noCourse = r.error;
+        }
+        this.load = false;
+      });
+
+  },
   mounted: function () {
     this.$nextTick(function () {
       this.get();
@@ -104,7 +139,7 @@ export default {
         }
       });
     },
-    get: function () {
+    get: async function () {
       let query = '';
       if(this.$route.query.preview) {
         query = `&preview=${this.$route.query.preview}`
@@ -138,7 +173,7 @@ export default {
         this.load = false;
       });
     },
-    getEmbed: function () {
+    getEmbed:async function () {
       this.$axios.$get(`/rest/course/embed?url=${this.video}`).then( r => {
         if(r.url) {
           this.videoUrl = r.url;

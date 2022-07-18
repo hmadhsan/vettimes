@@ -50,6 +50,33 @@ export default {
       this.getCourses();
     });
   },
+  async fetch(){
+    await this.$axios.$get(`/rest/provider?id=${this.id}&_path=${this.$route.path}`).then( r => {
+      if ( r.status ) {
+        this.provider = r.data;
+        this.web_form.provider_id = this.provider.id;
+        this.phone_form.provider_id = this.provider.id;
+        this.view_form.provider_id = this.provider.id;
+        this.$axios.$put(`/rest/leads?provider_id=${this.id}(this.view_form)`).then( r => {});
+        this.keywords.push('Provider: ' + this.provider.name);
+        this.loader = false;
+        if(this.provider.slug.indexOf(this.slug) < 0) {
+          this.$router.push(`/provider-details/${this.id}/${this.provider.slug}`);
+        }
+
+      } else {
+        this.noProvider = r.data.error;
+        this.loader = false
+      }
+    });
+
+
+    await this.$axios.$get(`/rest/courses/latest?provider=${this.id}`).then( r => {
+      if ( r.total > 0 ) {
+        this.courses = r;
+      }
+    });
+  },
   methods: {
     get: function () {
       this.$axios.$get(`/rest/provider?id=${this.id}&_path=${this.$route.path}`).then( r => {
