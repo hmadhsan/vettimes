@@ -7,7 +7,7 @@ export default {
     }
   },
   created: function() {
-    debugger
+    
     if(!!this.url) {
       setTimeout(() => {
         process.browser ? location.href = this.url : null;
