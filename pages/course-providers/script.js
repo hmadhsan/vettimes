@@ -82,7 +82,7 @@ export default {
   async fetch(){
     await this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
       typeSearch: this.keywords.length,
-      page: 1,
+      page: this.page,
       speciality: this.searchWords['speciality'].join('|'),
       audience: this.searchWords['audience'].join('|'),
       course_type: this.searchWords['course_type'].join('|'),
@@ -93,7 +93,7 @@ export default {
       sortBy: this.sortType,
       pid: this.pid,
       isProviders: !this.$attrs.providers,
-      providersPage: this.$route.query.page ? this.$route.query.page : 1
+      providersPage: this.providersPage
     })
     .then( r => {
       if ( r.total > 0 ) {
@@ -250,7 +250,7 @@ export default {
         sortBy: this.sortType,
         pid: this.pid,
         isProviders: !this.$attrs.providers,
-        providersPage: this.$route.query.page ? this.$route.query.page : 1
+        providersPage: this.providersPage
       })
       .then( r => {
         if ( r.total > 0 ) {
@@ -269,7 +269,6 @@ export default {
         }
         this.searchCoursesLoad = false;
         this.loader = true;
-        this.$route.query.page ? this.scrollToElement('search-block') : null;
       });
       
       if(this.keywords.length === 1) this.sponsorShip();
@@ -336,16 +335,9 @@ export default {
       this.scrollToElement('search-block');
     },
     goToProvidersPage: function (page) {
-
-      this.providersPage = this.$route.query.page ? this.$route.query.page : 1;
-      this.$router.replace({query: {...this.$route.query, page: page}})
-
-      setTimeout(()=>{
-        process.browser ? window.location.reload() : null
-      },500)
-      
-      // this.searchCourses();
-      // this.scrollToElement('search-block');
+      this.providersPage = page;
+      this.searchCourses();
+      this.scrollToElement('search-block');
     },
     sortCourses: function () {
       this.searchCourses();
@@ -355,7 +347,7 @@ export default {
     },
     tabListener: function() {
       this.page = 1;
-      this.providersPage = this.$route.query.page ? this.$route.query.page : 1;
+      this.providersPage = 1;
       this.searchCourses();
     },
     sponsorShip: function() {

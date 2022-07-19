@@ -17,7 +17,7 @@ export default {
         if(!type) {
           action = 'deleteCourse';
         }
-        
+        debugger
         this.$axios.$post('/rest/usercourses', {  action: action ,course_id: course_id }).then( r => {
           this.$store.commit({
             type: 'mystore/changeStars',

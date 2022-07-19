@@ -16,7 +16,7 @@ export default {
       },
       noData: false,
       loadingProviders: true,
-      page: this.$route.query.page ? this.$route.query.page : 1,
+      page: 1,
       options: [],
       value: [],
       list: [],
@@ -24,7 +24,7 @@ export default {
     }
   },
   async fetch(){
-    await this.$axios.$get(`/rest/providers?q=&name=${this.value}&page=${this.$route.query.page ? this.$route.query.page : 1}&_path=${this.$route.path}`).then( r => {
+    await this.$axios.$get(`/rest/providers?q=`).then( r => {
         this.noData = false;
         this.providers = r;
         this.loadingProviders = false;
@@ -50,19 +50,18 @@ export default {
       if(!this.value) {
         this.value = '';
       }
-      this.$axios.$get(`/rest/providers?name=${this.value}&page=${this.$route.query.page ? this.$route.query.page : 1}&_path=${this.$route.path}`).then( r => {
+      this.$axios.$get(`/rest/providers?name=${this.value}&page=${this.page}&_path=${this.$route.path}`).then( r => {
         if(r.total === 1) {
           this.$router.push(`/provider-details/${r.array[0].id}/${r.array[0].slug}`);
         } else if(r.total > 1) {
           this.noData = false;
           this.providers = r;
-          // this.$router.push(`/providers?q=${this.value.replace(' ', '+')}`);
+          this.$router.push(`/providers?q=${this.value.replace(' ', '+')}`);
         } else {
           this.noData = true;
           this.$router.push(`/providers`);
         }
         this.loadingProviders = false;
-        this.$route.query.page ? window.scroll(0, 0) : null;
       });
     },
     searchProvider: function (e) {
@@ -79,13 +78,10 @@ export default {
       });
     },
     goToPage: function (page) {
-
-      this.page = this.$route.query.page ? this.$route.query.page : 1;
-      this.$router.replace({query: {...this.$route.query, page: page}})
-
-      setTimeout(()=>{
-        process.browser ? window.location.reload() : null
-      },500)
+      this.page = page;
+      this.get();
+      //this.$scrollToTop();
+      window.scroll(0, 0);
     },
     remoteMethod: function(query) {
       if (query !== '') {

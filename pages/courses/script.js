@@ -77,13 +77,12 @@ export default {
   },
   watch: {
     'keywords': 'searchCourses',
-    // '$route.query': '$fetch'
   },
   async fetch(){
     console.log('82')
     await this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
       typeSearch: this.keywords.length,
-      page: this.$route.query.page ? this.$route.query.page : 1,
+      page: this.page,
       speciality: this.searchWords['speciality'].join('|'),
       audience: this.searchWords['audience'].join('|'),
       course_type: this.searchWords['course_type'].join('|'),
@@ -157,7 +156,7 @@ export default {
       block.style.display = block.style.display === 'block' ? '': 'block';
     },
     setKeywords: function (data) {
-      this.page = this.$route.query.page ? this.$route.query.page : 1;
+      this.page = 1;
       this.keywords = data;
     },
     filterEmptyCats: function(cats, catHeading) {
@@ -247,7 +246,7 @@ export default {
 
       this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
         typeSearch: this.keywords.length,
-        page: this.$route.query.page ? this.$route.query.page : 1,
+        page: this.page,
         speciality: this.searchWords['speciality'].join('|'),
         audience: this.searchWords['audience'].join('|'),
         course_type: this.searchWords['course_type'].join('|'),
@@ -277,7 +276,6 @@ export default {
         }
         this.searchCoursesLoad = false;
         this.loader = true;
-        this.$route.query.page ? this.scrollToElement('search-block') : null;
       });
       
       if(this.keywords.length === 1) this.sponsorShip();
@@ -305,7 +303,7 @@ export default {
     },
     handleNewSearchItem: function (e) { //add new cat to search
       e.preventDefault();
-      this.page = this.$route.query.page ? this.$route.query.page : 1;
+      this.page = 1;
       let keyword = e.target.getAttribute('data-cat');
       if(this.keywords.indexOf(keyword) < 0 ) {
         this.searchCoursesLoad = keyword;
@@ -340,13 +338,10 @@ export default {
       return true;
     },
     goToPage: function (page) {
-      this.page = this.$route.query.page ? this.$route.query.page : 1;
-      this.$router.replace({query: {...this.$route.query, page: page}})
-      
-      setTimeout(()=>{
-        process.browser ? window.location.reload() : null
-      },500)
-
+      this.page = page;
+      console.log('305')
+      this.searchCourses();//Q
+      this.scrollToElement('search-block');
     },
     goToProvidersPage: function (page) {
       this.providersPage = page;
@@ -362,7 +357,7 @@ export default {
       return this.sortType === type;
     },
     tabListener: function() {
-      this.page = this.$route.query.page ? this.$route.query.page : 1;
+      this.page = 1;
       this.providersPage = 1;
       console.log('325')
       this.searchCourses();
