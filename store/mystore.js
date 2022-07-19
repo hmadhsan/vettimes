@@ -68,7 +68,7 @@ export const mutations = {
 
 export const actions = {
   doIt({ commit, state }, r,arr,categoriesSlugsName,categoriesNameSlugs) {
-    debugger
+    
         commit('setCategories', r.vars);
         commit('setCategoriesSlugsName', categoriesSlugsName);
         commit('setCategoriesNameSlugs', categoriesNameSlugs);
