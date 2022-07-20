@@ -67,11 +67,11 @@ export default {
         },
         {
           title: 'CPD+',
-          url: `${cpdBaseUrl}/cpd-plus`
+          url: `https://cpd.vettimes.co.uk/cpd-plus`
         },
         {
           title: 'Terms & Conditions',
-          url: `${cpdBaseUrl}/terms-and-conditions/`
+          url: `https://www.vettimes.co.uk/terms-and-conditions/`
         },
         {
           title: 'About us',
