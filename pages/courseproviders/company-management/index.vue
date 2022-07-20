@@ -11,7 +11,7 @@
                             <a :href="`tel:${content.phoneCompany}`">{{ content.phoneCompany }}</a> or email us at <a
                                 :href="`mailto:${content.emailCompany}`">{{ content.emailCompany }}</a></p> -->
                         <p>In this section please enter all the information about your CPD provider.</p>
-                        <p><router-link to="/courseproviders/payments">Payments history page</router-link></p>
+                        <p><nuxt-link to="/courseproviders/payments">Payments history page</nuxt-link></p>
 
                         <form
                             class="cm-form"
@@ -80,7 +80,7 @@
                                 </el-form>
                             </div>
 
-                            <div class="cm-form__field cf" v-if="($store.state.auth.role !== 2)" style="text-align: right;"> 
+                            <div class="cm-form__field cf" v-if="$store.state.mystore.auth && $store.state.mystore.auth.role !== 2" style="text-align: right;"> 
                                 <span class="small required-indicator">&bull;</span>                                
                                 <input type="checkbox" class="cm-form__checkbox custom-checkbox" id="cpd_certify" name="cpd_certify" v-model="content.cpd_certify.content">
                                 <label class="cm-form__label" for="cpd_certify">I certify that I am an approved CPD provider</label>

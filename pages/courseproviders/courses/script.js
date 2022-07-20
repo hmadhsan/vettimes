@@ -110,11 +110,12 @@ export default {
       });
     },
     doDelete(id) {
+      debugger
       this.$confirm("", "Are you sure?", {
         confirmButtonText: 'Yes',
         cancelButtonText: 'No'
       }).then(() => {
-        this.$axios.$delete(`course?id=${id}`).then( r => {
+        this.$axios.$delete(`/rest/course?id=${id}`).then( r => {
           if(error(r)) {
             this.get();
           }

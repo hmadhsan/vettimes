@@ -135,7 +135,10 @@ export default {
 
         if(error(r)) {          
           this.$router.push('/courseproviders/courses/new');
-          // process.browser ? window.location.reload() : null ;
+          setTimeout(() => {
+            process.browser ? window.location.reload() : null ;
+          }, 100);
+          
         }    
       });
     },

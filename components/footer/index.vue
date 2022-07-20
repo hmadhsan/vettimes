@@ -1,12 +1,12 @@
-<template id="s">
+<template>
     <footer class="footer" id="footer">
         <div class="menu">
             <div class="row">
                 <ul class="footer-menu" id="footer-menu cf">
                   <li v-for="item in footerMenu()" :key="item.id">
-                      <router-link v-if="item.url.indexOf('http') !== 0" :to="item.url">
+                      <nuxt-link v-if="item.url.indexOf('http') !== 0" :to="item.url">
                           <span>{{ item.title }}</span>
-                      </router-link>
+                      </nuxt-link>
                       <a v-else :href="item.url" target="_blank">{{item.title}}</a>
                   </li>
                 </ul>
