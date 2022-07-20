@@ -25,7 +25,7 @@
                 <i class="icon-after" data-icon="☺" aria-hidden="true"></i>
             </a>
         </div>
-        <div class="top" id="top-bar" :class="{ 'top_active': userMenuOpen, 'user-login': $store.state.auth && $store.state.auth.userStatus !== 'expired' }">
+        <div class="top" id="top-bar" :class="{ 'top_active': userMenuOpen, 'user-login': $store.state.mystore.auth && $store.state.mystore.auth.userStatus !== 'expired' }">
             <IsLogin v-if="$store.state.mystore.auth && [1,4].indexOf($store.state.mystore.auth.role) >= 0 && $store.state.mystore.auth.userStatus !== 'expired'" />
             <ProviderLogin v-else-if="$store.state.mystore.auth && [2,3].indexOf($store.state.mystore.auth.role) >= 0 && $store.state.mystore.auth.userStatus !== 'expired'"/>
             <IsLogout v-else/>
