@@ -82,7 +82,7 @@ export default {
     console.log('82')
     await this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
       typeSearch: this.keywords.length,
-      page: this.page,
+      page: this.$route.query.page ? this.$route.query.page : 1,
       speciality: this.searchWords['speciality'].join('|'),
       audience: this.searchWords['audience'].join('|'),
       course_type: this.searchWords['course_type'].join('|'),
@@ -246,7 +246,7 @@ export default {
 
       this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
         typeSearch: this.keywords.length,
-        page: this.page,
+        page: this.$route.query.page ? this.$route.query.page : 1,
         speciality: this.searchWords['speciality'].join('|'),
         audience: this.searchWords['audience'].join('|'),
         course_type: this.searchWords['course_type'].join('|'),
