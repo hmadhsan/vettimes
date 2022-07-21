@@ -228,6 +228,7 @@
                       :pager-count = "5"
                       :page-size="20">
                   </el-pagination>
+                  <HiddenLinks v-show="false" :total="providers.total" :courseproviders="true"/>
                 </div>
               </div>
               <div v-else>

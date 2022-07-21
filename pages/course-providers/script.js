@@ -6,7 +6,7 @@ import CoursePreview from "../../components/course-preview";
 import Provider from "../../components/provider-preview";
 import EmailMeCourses from "../../components/email-me-courses";
 import { isEmptyObj } from "~/config/globalFunctions";
-
+import HiddenLinks from '../../components/hidden-links'
 
 export default {
   mixins: [ mixins.helpers ],
@@ -17,6 +17,7 @@ export default {
     CoursePreview,
     Provider,
     EmailMeCourses,
+    HiddenLinks
   },
   data() {
     return {
@@ -80,9 +81,11 @@ export default {
     'keywords': 'searchCourses'
   },
   async fetch(){
+    let c = this.$route.query.page;
+    console.log("ccc===>",c)
     await this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
       typeSearch: this.keywords.length,
-      page: this.page,
+      page: 1,
       speciality: this.searchWords['speciality'].join('|'),
       audience: this.searchWords['audience'].join('|'),
       course_type: this.searchWords['course_type'].join('|'),
@@ -93,7 +96,7 @@ export default {
       sortBy: this.sortType,
       pid: this.pid,
       isProviders: !this.$attrs.providers,
-      providersPage: this.providersPage
+      providersPage: c ? c : 1
     })
     .then( r => {
       if ( r.total > 0 ) {
@@ -250,7 +253,7 @@ export default {
         sortBy: this.sortType,
         pid: this.pid,
         isProviders: !this.$attrs.providers,
-        providersPage: this.providersPage
+        providersPage: this.$route.query.page ? this.$route.query.page : this.providersPage
       })
       .then( r => {
         if ( r.total > 0 ) {
@@ -335,6 +338,7 @@ export default {
       this.scrollToElement('search-block');
     },
     goToProvidersPage: function (page) {
+      console.log("gtpp",page)
       this.providersPage = page;
       this.searchCourses();
       this.scrollToElement('search-block');

@@ -1,5 +1,5 @@
 import SocialButtons from "../footerSocialButtons"
-import { cpdBaseUrl } from "~/config/constants";
+import { cpdBaseUrl,cpdLiveUrl } from "~/config/constants";
 
 export default {
 
@@ -67,7 +67,7 @@ export default {
         },
         {
           title: 'CPD+',
-          url: `https://cpd.vettimes.co.uk/cpd-plus`
+          url: `${cpdLiveUrl}/cpd-plus`
         },
         {
           title: 'Terms & Conditions',

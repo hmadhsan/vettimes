@@ -53,6 +53,7 @@
                   @current-change="goToPage"
                   :page-size="20">
                 </el-pagination>
+                <HiddenLinks v-show="false" :total="providers.total" :providers="true"/>
               </div>
             </div>
             <div v-else>

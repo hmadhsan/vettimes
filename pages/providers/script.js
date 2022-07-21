@@ -1,12 +1,13 @@
 import Loader from "../../components/loader";
 import Provider from "../../components/provider-preview";
-
+import HiddenLinks from '../../components/hidden-links'
 
 export default {
   
   components: {
     Loader,
-    Provider
+    Provider,
+    HiddenLinks
   },
   data() {
     return {
@@ -24,7 +25,9 @@ export default {
     }
   },
   async fetch(){
-    await this.$axios.$get(`/rest/providers?q=`).then( r => {
+    let c = this.$route.query.page
+    console.log("cpd======>",c)
+    await this.$axios.$get(`/rest/providers?q=&page=${c?c:1}`).then( r => {
         this.noData = false;
         this.providers = r;
         this.loadingProviders = false;
@@ -50,13 +53,14 @@ export default {
       if(!this.value) {
         this.value = '';
       }
-      this.$axios.$get(`/rest/providers?name=${this.value}&page=${this.page}&_path=${this.$route.path}`).then( r => {
+      
+      this.$axios.$get(`/rest/providers?name=${this.value}&page=${this.$route.query.page ? this.$route.query.page : this.page}&_path=${this.$route.path}`).then( r => {
         if(r.total === 1) {
           this.$router.push(`/provider-details/${r.array[0].id}/${r.array[0].slug}`);
         } else if(r.total > 1) {
           this.noData = false;
           this.providers = r;
-          this.$router.push(`/providers?q=${this.value.replace(' ', '+')}`);
+          // this.$router.push(`/providers?q=${this.value.replace(' ', '+')}`);
         } else {
           this.noData = true;
           this.$router.push(`/providers`);

@@ -5,7 +5,7 @@ import mixins from "../../config/mixins";
 import CoursePreview from "../../components/course-preview";
 import Provider from "../../components/provider-preview";
 import EmailMeCourses from "../../components/email-me-courses";
-
+import HiddenLinks from '../../components/hidden-links'
 
 export default {
   mixins: [ mixins.helpers ],
@@ -16,6 +16,7 @@ export default {
     CoursePreview,
     Provider,
     EmailMeCourses,
+    HiddenLinks
   },
   data() {
     return {
@@ -79,10 +80,10 @@ export default {
     'keywords': 'searchCourses',
   },
   async fetch(){
-    console.log('82')
+    let c = this.$route.query.page;
     await this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
       typeSearch: this.keywords.length,
-      page: this.page,
+      page: c ? c : 1,
       speciality: this.searchWords['speciality'].join('|'),
       audience: this.searchWords['audience'].join('|'),
       course_type: this.searchWords['course_type'].join('|'),
@@ -96,6 +97,7 @@ export default {
       providersPage: this.providersPage
     })
     .then( r => {
+      debugger
       if ( r.total > 0 ) {
         this.courses.total = r.total;
         this.courses.array = r.array;
@@ -246,7 +248,7 @@ export default {
 
       this.$axios.$post(`/rest/courses/search?_position=courses&_path=${this.$route.path}`, {
         typeSearch: this.keywords.length,
-        page: this.page,
+        page: this.$route.query.page ? this.$route.query.page : this.page,
         speciality: this.searchWords['speciality'].join('|'),
         audience: this.searchWords['audience'].join('|'),
         course_type: this.searchWords['course_type'].join('|'),

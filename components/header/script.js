@@ -2,7 +2,7 @@
 import IsLogout from "./is-logout"
 import IsLogin from "./is-login"
 import ProviderLogin from "./provider-login"
-import { cpdBaseUrl } from "~/config/constants"
+import { cpdBaseUrl,cpdLiveUrl } from "~/config/constants"
 import { error } from "~/config/globalFunctions"
 export default {
   components: {
@@ -73,7 +73,7 @@ export default {
         },*/
         {
           title: 'CPD+',
-          url: `https://cpd.vettimes.co.uk/cpd-plus`,
+          url: `${cpdLiveUrl}/cpd-plus`,
           role: 'all',
           auth: [1,2,3,4]
         }

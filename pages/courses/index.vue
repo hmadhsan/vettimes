@@ -208,6 +208,7 @@
                     :pager-count = "5"
                     :page-size="20">
                 </el-pagination>
+              <HiddenLinks v-show="false" :total="courses.total" :courses="true"/>
               </div>
             </div>
             <div class="course__inner courses__inner_providers" v-if="$attrs.providers">
@@ -228,8 +229,12 @@
                       :pager-count = "5"
                       :page-size="20">
                   </el-pagination>
+              
                 </div>
+              
               </div>
+
+              
               <div v-else>
                 <p>No results</p>
               </div>
