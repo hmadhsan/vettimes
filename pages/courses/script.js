@@ -339,6 +339,7 @@ export default {
     },
     goToPage: function (page) {
       this.page = page;
+      this.$router.replace({query: {...this.$route.query, page: page}})
       console.log('305')
       this.searchCourses();//Q
       this.scrollToElement('search-block');
