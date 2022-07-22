@@ -2,7 +2,7 @@
 import IsLogout from "./is-logout"
 import IsLogin from "./is-login"
 import ProviderLogin from "./provider-login"
-import { cpdBaseUrl,cpdLiveUrl } from "~/config/constants"
+import { cpdBaseUrl,BASE_URL } from "~/config/constants"
 import { error } from "~/config/globalFunctions"
 export default {
   components: {
@@ -16,6 +16,7 @@ export default {
     var header = "(item.title === 'Why choose us?' || item.title === 'Packages') && $route.path.indexOf('courseproviders')>= 0"
 
     return {
+      BASE_URL,
       cpdBaseUrl,
       stars: 0,
       activeMenu: false,
@@ -73,7 +74,7 @@ export default {
         },*/
         {
           title: 'CPD+',
-          url: `${cpdLiveUrl}/cpd-plus`,
+          url: `${BASE_URL}cpd-plus`,
           role: 'all',
           auth: [1,2,3,4]
         }

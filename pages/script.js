@@ -7,7 +7,7 @@ import RightAd from "./right_ad"
 import FbAd from "./fb_ad"
 // import Axios from "axios";
 import { cpdBaseUrl } from "~/config/constants";
-import { BASE_URL,cpdLiveUrl } from "~/config/constants";
+import { BASE_URL } from "~/config/constants";
 // import router from "~/config/routes";
 import axios from 'axios'
 export default {
@@ -28,7 +28,6 @@ export default {
   data() {
     return {
       BASE_URL,
-      cpdLiveUrl,
       cpdBaseUrl,
       listLoad: false,
       keywords: [],

@@ -241,7 +241,7 @@
                           <div v-for="hub in cpdPlusHubs" class="CPD-hub" :key="hub.menu_id">
                     
                               <div class="card maroon-card">
-                                  <a :href="`${cpdLiveUrl}/cpd-plus/${hub.menu_category}/`">
+                                  <a :href="`${BASE_URL}cpd-plus/${hub.menu_category}/`">
                                       <img class="card-img-top" :src="`${BASE_URL}media/${hub.menu_image}`">
                                    
                                         <div class="card-body">
