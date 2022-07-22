@@ -40,10 +40,7 @@ export default {
       category: '',
       coursesTotal: 0,
       articles: [],
-      uploadCourseUrl: (this.$store.state.mystore.auth) ?
-        '/courseproviders/courses/new' :
-        (this.$store.state.mystore.auth) ? '/courseproviders/company-management' :
-        'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}` + '&fromCPD=true',
+      
       registerHere: 'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}`,
       location: `${cpdBaseUrl}`,
       cpdPlusUrl: `${cpdBaseUrl}/cpd-plus?utm_source=CPD%20Homepage&utm_medium=MPU&utm_campaign=CPDlaunch`
@@ -71,6 +68,12 @@ export default {
   },
 
   computed: {
+    uploadCourseUrl(){
+      return (this.$store.state.mystore.auth) ?
+      '/courseproviders/courses/new' :
+      (this.$store.state.mystore.auth) ? '/courseproviders/company-management' :
+      'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}` + '&fromCPD=true'
+    },
     goToLink: async function () {
       if (this.category) await this.$router.push(this.category)
     },
