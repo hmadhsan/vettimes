@@ -1,18 +1,19 @@
 <template>
     <div>
-
-<a v-if="courses" v-for="(item, index) in array" :href="`http://cpdlocal.vettimes.co.uk:3000/courses?page=${index+1}`">{{index+1}}</a>
-<a v-if="courseproviders" v-for="(item, index) in array" :href="`http://cpdlocal.vettimes.co.uk:3000/course-providers?page=${index+1}`">{{index+1}}</a>
-<a v-if="providers" v-for="(item, index) in array" :href="`http://cpdlocal.vettimes.co.uk:3000/providers?q=&page=${index+1}`">{{index+1}}</a>    
+<a v-if="courses" v-for="(item, index) in array" :href="`${cpdBaseUrl}/courses?page=${index+1}`">{{index+1}}</a>
+<a v-if="courseproviders" v-for="(item, index) in array" :href="`${cpdBaseUrl}/course-providers?page=${index+1}`">{{index+1}}</a>
+<a v-if="providers" v-for="(item, index) in array" :href="`${cpdBaseUrl}/providers?q=&page=${index+1}`">{{index+1}}</a>    
     </div>                                                  
 </template>
 
 <script>
+import { cpdBaseUrl } from '~/config/constants'
     export default {
         props: ['total','courses','courseproviders','providers'],
         data(){
             return {
-                array:[]
+                array:[],
+                cpdBaseUrl
             }
         },
         created(){

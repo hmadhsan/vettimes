@@ -75,7 +75,9 @@ css: [
   auth:{
     
   },
- 
+  router: {
+    base: '/nuxt/'
+  },
   plugins: [
     { src: '~/plugins/myplugin.js', mode: 'client' },
     { src: '~/plugins/vue2-editor.js', mode: 'client' },
