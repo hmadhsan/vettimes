@@ -24,7 +24,7 @@ function getCourses() {
       let roles = [1,4];
   
       if(roles.indexOf(auth.role) >= 0 ) {
-        $axios.post("/rest/usercourses", {  action: 'getCourses' }).then( r => {
+        $axios.post(`${cpdBaseUrl}/rest/usercourses`, {  action: 'getCourses' }).then( r => {
           app.store.commit({
             type: 'mystore/changeStars',
             stars: r
@@ -44,7 +44,7 @@ function getCourses() {
       let roles = [2,3];
   
       if(roles.indexOf(auth.role) >= 0 ) {
-        $axios.get("/rest/credits").then( r => {
+        $axios.get(`${cpdBaseUrl}/rest/credits`).then( r => {
           app.store.commit('mystore/setCredits', r.data);
         }).catch((e) => {
           console.log(e);
