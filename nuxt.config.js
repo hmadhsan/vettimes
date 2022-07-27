@@ -67,7 +67,10 @@ let app = {
   
   },
   proxy: [
-    ['/rest', { target: 'http://cpdlocal.vettimes.co.uk' }]
+    ['/rest', { 
+      // target: 'http://cpdlocal.vettimes.co.uk'   //FOR LOCAL
+      target: 'https://cpd-staging.vettimes.co.uk'  //FOR STAGING
+    }]
 ],
 css: [
   {src: '~public/app.css'}
