@@ -67,8 +67,8 @@ export default {
           keywords = categories[key].replace(/ /g, '+');
         } else {
           categories[key].split('|').forEach(item => {
-            if(store.state.categoriesNameSlugs[item]) {
-              slugs.push(store.state.categoriesNameSlugs[item]);
+            if(this.$store.state.mystore.categoriesNameSlugs[item]) {
+              slugs.push(this.$store.state.mystore.categoriesNameSlugs[item]);
             }
           });
         }
