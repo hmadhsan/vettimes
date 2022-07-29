@@ -12,7 +12,9 @@
           :categoriesObj="$store.state.mystore.categories"
           :catsSlugsName="$store.state.mystore.categoriesSlugsName"
         ></RemoteSearch>
-
+        <div v-show="false">
+        <span v-for="item in categoriesKeywords">{{item}} </span>
+        </div>
         <!-- add ons -->
         <div v-if="this.sponsorship" v-html="this.sponsorshipHtml"></div>
         <h1 v-if="courses.seo.h1_title" class="site-title">{{ courses.seo.h1_title }}</h1>

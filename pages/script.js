@@ -29,6 +29,7 @@ export default {
     return {
       BASE_URL,
       cpdBaseUrl,
+      arrKeywords:[],
       listLoad: false,
       keywords: [],
       categoriesNumbers: [], // numbers of categories in database
@@ -60,7 +61,25 @@ export default {
   async fetch() {
    
     await Promise.all([this.getCoursesHomeContent(),this.getRss(),this.getCpdHubs(),this.getArticles()])
-    
+    await this.$axios.$get(`/rest/course/categories?count=true&list=true&courses=count&_path=/`).then((r) => {  
+      // let arr = [];
+      let categoriesSlugsName = {};
+      let categoriesNameSlugs = {};
+      if (r.status) {
+        this.categoriesNumbers = r.count;
+        for (let key in r.vars) {
+          if (key !== 'cpd_hours') {
+            r.vars[key].forEach(item => {
+              categoriesSlugsName[item.slug] = item.name;
+              categoriesNameSlugs[item.name] = item.slug;
+              this.arrKeywords.push({
+                'value': item.name,
+                'label': item.name
+              });
+            })
+          }
+        }
+    }})
   },
   created() {
     axios.defaults.withCredentials = true

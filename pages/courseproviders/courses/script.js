@@ -110,7 +110,7 @@ export default {
       });
     },
     doDelete(id) {
-      debugger
+      
       this.$confirm("", "Are you sure?", {
         confirmButtonText: 'Yes',
         cancelButtonText: 'No'

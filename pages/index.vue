@@ -228,6 +228,12 @@
      </div>
       </section> -->
 
+    <div v-show="false">
+    <span v-for="arr in arrKeywords">
+    <span>{{arr.value}} </span>
+    </span>
+    </div>
+
     <section class="CPD-hubs">
 
         <div class="container">

@@ -20,6 +20,7 @@ export default {
   },
   data() {
     return {
+      categoriesKeywords:[],
       sortType: '', // sort courses
       pid: '', // search provider id
       keywords: [],//search words in RemoteSearch and this template
@@ -97,7 +98,7 @@ export default {
       providersPage: this.providersPage
     })
     .then( r => {
-      debugger
+      
       if ( r.total > 0 ) {
         this.courses.total = r.total;
         this.courses.array = r.array;
@@ -114,6 +115,37 @@ export default {
       }
       this.searchCoursesLoad = false;
       this.loader = true;
+    });
+
+    await this.$axios.$get(`/rest/course/categories?count=false&_position=courses`).then( r => {
+        
+      let arr = [];
+      let categories = {};
+      let categoriesSlugsName = {};
+      let categoriesNameSlugs = {};
+      if(r.status) {
+        categories = r.vars;
+        for (let key in r.vars) {
+          if(key !== 'cpd_hours') {
+            r.vars[key].forEach(item => {
+              categoriesSlugsName[item.slug] = item.name;
+              categoriesNameSlugs[item.name] = item.slug;
+              arr.push({
+                'value': item.name,
+                'label': item.name
+              });
+            })
+          }
+        }
+        this.listLoad = true;
+        this.loadingProviders = true;
+
+        for(const [key, value] of Object.entries(categories)){
+          value.forEach((obj)=>{
+            this.categoriesKeywords.push(obj.name)
+          })
+        }
+      }
     });
   },
   mounted: function () {
