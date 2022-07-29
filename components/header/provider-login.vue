@@ -26,7 +26,7 @@
       </div>
       <div class="create-acc top__item mobile-hide">
         <el-dropdown trigger="click">
-          <a href="#" title="User Menu" data-icon="☺" class="icon-before el-dropdown-link">{{ $truncate($store.state.mystore.auth.email, 19) }} <i class="el-icon-arrow-down el-icon--right"></i></a>
+          <a title="User Menu" data-icon="☺" class="icon-before el-dropdown-link">{{ $truncate($store.state.mystore.auth.email, 19) }} <i class="el-icon-arrow-down el-icon--right"></i></a>
           <el-dropdown-menu slot="dropdown" class="user-dropdown user-dropdown_provider">
             <el-dropdown-item>
               <nuxt-link
