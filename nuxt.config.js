@@ -5,7 +5,11 @@ export default {
   // serverRuntimeConfig: {
   //   serverRuntimeConfig: process.env.BASE_URL
   // },
-
+  build: {
+    extractCSS: {
+      ignoreOrder: false
+    }
+  },
   head: {
     title: 'Vet Times | The website for the veterinary profession',
     meta: [
@@ -68,8 +72,8 @@ let app = {
   },
   proxy: [
     ['/rest', { 
-      // target: 'http://cpdlocal.vettimes.co.uk'   //FOR LOCAL
-      target: 'https://cpd-staging.vettimes.co.uk'  //FOR STAGING
+      target: 'http://cpdlocal.vettimes.co.uk'   //FOR LOCAL
+      // target: 'https://cpd-staging.vettimes.co.uk'  //FOR STAGING
     }]
 ],
 css: [
@@ -96,25 +100,26 @@ css: [
 };
 
 
-// if (process.env.NODE_ENV === "production") {
-//   app.configureWebpack = {
-//     optimization: {
-//       splitChunks: false
-//     },
-//     output: {
-//       filename: "app.js"
-//     },
-//     plugins: [
-//       new TerserPlugin({
-//         parallel: true,
-//         terserOptions: { output: { comments: false } }
-//       }),
-//       new webpack.BannerPlugin(credential)
-//     ]
-//   };
-//   // app.css = {
-//   //   extract: { filename: "app.css" }
-//   // };
+if (process.env.NODE_ENV === "production") {
+  app.configureWebpack = {
+    optimization: {
+      splitChunks: false
+    },
+    output: {
+      filename: "app.js"
+    },
+    plugins: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: { output: { comments: false } }
+      }),
+      new webpack.BannerPlugin(credential)
+    ]
+  };
+}
+  // app.css = {
+  //   extract: { filename: "app.css" }
+  // };
 //   app.indexPath = path.resolve(__dirname, "../resources/views/app.blade.php");
 // }
 

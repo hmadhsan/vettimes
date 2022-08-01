@@ -54,16 +54,16 @@ export default {
       footerBotMenuItems: [
         {
           title: 'Courses',
-          url: '/courses'
+          url: '/nuxt/courses'
           
         },
         {
           title: 'Browse courses',
-          url: '/browse-courses'
+          url: '/nuxt/browse-courses'
         },
         {
           title: 'Course providers',
-          url: '/providers'
+          url: '/nuxt/providers'
         },
         {
           title: 'CPD+',
@@ -75,7 +75,7 @@ export default {
         },
         {
           title: 'About us',
-          url: '/info/about-us'
+          url: '/nuxt/info/about-us'
         },
       ],
       footerMenuProvider: [

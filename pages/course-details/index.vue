@@ -114,7 +114,7 @@
               </li>
             </ul>
             <div class="enquire">
-              <a href="#enquireBlock">Enquire about this course</a>
+              <a href="javascript:void(0);" v-scroll-to="'#enquireBlock'">Enquire about this course</a>
             </div>
             <div class="additional-info" v-if="course.tab_additional">
               <dl class="additional-info__list">

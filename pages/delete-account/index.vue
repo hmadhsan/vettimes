@@ -17,7 +17,7 @@
         </div>
         <div v-else>
           <p>We have sent you an email that will tell you how to delete your vet times CPD account.</p>
-          <p>You may need to check your junk-mail folder. If you still cannot find the email, please <router-link :to="'/info/contact-us/'">contact us</router-link>.</p>
+          <p>You may need to check your junk-mail folder. If you still cannot find the email, please <nuxt-link :to="'/info/contact-us/'">contact us</nuxt-link>.</p>
         </div>
 
       </div>

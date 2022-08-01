@@ -89,8 +89,8 @@ export default {
   computed: {
     uploadCourseUrl(){
       return (this.$store.state.mystore.auth) ?
-      '/courseproviders/courses/new' :
-      (this.$store.state.mystore.auth) ? '/courseproviders/company-management' :
+      '/nuxt/courseproviders/courses/new' :
+      (this.$store.state.mystore.auth) ? '/nuxt/courseproviders/company-management' :
       'https://my.vettimes.co.uk/register?redirectTo=' + `${cpdBaseUrl}` + '&fromCPD=true'
     },
     goToLink: async function () {

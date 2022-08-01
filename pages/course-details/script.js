@@ -181,7 +181,8 @@ export default {
         }
       })
     },    
-    toRedirect: function(url, form) {      
+    toRedirect: function(url, form) {     
+      console.log('to red 1') 
       this.$axios.$put(`/rest/leads/booknow?course_id=${this.id}(form)`).then( r => {});
       let params = {
         url: this.checkUrl(url),

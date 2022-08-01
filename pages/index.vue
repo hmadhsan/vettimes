@@ -282,7 +282,7 @@
               <img src="../img/cta-icon-jbe.png">
               <h3>Get course alerts</h3>
               <p>Manage and receive courses alerts via email</p>
-              <a href="/your-courses" ><button>Create alerts</button></a>
+              <a href="/nuxt/your-courses" ><button>Create alerts</button></a>
             </div>
           </div>
         </div>

@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     infoTermsLink(){
-    return `${cpdBaseUrl}/info/terms/`
+    return `${cpdBaseUrl}/nuxt/info/terms/`
   }
   },
   created: function () {

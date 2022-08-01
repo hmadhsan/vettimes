@@ -110,6 +110,11 @@ export default {
   watch: {
     'video': 'getEmbed'
   },
+  computed:{
+    fullPath(){
+      return "/nuxt" + this.$route.path
+    }
+  },
   methods: {
     getCategories: function() {
       this.$axios.$get(`/rest/course/categories?count=false&list=true`).then( r => {
@@ -211,8 +216,12 @@ export default {
         }
       })
     },    
-    toRedirect: function(url, form) {      
-      this.$axios.$put(`/rest/leads/booknow?course_id=${this.id}(form)`).then( r => {});
+    toRedirect: function(url, form) {   
+      console.log('to red 2')
+      
+      this.$axios.$put(`/rest/leads/booknow?course_id=${this.id}(form)`).then( r => {
+        debugger
+      });
       let params = {
         url: this.checkUrl(url),
         title: '',
