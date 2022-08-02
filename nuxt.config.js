@@ -7,7 +7,7 @@ export default {
   // },
   build: {
     extractCSS: {
-      ignoreOrder: false
+      ignoreOrder: true
     }
   },
   head: {
@@ -72,8 +72,8 @@ let app = {
   },
   proxy: [
     ['/rest', { 
-      target: 'http://cpdlocal.vettimes.co.uk'   //FOR LOCAL
-      // target: 'https://cpd-staging.vettimes.co.uk'  //FOR STAGING
+      // target: 'http://cpdlocal.vettimes.co.uk'   //FOR LOCAL
+      target: 'https://cpd-staging.vettimes.co.uk'  //FOR STAGING
     }]
 ],
 css: [
@@ -88,7 +88,7 @@ css: [
   plugins: [
     { src: '~/plugins/myplugin.js', mode: 'client' },
     { src: '~/plugins/vue2-editor.js', mode: 'client' },
-    { src:'~/plugins/element-ui.js', mode:'client'},
+    { src:'~/plugins/element-ui.js'},
     { src:'~/plugins/adbutler.js', mode:'client'},
     { src:'~/plugins/prototypes.js', mode:'client'},
     { src:'~/plugins/filters.js', mode:'client'},

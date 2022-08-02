@@ -311,7 +311,8 @@
                 <h2 class="provider-block-heading">Are you a CPD provider?</h2>
                 <p>Do you want your course(s) to reach a highly engaged audience of veterinary CPD consumers? If so, we have the perfect platform for you! With an average of 550 live courses at any one time, and with more than 10,000 registered users, Vet Times CPD has received in excess of 22,000 course views in the past 90 days alone.</P>
                 <div class="create-acc-btn">
-                  <a :href="uploadCourseUrl">Upload course</a>
+                  <!-- <a :href="uploadCourseUrl">Upload course</a> -->
+                  <nuxt-link :to="uploadCourseUrl">Upload course</nuxt-link>
                 </div>
               </div>
             </div>
