@@ -5,11 +5,6 @@ export default {
   // serverRuntimeConfig: {
   //   serverRuntimeConfig: process.env.BASE_URL
   // },
-  build: {
-    extractCSS: {
-      ignoreOrder: true
-    }
-  },
   head: {
     title: 'Vet Times | The website for the veterinary profession',
     meta: [

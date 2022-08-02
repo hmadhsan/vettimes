@@ -133,7 +133,6 @@ export default {
   },
   created: function () {
   process.browser ? window.addEventListener('click', this.closeActiveMenu) : null;
-  
   },
   watch: {
     '$store.state.mystore.auth': function() {
@@ -229,8 +228,8 @@ export default {
         url: 
          ( this.$store.state.mystore.auth && this.$store.state.mystore.auth.role === 2 )
          ? 
-          '/courseproviders/courses/new'
-         : ( this.$store.state.mystore.auth ) ? '/courseproviders/company-management' 
+          '/nuxt/courseproviders/courses/new'
+         : ( this.$store.state.mystore.auth ) ? '/nuxt/courseproviders/company-management' 
          : `https://my.vettimes.co.uk/register?redirectTo=${cpdBaseUrl}`+'&fromCPD=true',
         role: 'provider',
         auth: [-1,1,2,3,4]

@@ -119,7 +119,7 @@
                 </div>
               </ul>
               <h3 class="package__price">FREE</h3>
-              <nuxt-link :to="buyTo" class="buy-btn">BUY</nuxt-link>
+              <a :href="buyTo" class="buy-btn">BUY</a>
             </div>
             <div class="package">              
               <h2 class="package__header bronze">BRONZE</h2>
@@ -141,7 +141,7 @@
               <p>
                 <b>33% view increase from Free*</b>
               </p>
-              <nuxt-link :to="buyTo" class="buy-btn">BUY</nuxt-link>
+              <a :href="buyTo" class="buy-btn">BUY</a>
             </div>
             <div class="package most-popular-package">
               <span class="most-popular">Most popular</span>
@@ -164,7 +164,7 @@
               <p>
                 <b>80% view increase from Bronze*</b>
               </p>
-              <nuxt-link :to="buyTo" class="buy-btn">BUY</nuxt-link>
+              <a :href="buyTo" class="buy-btn">BUY</a>
             </div>
             <div class="package">
               <h2 class="package__header gold">Gold</h2>
@@ -187,7 +187,7 @@
               <p>
                 <b>300% view increase from Bronze*</b>
               </p>
-              <nuxt-link :to="buyTo" class="buy-btn">BUY</nuxt-link>
+              <a :href="buyTo" class="buy-btn">BUY</a>
             </div>
             <!-- <div class="package">
               <h2 class="package__header platinum">Platinum</h2>
