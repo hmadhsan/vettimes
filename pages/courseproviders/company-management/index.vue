@@ -2,6 +2,7 @@
     <div id="company-management">
         <div class="content">
             <template > <!-- v-if="!notAuth" -->
+            <client-only>
                 <div class="site-title-wrapper">
                   <h1 class="site-title">Provider information</h1>
                 </div>
@@ -108,6 +109,9 @@
 
             <!-- <UserManagement style="margin-top:20px" /> -->
 
+            
+            
+            </client-only>
             </template>
             <!-- <ProvidersOnly v-else /> -->
         </div>
