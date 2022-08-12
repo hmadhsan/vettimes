@@ -213,7 +213,8 @@
                 >
                     Enquire by email
                 </a> -->
-                <a class="website icon-before" v-if="course.site" href="#" @click.stop.prevent="toRedirect(course.site, web_form)" data-icon="">Visit website</a>
+                <!-- <a class="website icon-before" v-if="course.site" href="#" @click.stop.prevent="toRedirect(course.site, web_form)" data-icon="">Visit website</a> -->
+              <a class="website icon-before" v-if="course.site" :href="course.site" target="_blank" data-icon="">Visit website</a>
               </div>
             </div>
             <div class="course-downloads" v-if="course.tab_attachments.length > 0">
